@@ -10,6 +10,9 @@ export default function Home() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [activePage, setActivePage] = useState('Beranda');
   const [isMobileOpen, setIsMobileOpen] = useState(false);
+  const [destinationIndex, setDestinationIndex] = useState(0);
+  const [isAutoSlidePaused, setIsAutoSlidePaused] = useState(false);
+  const [isTransitioning, setIsTransitioning] = useState(false);
   const { lang } = useLanguage();
 
   const slides = [
@@ -17,8 +20,8 @@ export default function Home() {
       image: '/image/herobanner/image1.JPG',
       title_id: 'Selamat Datang di Desa Wisata Silungkang Oso',
       title_en: 'Welcome to Silungkang Oso Tourism Village',
-      desc_id: 'GLOW-UP (Go Local Wisata Unggul & Promosi) sebagai wadah layanan untuk berwisata di Desa Silungkang Oso',
-      desc_en: 'GLOW-UP (Go Local Excellence & Promotion) as your service gateway to explore Silungkang Oso.',
+      desc_id: 'Bergerak Bersama, Tumbuh Bersama, Maju Bersama.',
+      desc_en: 'Move Together, Grow Together, Move Forward Together.',
     },
     {
       image: '/image/herobanner/image2.JPG',
@@ -43,8 +46,89 @@ export default function Home() {
     },
   ];
 
+  const destinations = [
+    {
+      id: 1,
+      image: '/image/destinasi-wisata/kolam-renang-mudiak-lugha.JPG',
+      title_id: 'Kolam Renang Mudiak Lugha',
+      title_en: 'Mudiak Lugha Swimming Pool',
+      description_id: 'Kolam renang alami dengan air jernih dan suasana sejuk di tengah hutan',
+      description_en: 'Natural swimming pool with clear water and cool atmosphere in the middle of the forest',
+      distance: '900m',
+      travelTime: '3 menit dari gerbang utama',
+      ticketPrice: 'Rp 5.000',
+      facilities_id: ['Gazebo', 'Toilet', 'Parkir', 'Warung'],
+      facilities_en: ['Gazebo', 'Toilet', 'Parking', 'Stall'],
+      qrRoute: 'https://maps.app.goo.gl/uqupHTqHB2sCQJku9',
+      detailLink: '/potensi-desa#kolam-renang',
+      rating: 4.5
+    },
+    {
+      id: 2,
+      image: '/image/destinasi-wisata/camping-ground.JPG',
+      title_id: 'Camping Ground Guak Kumbuah',
+      title_en: 'Guak Kumbuah Camping Ground',
+      description_id: 'Area camping dengan pemandangan pegunungan dan spot terbaik untuk melihat sunrise',
+      description_en: 'Camping area with mountain views and the best spot to see the sunrise',
+      distance: '2,1 km',
+      travelTime: '5 menit dari gerbang utama',
+      ticketPrice: 'Rp 10.000',
+      facilities_id: ['Tenda Sewa', 'Api Unggun', 'Toilet', 'Spot Foto'],
+      facilities_en: ['Tent Rental', 'Bonfire', 'Toilet', 'Photo Spot'],
+      qrRoute: 'https://maps.app.goo.gl/oBapivwZExF6z1JF9',
+      detailLink: '/potensi-desa#camping',
+      rating: 4.7
+    },
+    {
+      id: 3,
+      image: '/image/destinasi-wisata/goa-kelambu.JPG',
+      title_id: 'Goa Kelambu',
+      title_en: 'Kelambu Cave',
+      description_id: 'Gua alami dengan stalaktit dan stalagmit yang menawan, cocok untuk petualangan',
+      description_en: 'Natural cave with charming stalactites and stalagmites, suitable for adventure',
+      distance: '2,9 km',
+      travelTime: '7 menit dari gerbang utama',
+      ticketPrice: 'Rp 7.500',
+      facilities_id: ['Guide', 'Papan informasi & petunjuk arah', 'Alat safety', 'Spot foto'],
+      facilities_en: ['Guide', 'Information board & directions', 'Safety equipment', 'Photo spot'],
+      qrRoute: 'https://maps.app.goo.gl/NwbXtZRYxi7XyvpXA',
+      detailLink: '/potensi-desa#goa',
+      rating: 4.3
+    },
+    {
+      id: 4,
+      image: '/image/destinasi-wisata/kolam-renang-mudiak-lugha.JPG', // Placeholder - will need actual image
+      title_id: 'Batu Runciang',
+      title_en: 'Batu Runciang',
+      description_id: 'Batu besar dengan pemandangan alam yang menakjubkan dan spot foto yang instagramable',
+      description_en: 'Large rock with amazing natural views and instagramable photo spots',
+      distance: '4 km',
+      travelTime: '11 menit dari gerbang utama',
+      ticketPrice: 'Rp 8.000',
+      facilities_id: ['Area parkir', 'Toilet umum', 'Mushola', 'Pusat informasi', 'Warung'],
+      facilities_en: ['Parking area', 'Public toilet', 'Prayer room', 'Information center', 'Stall'],
+      qrRoute: 'https://maps.app.goo.gl/GP3CEqjcCt2tdkNaA',
+      detailLink: '/potensi-desa#batu-runciang',
+      rating: 4.6
+    }
+  ];
+
   const handleScroll = () => {
     setIsScrolled(window.scrollY > 50);
+  };
+
+  const nextDestination = () => {
+    if (isTransitioning) return;
+    setIsTransitioning(true);
+    setDestinationIndex((prev) => (prev + 1) % destinations.length);
+    setTimeout(() => setIsTransitioning(false), 600);
+  };
+
+  const prevDestination = () => {
+    if (isTransitioning) return;
+    setIsTransitioning(true);
+    setDestinationIndex((prev) => (prev - 1 + destinations.length) % destinations.length);
+    setTimeout(() => setIsTransitioning(false), 600);
   };
 
   useEffect(() => {
@@ -59,6 +143,18 @@ export default function Home() {
     }, 7000);
     return () => clearInterval(intervalId);
   }, [slides.length]);
+
+  // Auto-slide destinations setiap 3 detik untuk continuous effect
+  useEffect(() => {
+    if (isAutoSlidePaused || isTransitioning) return;
+    
+    const intervalId = setInterval(() => {
+      setIsTransitioning(true);
+      setDestinationIndex((prev) => (prev + 1) % destinations.length);
+      setTimeout(() => setIsTransitioning(false), 600);
+    }, 3000);
+    return () => clearInterval(intervalId);
+  }, [destinations.length, isAutoSlidePaused, isTransitioning]);
 
   // Language is handled by global provider
 
@@ -608,12 +704,12 @@ export default function Home() {
                       <h4 className="text-xl font-bold mb-4 text-white font-poppins">
                         {String(lang) === 'id' ? 'Visi' : 'Vision'}
                       </h4>
-                      <p className="text-white text-sm leading-relaxed font-poppins">
-                        {String(lang) === 'id' 
-                          ? 'Menjadi desa wisata berkelanjutan yang memadukan pelestarian budaya Minangkabau, pemberdayaan ekonomi kreatif, dan digitalisasi pariwisata untuk kesejahteraan masyarakat.'
-                          : 'To become a sustainable tourism village that integrates the preservation of Minangkabau culture, empowerment of the creative economy, and digitalization of tourism for the welfare of the community.'
-                        }
-                      </p>
+                        <p className="text-white text-sm leading-relaxed font-poppins">
+                          {String(lang) === 'id' 
+                           ? 'Menjadikan Silungkang Oso sebagai desa wisata yang unggul, berbudaya, dan berkelanjutan, memberikan manfaat ekonomi serta melestarikan alam dan kearifan lokal.'
+                           : 'Making Silungkang Oso an excellent, cultured, and sustainable tourism village, providing economic benefits while preserving nature and local wisdom.'
+                          }
+                        </p>
                     </div>
 
                     {/* Misi */}
@@ -621,44 +717,53 @@ export default function Home() {
                       <h4 className="text-xl font-bold mb-4 text-white font-poppins">
                         {String(lang) === 'id' ? 'Misi' : 'Mission'}
                       </h4>
-                      <ul className="text-white text-sm space-y-2 font-poppins">
-                        <li className="flex items-start">
-                          <span className="text-white mr-2">•</span>
-                          <span>
-                            {String(lang) === 'id' 
-                              ? 'Mengembangkan wisata alam dan budaya berkelanjutan'
-                              : 'Develop sustainable nature and cultural tourism'
-                            }
-                          </span>
-                        </li>
-                        <li className="flex items-start">
-                          <span className="text-white mr-2">•</span>
-                          <span>
-                            {String(lang) === 'id' 
-                              ? 'Memberdayakan UMKM dan ekonomi kreatif lokal'
-                              : 'Empower local MSMEs and creative economy'
-                            }
-                          </span>
-                        </li>
-                        <li className="flex items-start">
-                          <span className="text-white mr-2">•</span>
-                          <span>
-                            {String(lang) === 'id' 
-                              ? 'Melestarikan warisan budaya Minangkabau'
-                              : 'Preserve Minangkabau cultural heritage'
-                            }
-                          </span>
-                        </li>
-                        <li className="flex items-start">
-                          <span className="text-white mr-2">•</span>
-                          <span>
-                            {String(lang) === 'id' 
-                              ? 'Digitalisasi promosi dan layanan wisata'
-                              : 'Digitalization of tourism promotion and services'
-                            }
-                          </span>
-                        </li>
-                      </ul>
+                        <ul className="text-white text-sm space-y-2 font-poppins">
+                          <li className="flex items-start">
+                            <span className="text-white mr-2">1.</span>
+                            <span>
+                              {String(lang) === 'id' 
+                                ? 'Meningkatkan kualitas sumber daya manusia pariwisata di desa.'
+                                : 'Improve the quality of tourism human resources in the village.'
+                              }
+                            </span>
+                          </li>
+                          <li className="flex items-start">
+                            <span className="text-white mr-2">2.</span>
+                            <span>
+                              {String(lang) === 'id' 
+                                ? 'Mengembangkan potensi wisata alam, budaya, dan buatan secara inovatif.'
+                                : 'Develop natural, cultural, and artificial tourism potential innovatively.'
+                              }
+                            </span>
+                          </li>
+                          <li className="flex items-start">
+                            <span className="text-white mr-2">3.</span>
+                            <span>
+                              {String(lang) === 'id' 
+                                ? 'Memperkuat sinergi antara seluruh pemangku kepentingan pariwisata desa.'
+                                : 'Strengthen synergy between all village tourism stakeholders.'
+                              }
+                            </span>
+                          </li>
+                          <li className="flex items-start">
+                            <span className="text-white mr-2">4.</span>
+                            <span>
+                              {String(lang) === 'id' 
+                                ? 'Membangun citra dan promosi desa wisata yang konsisten dan efektif.'
+                                : 'Build consistent and effective tourism village image and promotion.'
+                              }
+                            </span>
+                          </li>
+                          <li className="flex items-start">
+                            <span className="text-white mr-2">5.</span>
+                            <span>
+                              {String(lang) === 'id' 
+                                ? 'Mewujudkan tata kelola pariwisata desa yang profesional dan berkelanjutan.'
+                                : 'Realize professional and sustainable village tourism governance.'
+                              }
+                            </span>
+                          </li>
+                        </ul>
                     </div>
                   </div>
                 </div>
@@ -681,255 +786,147 @@ export default function Home() {
                 </p>
               </div>
 
-              {/* Destination Cards */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {/* Card 1: Pemandian Lubuak Lugha */}
-                <div className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
-                  <div className="relative">
-                    <div className="aspect-video relative overflow-hidden">
-                      <Image 
-                        src="/image/destinasi-wisata/kolam-renang-mudiak-lugha.JPG" 
-                        alt="Pemandian Lubuak Lugha"
-                        fill
-                        className="object-cover"
-                      />
-                    </div>
-                    <div className="absolute top-3 right-3 bg-green-500 text-white px-2 py-1 rounded-full text-xs font-medium flex items-center gap-1">
-                      <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                      </svg>
-                      4.5
-                    </div>
-                  </div>
-                  
-                  <div className="p-6">
-                    <h3 className="text-xl font-bold text-gray-800 font-poppins mb-3">
-                      {String(lang) === 'id' ? 'Pemandian Lubuak Lugha' : 'Lubuak Lugha Bathing Pool'}
-                    </h3>
-                    <p className="text-gray-600 font-poppins text-sm mb-4 leading-relaxed">
-                      {String(lang) === 'id' 
-                        ? 'Kolam pemandian alami dengan air jernih dan suasana sejuk di tengah hutan'
-                        : 'Natural bathing pool with clear water and a cool atmosphere in the middle of the forest'
-                      }
-                    </p>
-                    
-                    <div className="space-y-2 mb-4">
-                      <div className="flex items-center text-sm text-gray-600">
-                        <svg className="w-4 h-4 mr-2 text-[#ffd704]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                        </svg>
-                        <span className="font-poppins">{String(lang) === 'id' ? 'Jarak:' : 'Distance:'} 2 km</span>
+              {/* Destination Cards with Navigation */}
+              <div 
+                className="relative"
+                onMouseEnter={() => setIsAutoSlidePaused(true)}
+                onMouseLeave={() => setIsAutoSlidePaused(false)}
+              >
+                {/* Navigation Buttons */}
+                <button
+                  onClick={prevDestination}
+                  className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-16 z-10 bg-white/90 hover:bg-white shadow-lg rounded-full p-3 transition-all duration-300 hover:scale-110"
+                  aria-label="Previous destination"
+                >
+                  <svg className="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                  </svg>
+                </button>
+                
+                <button
+                  onClick={nextDestination}
+                  className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-16 z-10 bg-white/90 hover:bg-white shadow-lg rounded-full p-3 transition-all duration-300 hover:scale-110"
+                  aria-label="Next destination"
+                >
+                  <svg className="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
+
+                {/* Cards Grid with Animation */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-8">
+                  {[0, 1, 2].map((offset) => {
+                    const index = (destinationIndex + offset) % destinations.length;
+                    const destination = destinations[index];
+                    return (
+                    <div 
+                      key={`${destination.id}-${destinationIndex}-${offset}`} 
+                      className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-500 ease-out"
+                      style={{
+                        animation: 'fadeInUp 0.6s ease-out forwards',
+                        animationDelay: `${offset * 100}ms`,
+                        opacity: 0
+                      }}
+                    >
+                      <div className="relative">
+                        <div className="aspect-video relative overflow-hidden">
+                          <Image 
+                            src={destination.image} 
+                            alt={String(lang) === 'id' ? destination.title_id : destination.title_en}
+                            fill
+                            className="object-cover"
+                          />
+                        </div>
+                        <div className="absolute top-3 right-3 bg-green-500 text-white px-2 py-1 rounded-full text-xs font-medium flex items-center gap-1">
+                          <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                          </svg>
+                          {destination.rating}
+                        </div>
                       </div>
-                      <div className="flex items-center text-sm text-gray-600">
-                        <svg className="w-4 h-4 mr-2 text-[#ffd704]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                        <span className="font-poppins">{String(lang) === 'id' ? 'Waktu tempuh:' : 'Travel time:'} 30 menit</span>
+                      
+                      <div className="p-6">
+                        <h3 className="text-xl font-bold text-gray-800 font-poppins mb-3">
+                          {String(lang) === 'id' ? destination.title_id : destination.title_en}
+                        </h3>
+                        <p className="text-gray-600 font-poppins text-sm mb-4 leading-relaxed">
+                          {String(lang) === 'id' ? destination.description_id : destination.description_en}
+                        </p>
+                        
+                        <div className="space-y-2 mb-4">
+                          <div className="flex items-center text-sm text-gray-600">
+                            <svg className="w-4 h-4 mr-2 text-[#ffd704]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                            <span className="font-poppins">{String(lang) === 'id' ? 'Jarak:' : 'Distance:'} {destination.distance}</span>
+                          </div>
+                          <div className="flex items-center text-sm text-gray-600">
+                            <svg className="w-4 h-4 mr-2 text-[#ffd704]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <span className="font-poppins">{String(lang) === 'id' ? 'Waktu tempuh:' : 'Travel time:'} {destination.travelTime}</span>
+                          </div>
+                          <div className="flex items-center text-sm text-gray-600">
+                            <svg className="w-4 h-4 mr-2 text-[#ffd704]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
+                            </svg>
+                            <span className="font-poppins">{String(lang) === 'id' ? 'Tiket Masuk:' : 'Entrance Fee:'} {destination.ticketPrice}</span>
+                          </div>
+                        </div>
+                        
+                        <div className="mb-4">
+                          <p className="text-sm font-medium text-gray-700 mb-2 font-poppins">
+                            {String(lang) === 'id' ? 'Fasilitas:' : 'Facilities:'}
+                          </p>
+                          <div className="flex flex-wrap gap-2">
+                            {(String(lang) === 'id' ? destination.facilities_id : destination.facilities_en).map((facility, index) => (
+                              <span key={index} className="bg-gray-100 text-gray-700 px-2 py-1 rounded-full text-xs font-poppins">
+                                {facility}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                        
+                        <div className="flex gap-3">
+                          <a
+                            href={destination.qrRoute}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-lg text-sm font-medium font-poppins transition-colors duration-200 flex items-center justify-center gap-2"
+                          >
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z" />
+                            </svg>
+                            {String(lang) === 'id' ? 'QR Rute' : 'QR Route'}
+                          </a>
+                          <a
+                            href={destination.detailLink}
+                            className="flex-1 bg-[#ffd704] hover:bg-[#ffd704]/90 text-white px-4 py-2 rounded-lg text-sm font-medium font-poppins transition-colors duration-200 text-center"
+                          >
+                            {String(lang) === 'id' ? 'Detail' : 'Details'}
+                          </a>
+                        </div>
                       </div>
                     </div>
-                    
-                    <div className="mb-4">
-                      <p className="text-sm font-medium text-gray-700 mb-2 font-poppins">
-                        {String(lang) === 'id' ? 'Fasilitas:' : 'Facilities:'}
-                      </p>
-                      <div className="flex flex-wrap gap-2">
-                        {String(lang) === 'id' ? (
-                          <>
-                            <span className="bg-gray-100 text-gray-700 px-2 py-1 rounded-full text-xs font-poppins">Gazebo</span>
-                            <span className="bg-gray-100 text-gray-700 px-2 py-1 rounded-full text-xs font-poppins">Toilet</span>
-                            <span className="bg-gray-100 text-gray-700 px-2 py-1 rounded-full text-xs font-poppins">Parkir</span>
-                            <span className="bg-gray-100 text-gray-700 px-2 py-1 rounded-full text-xs font-poppins">Warung</span>
-                          </>
-                        ) : (
-                          <>
-                            <span className="bg-gray-100 text-gray-700 px-2 py-1 rounded-full text-xs font-poppins">Gazebo</span>
-                            <span className="bg-gray-100 text-gray-700 px-2 py-1 rounded-full text-xs font-poppins">Toilet</span>
-                            <span className="bg-gray-100 text-gray-700 px-2 py-1 rounded-full text-xs font-poppins">Parking</span>
-                            <span className="bg-gray-100 text-gray-700 px-2 py-1 rounded-full text-xs font-poppins">Stall</span>
-                          </>
-                        )}
-                      </div>
-                    </div>
-                    
-                    <div className="flex gap-3">
-                      <button className="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-lg text-sm font-medium font-poppins transition-colors duration-200 flex items-center justify-center gap-2">
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z" />
-                        </svg>
-                        {String(lang) === 'id' ? 'QR Rute' : 'QR Route'}
-                      </button>
-                      <button className="flex-1 bg-[#ffd704] hover:bg-[#ffd704]/90 text-white px-4 py-2 rounded-lg text-sm font-medium font-poppins transition-colors duration-200">
-                        {String(lang) === 'id' ? 'Detail' : 'Details'}
-                      </button>
-                    </div>
-                  </div>
+                    );
+                  })}
                 </div>
 
-                {/* Card 2: Camping Ground Guak Kumbuah */}
-                <div className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
-                  <div className="relative">
-                    <div className="aspect-video relative overflow-hidden">
-                      <Image 
-                        src="/image/destinasi-wisata/camping-ground.JPG" 
-                        alt="Camping Ground Guak Kumbuah"
-                        fill
-                        className="object-cover"
-                      />
-                    </div>
-                    <div className="absolute top-3 right-3 bg-green-500 text-white px-2 py-1 rounded-full text-xs font-medium flex items-center gap-1">
-                      <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                      </svg>
-                      4.7
-                    </div>
-                  </div>
-                  
-                  <div className="p-6">
-                    <h3 className="text-xl font-bold text-gray-800 font-poppins mb-3">
-                      {String(lang) === 'id' ? 'Camping Ground Guak Kumbuah' : 'Guak Kumbuah Camping Ground'}
-                    </h3>
-                    <p className="text-gray-600 font-poppins text-sm mb-4 leading-relaxed">
-                      {String(lang) === 'id' 
-                        ? 'Area camping dengan pemandangan pegunungan dan spot terbaik untuk melihat sunrise'
-                        : 'Camping area with mountain views and the best spot to see the sunrise'
-                      }
-                    </p>
-                    
-                    <div className="space-y-2 mb-4">
-                      <div className="flex items-center text-sm text-gray-600">
-                        <svg className="w-4 h-4 mr-2 text-[#ffd704]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                        </svg>
-                        <span className="font-poppins">{String(lang) === 'id' ? 'Jarak:' : 'Distance:'} 3.5 km</span>
-                      </div>
-                      <div className="flex items-center text-sm text-gray-600">
-                        <svg className="w-4 h-4 mr-2 text-[#ffd704]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                        <span className="font-poppins">{String(lang) === 'id' ? 'Waktu tempuh:' : 'Travel time:'} 45 menit</span>
-                      </div>
-                    </div>
-                    
-                    <div className="mb-4">
-                      <p className="text-sm font-medium text-gray-700 mb-2 font-poppins">
-                        {String(lang) === 'id' ? 'Fasilitas:' : 'Facilities:'}
-                      </p>
-                      <div className="flex flex-wrap gap-2">
-                        {String(lang) === 'id' ? (
-                          <>
-                            <span className="bg-gray-100 text-gray-700 px-2 py-1 rounded-full text-xs font-poppins">Tenda Sewa</span>
-                            <span className="bg-gray-100 text-gray-700 px-2 py-1 rounded-full text-xs font-poppins">Api Unggun</span>
-                            <span className="bg-gray-100 text-gray-700 px-2 py-1 rounded-full text-xs font-poppins">Toilet</span>
-                            <span className="bg-gray-100 text-gray-700 px-2 py-1 rounded-full text-xs font-poppins">MCK</span>
-                          </>
-                        ) : (
-                          <>
-                            <span className="bg-gray-100 text-gray-700 px-2 py-1 rounded-full text-xs font-poppins">Tent Rental</span>
-                            <span className="bg-gray-100 text-gray-700 px-2 py-1 rounded-full text-xs font-poppins">Bonfire</span>
-                            <span className="bg-gray-100 text-gray-700 px-2 py-1 rounded-full text-xs font-poppins">Toilet</span>
-                            <span className="bg-gray-100 text-gray-700 px-2 py-1 rounded-full text-xs font-poppins">Public Bath</span>
-                          </>
-                        )}
-                      </div>
-                    </div>
-                    
-                    <div className="flex gap-3">
-                      <button className="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-lg text-sm font-medium font-poppins transition-colors duration-200 flex items-center justify-center gap-2">
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z" />
-                        </svg>
-                        {String(lang) === 'id' ? 'QR Rute' : 'QR Route'}
-                      </button>
-                      <button className="flex-1 bg-[#ffd704] hover:bg-[#ffd704]/90 text-white px-4 py-2 rounded-lg text-sm font-medium font-poppins transition-colors duration-200">
-                        {String(lang) === 'id' ? 'Detail' : 'Details'}
-                      </button>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Card 3: Goa Kelambu */}
-                <div className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
-                  <div className="relative">
-                    <div className="aspect-video relative overflow-hidden">
-                      <Image 
-                        src="/image/destinasi-wisata/goa-kelambu.JPG" 
-                        alt="Goa Kelambu"
-                        fill
-                        className="object-cover"
-                      />
-                    </div>
-                    <div className="absolute top-3 right-3 bg-green-500 text-white px-2 py-1 rounded-full text-xs font-medium flex items-center gap-1">
-                      <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                      </svg>
-                      4.3
-                    </div>
-                  </div>
-                  
-                  <div className="p-6">
-                    <h3 className="text-xl font-bold text-gray-800 font-poppins mb-3">
-                      {String(lang) === 'id' ? 'Goa Kelambu' : 'Kelambu Cave'}
-                    </h3>
-                    <p className="text-gray-600 font-poppins text-sm mb-4 leading-relaxed">
-                      {String(lang) === 'id' 
-                        ? 'Gua alami dengan stalaktit dan stalagmit yang menawan, cocok untuk petualangan'
-                        : 'Natural cave with charming stalactites and stalagmites, suitable for adventure'
-                      }
-                    </p>
-                    
-                    <div className="space-y-2 mb-4">
-                      <div className="flex items-center text-sm text-gray-600">
-                        <svg className="w-4 h-4 mr-2 text-[#ffd704]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                        </svg>
-                        <span className="font-poppins">{String(lang) === 'id' ? 'Jarak:' : 'Distance:'} 4 km</span>
-                      </div>
-                      <div className="flex items-center text-sm text-gray-600">
-                        <svg className="w-4 h-4 mr-2 text-[#ffd704]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                        <span className="font-poppins">{String(lang) === 'id' ? 'Waktu tempuh:' : 'Travel time:'} 1 jam</span>
-                      </div>
-                    </div>
-                    
-                    <div className="mb-4">
-                      <p className="text-sm font-medium text-gray-700 mb-2 font-poppins">
-                        {String(lang) === 'id' ? 'Fasilitas:' : 'Facilities:'}
-                      </p>
-                      <div className="flex flex-wrap gap-2">
-                        {String(lang) === 'id' ? (
-                          <>
-                            <span className="bg-gray-100 text-gray-700 px-2 py-1 rounded-full text-xs font-poppins">Guide</span>
-                            <span className="bg-gray-100 text-gray-700 px-2 py-1 rounded-full text-xs font-poppins">Lampu Gua</span>
-                            <span className="bg-gray-100 text-gray-700 px-2 py-1 rounded-full text-xs font-poppins">Jalur Aman</span>
-                            <span className="bg-gray-100 text-gray-700 px-2 py-1 rounded-full text-xs font-poppins">Rest Area</span>
-                          </>
-                        ) : (
-                          <>
-                            <span className="bg-gray-100 text-gray-700 px-2 py-1 rounded-full text-xs font-poppins">Guide</span>
-                            <span className="bg-gray-100 text-gray-700 px-2 py-1 rounded-full text-xs font-poppins">Cave Lamp</span>
-                            <span className="bg-gray-100 text-gray-700 px-2 py-1 rounded-full text-xs font-poppins">Safe Path</span>
-                            <span className="bg-gray-100 text-gray-700 px-2 py-1 rounded-full text-xs font-poppins">Rest Area</span>
-                          </>
-                        )}
-                      </div>
-                    </div>
-                    
-                    <div className="flex gap-3">
-                      <button className="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-lg text-sm font-medium font-poppins transition-colors duration-200 flex items-center justify-center gap-2">
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z" />
-                        </svg>
-                        {String(lang) === 'id' ? 'QR Rute' : 'QR Route'}
-                      </button>
-                      <button className="flex-1 bg-[#ffd704] hover:bg-[#ffd704]/90 text-white px-4 py-2 rounded-lg text-sm font-medium font-poppins transition-colors duration-200">
-                        {String(lang) === 'id' ? 'Detail' : 'Details'}
-                      </button>
-                    </div>
-                  </div>
+                {/* Dots Indicator */}
+                <div className="flex justify-center mt-6 space-x-2">
+                  {destinations.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setDestinationIndex(index)}
+                      className={`w-3 h-3 rounded-full transition-all duration-500 ease-out ${
+                        destinationIndex === index
+                          ? 'bg-[#ffd704] scale-125 shadow-lg' 
+                          : 'bg-gray-300 hover:bg-gray-400 hover:scale-110'
+                      }`}
+                      aria-label={`Go to destination ${index + 1}`}
+                    />
+                  ))}
                 </div>
               </div>
             </div>
@@ -959,19 +956,7 @@ export default function Home() {
             </div>
           </section>
 
-          {/* Section 5: Paket Wisata */}
-          <section className="px-4 sm:px-6 lg:px-8 mb-16">
-            <div className="max-w-7xl mx-auto">
-              <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 text-gray-800 font-poppins">
-                {String(lang) === 'id' ? 'Paket Wisata' : 'Tour Packages'}
-              </h2>
-              <div className="text-center text-gray-600">
-                {String(lang) === 'id' ? 'Konten menyusul.' : 'Content coming soon.'}
-              </div>
-            </div>
-          </section>
-
-          {/* Section 6: Galeri */}
+          {/* Section 5: Galeri */}
           <section className="px-4 sm:px-6 lg:px-8 mb-16">
             <div className="max-w-7xl mx-auto">
               <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 text-gray-800 font-poppins">
@@ -983,7 +968,7 @@ export default function Home() {
             </div>
           </section>
 
-          {/* Section 7: Kontak Informasi */}
+          {/* Section 6: Kontak Informasi */}
           <section className="px-4 sm:px-6 lg:px-8 mb-16">
             <div className="max-w-7xl mx-auto">
               <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 text-gray-800 font-poppins">
