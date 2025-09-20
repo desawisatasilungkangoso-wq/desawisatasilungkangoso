@@ -13,20 +13,21 @@ export default function Home() {
   const [destinationIndex, setDestinationIndex] = useState(0);
   const [isAutoSlidePaused, setIsAutoSlidePaused] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [cultureIndex, setCultureIndex] = useState(0);
   const { lang } = useLanguage();
 
   const slides = [
     {
       image: '/image/herobanner/image1.JPG',
-      title_id: 'Selamat Datang di Desa Wisata Silungkang Oso',
-      title_en: 'Welcome to Silungkang Oso Tourism Village',
+      title_id: 'Selamat Datang di\nDesa Wisata Silungkang Oso',
+      title_en: 'Welcome to\nSilungkang Oso Tourism Village',
       desc_id: 'Bergerak Bersama, Tumbuh Bersama, Maju Bersama.',
       desc_en: 'Move Together, Grow Together, Move Forward Together.',
     },
     {
       image: '/image/herobanner/image2.JPG',
-      title_id: 'Eksplor Desa Silungkang Oso',
-      title_en: 'Explore Silungkang Oso Village',
+      title_id: 'Eksplor Pesona Alam\nDesa Wisata Silungkang Oso.',
+      title_en: 'Explore Natural Charm\nSilungkang Oso Tourism Village.',
       desc_id: 'Nikmati keindahan alam, budaya lokal, dan pengalaman tak terlupakan.',
       desc_en: 'Enjoy nature, local culture, and unforgettable experiences.',
     },
@@ -97,7 +98,7 @@ export default function Home() {
     },
     {
       id: 4,
-      image: '/image/destinasi-wisata/kolam-renang-mudiak-lugha.JPG', // Placeholder - will need actual image
+      image: '/image/destinasi-wisata/batu-runciang.jpg',
       title_id: 'Batu Runciang',
       title_en: 'Batu Runciang',
       description_id: 'Batu besar dengan pemandangan alam yang menakjubkan dan spot foto yang instagramable',
@@ -110,6 +111,64 @@ export default function Home() {
       qrRoute: 'https://maps.app.goo.gl/GP3CEqjcCt2tdkNaA',
       detailLink: '/potensi-desa#batu-runciang',
       rating: 4.6
+    }
+  ];
+
+  const cultures = [
+    {
+      id: 1,
+      image: '/image/destinasi-wisata/kolam-renang-mudiak-lugha.JPG',
+      title_id: 'Tenun Songket Silungkang',
+      title_en: 'Silungkang Songket Weaving',
+      description_id: 'Tenun Songket Silungkang adalah seni tenun tradisional dari daerah Silungkang, Kota Sawahlunto, Sumatera Barat, yang merupakan bagian dari warisan budaya Minangkabau dan salah satu songket tertua di Indonesia. Dikenal dengan motifnya yang khas dan sederhana serta penggunaan benang emas atau perak untuk motifnya, songket ini ditenun secara manual menggunakan Alat Tenun Bukan Mesin (ATBM).',
+      description_en: 'Silungkang Songket Weaving is a traditional weaving art from Silungkang area, Sawahlunto City, West Sumatra, which is part of Minangkabau cultural heritage and one of the oldest songket in Indonesia. Known for its distinctive and simple motifs and the use of gold or silver threads for its patterns, this songket is woven manually using Non-Machine Weaving Tools (ATBM).',
+      motifs: ['Bada Mudiak (ikan teri hidup di hulu sungai)', 'Balah Kacang (belahan kacang)', 'Saluak Laka (alas periuk) yang mewakili nilai-nilai kebersamaan, kerukunan, dan persatuan']
+    },
+    {
+      id: 2,
+      image: '/image/destinasi-wisata/camping-ground.JPG',
+      title_id: 'Randai',
+      title_en: 'Randai',
+      description_id: 'Randai adalah salah satu permainan tradisional di Minangkabau yang dimainkan secara berkelompok dengan membentuk lingkaran, kemudian melangkahkan kaki secara perlahan, sambil menyampaikan cerita dalam bentuk nyanyian secara berganti-gantian. Randai menggabungkan seni lagu, musik, tari, drama dan silat menjadi satu.',
+      description_en: 'Randai is one of the traditional games in Minangkabau that is played in groups by forming a circle, then stepping slowly while telling stories in the form of songs alternately. Randai combines the arts of song, music, dance, drama and martial arts into one.',
+      functions: ['Dipimpin oleh panggoreh yang mengatur tempo gerakan', 'Mengeluarkan teriakan khas seperti "hep tah tih"', 'Menentukan cepat atau lambatnya tempo gerakan', 'Satu cerita Randai bisa menghabiskan 1 hingga 5 jam bahkan lebih']
+    },
+    {
+      id: 3,
+      image: '/image/destinasi-wisata/goa-kelambu.JPG',
+      title_id: 'Talempong Botuang',
+      title_en: 'Talempong Botuang',
+      description_id: 'Talempong Batuang, juga dikenal dengan sebutan lokal Calempong Botuang, adalah alat musik perkusi tradisional yang berasal dari Nagari Silungkang, Kota Sawahlunto, Provinsi Sumatera Barat, Indonesia. Berbeda dengan Talempong Basi (alat musik logam khas Minangkabau), Talempong Batuang dibuat dari bambu (batuang dalam bahasa Minangkabau) dan menghasilkan nada melodis melalui teknik petikan atau pukulan pada senar sembilu (kulit bambu).',
+      description_en: 'Talempong Batuang, also known by the local name Calempong Botuang, is a traditional percussion instrument from Nagari Silungkang, Sawahlunto City, West Sumatra Province, Indonesia. Unlike Talempong Basi (traditional Minangkabau metal instrument), Talempong Batuang is made from bamboo (batuang in Minangkabau language) and produces melodic tones through plucking or striking techniques on bamboo skin strings.',
+      heritage: 'Warisan Budaya Tak Benda Indonesia (WBTBI) tahun 2023 oleh Kemendikbudristek Republik Indonesia'
+    },
+    {
+      id: 4,
+      image: '/image/destinasi-wisata/batu-runciang.jpg',
+      title_id: 'Pidato Adat',
+      title_en: 'Traditional Speech',
+      description_id: 'Pidato Adat adalah bagian dari upacara adat atau acara budaya formal yang diadakan masyarakat Silungkang Oso. Biasanya pidato ini disampaikan oleh tokoh adat (misalnya penghulu adat, ninik mamak, datuak), pejabat desa, atau orang yang dituakan dalam struktur adat setempat.',
+      description_en: 'Traditional Speech is part of traditional ceremonies or formal cultural events held by the Silungkang Oso community. Usually this speech is delivered by traditional leaders (such as traditional chiefs, ninik mamak, datuak), village officials, or respected elders in the local traditional structure.',
+      functions: [
+        'Menyampaikan salam dan penghormatan kepada para hadirin, tokoh-tokoh adat, ulama, ninik mamak, pemerintah, dan masyarakat',
+        'Memberikan konteks acara, misalnya tujuan upacara, latar belakang sejarah adat, aturan-aturan adat yang berlaku',
+        'Menguatkan identitas budaya, menegaskan kembali nilai-nilai adat, hukum adat, serta pentingnya menjaga tradisi',
+        'Memotivasi dan mengajak partisipasi masyarakat dalam melestarikan adat dan budaya lokal'
+      ]
+    },
+    {
+      id: 5,
+      image: '/image/herobanner/image1.JPG',
+      title_id: 'Rabana',
+      title_en: 'Rabana',
+      description_id: 'Rabana atau Rebana, yang dalam masyarakat Silungkang lebih dikenal dengan sebutan Tak Tum Bin, merupakan salah satu kesenian tradisional yang masih hidup dan berkembang hingga kini. Kesenian ini biasanya dimainkan dalam prosesi adat, terutama saat mengiringi pengantin pria (Marapulai) menuju rumah pengantin wanita (Anak Daro).',
+      description_en: 'Rabana or Rebana, which in Silungkang society is better known as Tak Tum Bin, is one of the traditional arts that is still alive and developing today. This art is usually performed in traditional processions, especially when accompanying the groom (Marapulai) to the bride\'s house (Anak Daro).',
+      functions: [
+        'Mengiringi pengantin pria (Marapulai) menuju rumah pengantin wanita (Anak Daro)',
+        'Menjadi simbol kegembiraan dan kebersamaan masyarakat Silungkang',
+        'Diwariskan secara turun-temurun dan dijaga kelestariannya oleh masyarakat lokal',
+        'Menjadi bagian dari atraksi wisata budaya di Desa Silungkang Oso'
+      ]
     }
   ];
 
@@ -189,13 +248,15 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
             {/* Logo */}
-            <div className="flex items-center space-x-3">
-              <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-[#102467] rounded-xl flex items-center justify-center shadow-lg">
-                <span className="text-white font-bold text-2xl font-poppins">G</span>
-              </div>
-              <span className="font-bold text-2xl font-poppins text-white">
+            <div className="flex items-center">
+              <div className="flex flex-col text-center">
+                <span className="font-bold text-xl font-poppins text-white leading-tight">
                 Desa Wisata
               </span>
+                <span className="font-semibold text-lg font-poppins text-white/90 leading-tight">
+                  Silungkang Oso
+              </span>
+              </div>
             </div>
 
             {/* Navigation Links */}
@@ -692,78 +753,88 @@ export default function Home() {
                   </div>
                 </div>
 
-                {/* Visi Misi */}
-                <div className="bg-gradient-to-r from-[#102467] to-[#102467]/80 rounded-2xl p-8 shadow-xl">
-                  <h3 className="text-2xl font-bold text-center mb-8 text-white font-poppins">
-                    {String(lang) === 'id' ? 'Visi & Misi Desa Wisata' : 'Tourism Village Vision & Mission'}
+                {/* Modern Visi Misi */}
+                <div className="relative overflow-hidden rounded-3xl p-8 lg:p-12">
+                  {/* Content */}
+                  <div className="relative z-10">
+                    {/* Header */}
+                    <div className="text-center mb-12">
+                      <h3 className="text-3xl lg:text-4xl font-bold text-gray-800 font-poppins mb-4">
+                        {String(lang) === 'id' ? (
+                          <>
+                            Visi & Misi<br />
+                            Desa Wisata Silungkang Oso
+                          </>
+                        ) : (
+                          <>
+                            Vision & Mission<br />
+                            Silungkang Oso Tourism Village
+                          </>
+                        )}
                   </h3>
-                  
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                    {/* Visi */}
-                    <div className="bg-white/20 backdrop-blur-sm rounded-xl p-6">
-                      <h4 className="text-xl font-bold mb-4 text-white font-poppins">
+                      <div className="w-24 h-1 bg-gradient-to-r from-[#ffd704] to-[#ffed4e] rounded-full mx-auto"></div>
+                    </div>
+                    
+                    <div className="space-y-8">
+                      {/* Visi Card */}
+                      <div className="group relative">
+                        <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-white/5 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
+                        <div className="relative bg-white/80 backdrop-blur-xl border border-gray-200 rounded-2xl p-8 hover:bg-white/90 transition-all duration-500 group-hover:scale-[1.02] group-hover:shadow-2xl max-w-4xl mx-auto">
+                          <div className="text-center mb-6">
+                            <h4 className="text-2xl font-bold text-gray-800 font-poppins">
                         {String(lang) === 'id' ? 'Visi' : 'Vision'}
                       </h4>
-                        <p className="text-white text-sm leading-relaxed font-poppins">
+                          </div>
+                          <div className="text-center">
+                            <p className="text-gray-700 text-lg leading-relaxed font-poppins">
                           {String(lang) === 'id' 
                            ? 'Menjadikan Silungkang Oso sebagai desa wisata yang unggul, berbudaya, dan berkelanjutan, memberikan manfaat ekonomi serta melestarikan alam dan kearifan lokal.'
                            : 'Making Silungkang Oso an excellent, cultured, and sustainable tourism village, providing economic benefits while preserving nature and local wisdom.'
                           }
                         </p>
+                          </div>
+                        </div>
                     </div>
 
-                    {/* Misi */}
-                    <div className="bg-white/20 backdrop-blur-sm rounded-xl p-6">
-                      <h4 className="text-xl font-bold mb-4 text-white font-poppins">
+                      {/* Misi Card */}
+                      <div className="group relative">
+                        <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-white/5 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
+                        <div className="relative bg-white/80 backdrop-blur-xl border border-gray-200 rounded-2xl p-8 hover:bg-white/90 transition-all duration-500 group-hover:scale-[1.02] group-hover:shadow-2xl max-w-4xl mx-auto">
+                          <div className="text-center mb-6">
+                            <h4 className="text-2xl font-bold text-gray-800 font-poppins">
                         {String(lang) === 'id' ? 'Misi' : 'Mission'}
                       </h4>
-                        <ul className="text-white text-sm space-y-2 font-poppins">
-                          <li className="flex items-start">
-                            <span className="text-white mr-2">1.</span>
-                            <span>
-                              {String(lang) === 'id' 
+                          </div>
+                          <div className="space-y-4">
+                            {[
+                              String(lang) === 'id' 
                                 ? 'Meningkatkan kualitas sumber daya manusia pariwisata di desa.'
-                                : 'Improve the quality of tourism human resources in the village.'
-                              }
-                            </span>
-                          </li>
-                          <li className="flex items-start">
-                            <span className="text-white mr-2">2.</span>
-                            <span>
-                              {String(lang) === 'id' 
+                                : 'Improve the quality of tourism human resources in the village.',
+                              String(lang) === 'id' 
                                 ? 'Mengembangkan potensi wisata alam, budaya, dan buatan secara inovatif.'
-                                : 'Develop natural, cultural, and artificial tourism potential innovatively.'
-                              }
-                            </span>
-                          </li>
-                          <li className="flex items-start">
-                            <span className="text-white mr-2">3.</span>
-                            <span>
-                              {String(lang) === 'id' 
+                                : 'Develop natural, cultural, and artificial tourism potential innovatively.',
+                              String(lang) === 'id' 
                                 ? 'Memperkuat sinergi antara seluruh pemangku kepentingan pariwisata desa.'
-                                : 'Strengthen synergy between all village tourism stakeholders.'
-                              }
-                            </span>
-                          </li>
-                          <li className="flex items-start">
-                            <span className="text-white mr-2">4.</span>
-                            <span>
-                              {String(lang) === 'id' 
+                                : 'Strengthen synergy between all village tourism stakeholders.',
+                              String(lang) === 'id' 
                                 ? 'Membangun citra dan promosi desa wisata yang konsisten dan efektif.'
-                                : 'Build consistent and effective tourism village image and promotion.'
-                              }
-                            </span>
-                          </li>
-                          <li className="flex items-start">
-                            <span className="text-white mr-2">5.</span>
-                            <span>
-                              {String(lang) === 'id' 
+                                : 'Build consistent and effective tourism village image and promotion.',
+                              String(lang) === 'id' 
                                 ? 'Mewujudkan tata kelola pariwisata desa yang profesional dan berkelanjutan.'
                                 : 'Realize professional and sustainable village tourism governance.'
-                              }
-                            </span>
-                          </li>
-                        </ul>
+                            ].map((mission, index) => (
+                              <div key={index} className="flex items-start group/item">
+                                <div className="flex-shrink-0 w-8 h-8 bg-gradient-to-br from-[#ffd704] to-[#ffed4e] rounded-full flex items-center justify-center mr-4 mt-0.5 group-hover/item:scale-110 transition-transform duration-300">
+                                  <span className="text-[#102467] font-bold text-sm font-poppins">{index + 1}</span>
+                    </div>
+                                <p className="text-gray-700 text-lg leading-relaxed font-poppins group-hover/item:text-[#ffd704] transition-colors duration-300">
+                                  {mission}
+                                </p>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -938,8 +1009,210 @@ export default function Home() {
               <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 text-gray-800 font-poppins">
                 {String(lang) === 'id' ? 'Budaya dan Tradisi' : 'Culture and Traditions'}
               </h2>
-              <div className="text-center text-gray-600">
-                {String(lang) === 'id' ? 'Konten menyusul.' : 'Content coming soon.'}
+              
+              {/* Modern Timeline Culture Slides */}
+              <div className="space-y-8">
+                {/* Main Content Area */}
+                <div className="relative bg-gradient-to-br from-white via-gray-50 to-white rounded-3xl shadow-2xl border border-gray-100 overflow-hidden">
+                  {/* Background Pattern */}
+                  <div className="absolute inset-0 opacity-5">
+                    <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-[#102467] via-transparent to-[#ffd704]"></div>
+                  </div>
+                  
+                  {/* Main Content */}
+                  <div className="relative grid grid-cols-1 lg:grid-cols-2 gap-0 min-h-[600px]">
+                    {/* Image Section with Modern Layout */}
+                    <div className="relative overflow-hidden">
+                      <div className="absolute inset-0 bg-gradient-to-br from-[#102467]/90 to-[#102467]/70"></div>
+                      <div className="relative h-full">
+                        <Image
+                          key={cultureIndex}
+                          src={cultures[cultureIndex].image}
+                          alt={String(lang) === 'id' ? cultures[cultureIndex].title_id : cultures[cultureIndex].title_en}
+                          fill
+                          className="object-cover object-center transition-all duration-1000 ease-in-out transform"
+                          style={{
+                            animation: 'fadeInScale 1s ease-in-out'
+                          }}
+                        />
+                      </div>
+                      
+                      {/* Floating Badge */}
+                      <div 
+                        key={`badge-${cultureIndex}`}
+                        className="absolute top-6 left-6 bg-white/20 backdrop-blur-md rounded-full px-4 py-2 transition-all duration-700 ease-out"
+                        style={{
+                          animation: 'slideInFromLeft 0.8s ease-out'
+                        }}
+                      >
+                        <span className="text-white font-semibold text-sm font-poppins">
+                          {cultureIndex + 1} / {cultures.length}
+                        </span>
+                      </div>
+                      
+                      {/* Content Overlay */}
+                      <div 
+                        key={`overlay-${cultureIndex}`}
+                        className="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black/70 to-transparent transition-all duration-700 ease-out"
+                        style={{
+                          animation: 'slideInFromBottom 0.8s ease-out'
+                        }}
+                      >
+                        <h3 className="text-2xl lg:text-3xl font-bold text-white font-poppins mb-2">
+                          {String(lang) === 'id' ? cultures[cultureIndex].title_id : cultures[cultureIndex].title_en}
+                        </h3>
+                        <div className="w-16 h-1 bg-[#ffd704] rounded-full"></div>
+                      </div>
+                    </div>
+                    
+                    {/* Content Section with Glassmorphism */}
+                    <div className="p-8 lg:p-12 flex flex-col justify-start pt-2 lg:pt-4 bg-white/80 backdrop-blur-sm">
+                      <div 
+                        key={`content-${cultureIndex}`}
+                        className="space-y-6 transition-all duration-700 ease-out"
+                        style={{
+                          animation: 'fadeInUpContent 0.8s ease-out'
+                        }}
+                      >
+                        <div className="prose prose-lg max-w-none text-gray-700 font-poppins leading-relaxed">
+                          <p className="text-lg">
+                            {String(lang) === 'id' ? cultures[cultureIndex].description_id : cultures[cultureIndex].description_en}
+                          </p>
+                        </div>
+                        
+                        {cultures[cultureIndex].motifs && (
+                          <div className="bg-gradient-to-r from-[#ffd704]/10 to-[#ffd704]/5 rounded-2xl p-6 border border-[#ffd704]/20">
+                            <h4 className="text-xl font-bold text-gray-800 mb-4 font-poppins flex items-center">
+                              <div className="w-2 h-2 bg-[#ffd704] rounded-full mr-3"></div>
+                              {String(lang) === 'id' ? 'Motif Khas' : 'Distinctive Motifs'}
+                            </h4>
+                            <ul className="space-y-2">
+                              {cultures[cultureIndex].motifs.map((motif, index) => (
+                                <li key={index} className="flex items-start font-poppins text-gray-700">
+                                  <span className="w-1.5 h-1.5 bg-[#ffd704] rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                                  {motif}
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        )}
+                        
+                        {cultures[cultureIndex].functions && (
+                          <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-6 border border-blue-100">
+                            <h4 className="text-xl font-bold text-gray-800 mb-4 font-poppins flex items-center">
+                              <div className="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>
+                              {String(lang) === 'id' ? 'Fungsi & Peran' : 'Functions & Roles'}
+                            </h4>
+                            <ul className="space-y-2">
+                              {cultures[cultureIndex].functions.map((func, index) => (
+                                <li key={index} className="flex items-start font-poppins text-gray-700">
+                                  <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                                  {func}
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        )}
+                        
+                        {cultures[cultureIndex].heritage && (
+                          <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-2xl p-6 border border-green-200">
+                            <div className="flex items-start">
+                              <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                                <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                                </svg>
+                              </div>
+                              <div>
+                                <h4 className="text-lg font-bold text-gray-800 mb-2 font-poppins">
+                                  {String(lang) === 'id' ? 'Warisan Budaya' : 'Cultural Heritage'}
+                                </h4>
+                                <p className="text-gray-700 font-poppins">
+                                  {cultures[cultureIndex].heritage}
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Modern Timeline Navigation */}
+                <div className="flex flex-col lg:flex-row items-center justify-between space-y-6 lg:space-y-0">
+                  {/* Navigation Arrows */}
+                  <div className="flex items-center space-x-4">
+                    <button
+                      onClick={() => setCultureIndex((prev) => (prev - 1 + cultures.length) % cultures.length)}
+                      className="group bg-white hover:bg-[#102467] border-2 border-gray-200 hover:border-[#102467] rounded-full p-3 transition-all duration-300 shadow-lg hover:shadow-xl"
+                      aria-label="Previous culture"
+                    >
+                      <svg className="w-6 h-6 text-gray-600 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                      </svg>
+                    </button>
+                    
+                    <button
+                      onClick={() => setCultureIndex((prev) => (prev + 1) % cultures.length)}
+                      className="group bg-white hover:bg-[#102467] border-2 border-gray-200 hover:border-[#102467] rounded-full p-3 transition-all duration-300 shadow-lg hover:shadow-xl"
+                      aria-label="Next culture"
+                    >
+                      <svg className="w-6 h-6 text-gray-600 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </button>
+                  </div>
+
+                  {/* Thumbnail Timeline */}
+                  <div className="flex items-center space-x-3 pb-2">
+                    {cultures.map((culture, index) => (
+                      <button
+                        key={index}
+                        onClick={() => setCultureIndex(index)}
+                        className={`group relative flex-shrink-0 transition-all duration-300 ${
+                          cultureIndex === index 
+                            ? 'transform scale-110' 
+                            : 'hover:transform hover:scale-105'
+                        }`}
+                      >
+                        {/* Thumbnail Image */}
+                        <div className={`relative w-16 h-12 rounded-lg overflow-hidden border-2 transition-all duration-300 ${
+                          cultureIndex === index 
+                            ? 'border-[#ffd704] shadow-lg' 
+                            : 'border-gray-200 group-hover:border-gray-300'
+                        }`}>
+                          <Image
+                            src={culture.image}
+                            alt={culture.title_id}
+                            fill
+                            className="object-cover"
+                          />
+                          {cultureIndex === index && (
+                            <div className="absolute inset-0 bg-[#ffd704]/20"></div>
+                          )}
+                        </div>
+                        
+                        {/* Active Indicator */}
+                        {cultureIndex === index && (
+                          <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-[#ffd704] rounded-full"></div>
+                        )}
+                      </button>
+                    ))}
+                  </div>
+
+                  {/* Progress Indicator */}
+                  <div className="flex items-center space-x-2">
+                    <span className="text-sm text-gray-500 font-poppins">
+                      {cultureIndex + 1} / {cultures.length}
+                    </span>
+                    <div className="w-24 h-1 bg-gray-200 rounded-full overflow-hidden">
+                      <div 
+                        className="h-full bg-gradient-to-r from-[#102467] to-[#ffd704] rounded-full transition-all duration-500 ease-out"
+                        style={{ width: `${((cultureIndex + 1) / cultures.length) * 100}%` }}
+                      ></div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </section>
@@ -947,11 +1220,343 @@ export default function Home() {
           {/* Section 4: Souvenir */}
           <section className="px-4 sm:px-6 lg:px-8 mb-16">
             <div className="max-w-7xl mx-auto">
-              <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 text-gray-800 font-poppins">
+              <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-gray-800 font-poppins">
                 {String(lang) === 'id' ? 'Souvenir' : 'Souvenirs'}
               </h2>
+              <p className="text-lg text-gray-600 text-center mb-6 font-poppins max-w-3xl mx-auto leading-relaxed">
+                {String(lang) === 'id' 
+                  ? 'Dukung ekonomi lokal dengan membeli produk-produk berkualitas dari UMKM Silungkang Oso'
+                  : 'Support local economy by purchasing quality products from Silungkang Oso MSMEs'
+                }
+              </p>
+              <div className="w-24 h-1 bg-gradient-to-r from-[#ffd704] to-[#ffed4e] rounded-full mx-auto mb-12"></div>
+              
+              {/* Modern Souvenir Section */}
+              <div className="space-y-12">
+
+                {/* Marketplace Section */}
+                <div className="text-center">
+                  <h4 className="text-2xl font-bold text-gray-800 font-poppins mb-8">
+                    {String(lang) === 'id' ? 'Belanja Online di Marketplace' : 'Shop Online on Marketplace'}
+                  </h4>
+                  <div className="flex flex-wrap justify-center gap-6">
+                    {/* Shopee */}
+                    <a 
+                      href="#" 
+                      className="group relative bg-white hover:bg-gradient-to-r hover:from-orange-500 hover:to-orange-600 border-2 border-gray-200 hover:border-orange-500 rounded-2xl p-6 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
+                    >
+                      <div className="flex items-center space-x-4">
+                        <div className="w-12 h-12 bg-orange-100 group-hover:bg-white rounded-xl flex items-center justify-center">
+                          <svg className="w-6 h-6 text-orange-500" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                          </svg>
+                        </div>
+                        <span className="text-gray-700 group-hover:text-white font-semibold font-poppins">Shopee</span>
+                      </div>
+                    </a>
+
+                    {/* Tokopedia */}
+                    <a 
+                      href="#" 
+                      className="group relative bg-white hover:bg-gradient-to-r hover:from-green-500 hover:to-green-600 border-2 border-gray-200 hover:border-green-500 rounded-2xl p-6 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
+                    >
+                      <div className="flex items-center space-x-4">
+                        <div className="w-12 h-12 bg-green-100 group-hover:bg-white rounded-xl flex items-center justify-center">
+                          <svg className="w-6 h-6 text-green-500" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                          </svg>
+                        </div>
+                        <span className="text-gray-700 group-hover:text-white font-semibold font-poppins">Tokopedia</span>
+                      </div>
+                    </a>
+
+                    {/* Instagram Shop */}
+                    <a 
+                      href="#" 
+                      className="group relative bg-white hover:bg-gradient-to-r hover:from-pink-500 hover:to-purple-600 border-2 border-gray-200 hover:border-pink-500 rounded-2xl p-6 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
+                    >
+                      <div className="flex items-center space-x-4">
+                        <div className="w-12 h-12 bg-pink-100 group-hover:bg-white rounded-xl flex items-center justify-center">
+                          <svg className="w-6 h-6 text-pink-500" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                          </svg>
+                        </div>
+                        <span className="text-gray-700 group-hover:text-white font-semibold font-poppins">Instagram Shop</span>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+
+                {/* Product Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {/* Songket Silungkang */}
+                  <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 h-[500px] flex flex-col">
+                    <div className="relative h-48 bg-gradient-to-br from-gray-800 to-gray-900">
+                      <div className="absolute top-3 left-3">
+                        <span className="bg-gray-700 text-white px-2 py-1 rounded-full text-xs font-medium">
+                          Tekstil Tradisional
+                        </span>
+                      </div>
+                      <div className="absolute top-3 right-3 space-y-2">
+                        <span className="bg-green-500 text-white px-2 py-1 rounded-full text-xs font-medium block">
+                          Handmade
+                        </span>
+                        <span className="bg-blue-500 text-white px-2 py-1 rounded-full text-xs font-medium block">
+                          Stok Tersedia
+                        </span>
+                      </div>
+                      <div className="absolute bottom-3 left-3 flex items-center bg-black/50 rounded-full px-2 py-1">
+                        <svg className="w-4 h-4 text-yellow-400 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                        <span className="text-white text-xs font-medium">4.9</span>
+                      </div>
+                    </div>
+                    <div className="p-4 flex-1 flex flex-col">
+                      <h5 className="text-lg font-bold text-gray-800 font-poppins mb-2">Songket Silungkang</h5>
+                      <p className="text-gray-600 font-poppins text-sm leading-relaxed mb-3 flex-1">
+                        Tenun tradisional elegan dari Sawahlunto dengan motif khas dan benang emas, simbol keanggunan serta warisan budaya Minangkabau. Cocok untuk acara istimewa dan koleksi eksklusif Anda.
+                      </p>
+                      <div className="text-orange-500 font-semibold text-sm">
+                        Harga: ...
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Gantungan Kunci Perca Songket */}
+                  <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 h-[500px] flex flex-col">
+                    <div className="relative h-48 bg-gray-100 flex items-center justify-center">
+                      <div className="text-center text-gray-400">
+                        <svg className="w-16 h-16 mx-auto mb-2 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 7a2 2 0 012 2m0 0a2 2 0 012 2m-2-2a2 2 0 00-2-2m2 2l-2 2m2-2l2 2M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
+                        </svg>
+                        <p className="text-sm font-medium">Gantungan Kunci</p>
+                      </div>
+                      <div className="absolute top-3 left-3">
+                        <span className="bg-gray-700 text-white px-2 py-1 rounded-full text-xs font-medium">
+                          Aksesoris
+                        </span>
+                      </div>
+                      <div className="absolute top-3 right-3 space-y-2">
+                        <span className="bg-green-500 text-white px-2 py-1 rounded-full text-xs font-medium block">
+                          Handmade
+                        </span>
+                        <span className="bg-blue-500 text-white px-2 py-1 rounded-full text-xs font-medium block">
+                          Stok Tersedia
+                        </span>
+                      </div>
+                      <div className="absolute bottom-3 left-3 flex items-center bg-black/50 rounded-full px-2 py-1">
+                        <svg className="w-4 h-4 text-yellow-400 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                        <span className="text-white text-xs font-medium">4.7</span>
+                      </div>
+                    </div>
+                    <div className="p-4 flex-1 flex flex-col">
+                      <h5 className="text-lg font-bold text-gray-800 font-poppins mb-2">Gantungan Kunci Perca Songket</h5>
+                      <p className="text-gray-600 font-poppins text-sm leading-relaxed mb-3 flex-1">
+                        Souvenir unik yang memadukan keindahan kain songket dengan sentuhan modern. Dibuat dari potongan perca songket pilihan, setiap gantungan kunci menghadirkan motif khas Minangkabau yang elegan sekaligus ramah lingkungan. Cocok sebagai oleh-oleh khas Silungkang yang praktis, bernilai budaya, dan penuh makna.
+                      </p>
+                      <div className="text-orange-500 font-semibold text-sm">
+                        Harga: ...
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Pin Perca Songket */}
+                  <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 h-[500px] flex flex-col">
+                    <div className="relative h-48 bg-gradient-to-br from-amber-100 to-amber-200 flex items-center justify-center">
               <div className="text-center text-gray-600">
-                {String(lang) === 'id' ? 'Konten menyusul.' : 'Content coming soon.'}
+                        <svg className="w-16 h-16 mx-auto mb-2 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 4V2a1 1 0 011-1h8a1 1 0 011 1v2m0 0V1a1 1 0 011-1h2a1 1 0 011 1v18a1 1 0 01-1 1H4a1 1 0 01-1-1V1a1 1 0 011-1h2a1 1 0 011 1v3m0 0h8m-8 0v16a1 1 0 001 1h8a1 1 0 001-1V4z" />
+                        </svg>
+                        <p className="text-sm font-medium">Pin Perca Songket</p>
+                      </div>
+                      <div className="absolute top-3 left-3">
+                        <span className="bg-gray-700 text-white px-2 py-1 rounded-full text-xs font-medium">
+                          Aksesoris
+                        </span>
+                      </div>
+                      <div className="absolute top-3 right-3">
+                        <span className="bg-blue-500 text-white px-2 py-1 rounded-full text-xs font-medium">
+                          Stok Tersedia
+                        </span>
+                      </div>
+                      <div className="absolute bottom-3 left-3 flex items-center bg-black/50 rounded-full px-2 py-1">
+                        <svg className="w-4 h-4 text-yellow-400 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                        <span className="text-white text-xs font-medium">4.8</span>
+                      </div>
+                    </div>
+                    <div className="p-4 flex-1 flex flex-col">
+                      <h5 className="text-lg font-bold text-gray-800 font-poppins mb-2">Pin Perca Songket</h5>
+                      <p className="text-gray-600 font-poppins text-sm leading-relaxed mb-3 flex-1">
+                        Aksesori kecil dengan sentuhan elegan khas tenun tradisional. Terbuat dari potongan perca songket yang bermotif indah, pin ini cocok digunakan pada pakaian, hijab, tas, atau sebagai cenderamata khas Minangkabau. Ringkas, unik, dan sarat nilai budaya, menjadikannya pilihan souvenir eksklusif namun tetap terjangkau.
+                      </p>
+                      <div className="text-orange-500 font-semibold text-sm">
+                        Harga: ...
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Tote Bag Perca Songket */}
+                  <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 h-[500px] flex flex-col">
+                    <div className="relative h-48 bg-gradient-to-br from-purple-100 to-purple-200 flex items-center justify-center">
+                      <div className="text-center text-gray-600">
+                        <svg className="w-16 h-16 mx-auto mb-2 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                        </svg>
+                        <p className="text-sm font-medium">Tote Bag Songket</p>
+                      </div>
+                      <div className="absolute top-3 left-3">
+                        <span className="bg-gray-700 text-white px-2 py-1 rounded-full text-xs font-medium">
+                          Aksesoris
+                        </span>
+                      </div>
+                      <div className="absolute top-3 right-3 space-y-2">
+                        <span className="bg-green-500 text-white px-2 py-1 rounded-full text-xs font-medium block">
+                          Handmade
+                        </span>
+                        <span className="bg-blue-500 text-white px-2 py-1 rounded-full text-xs font-medium block">
+                          Stok Tersedia
+                        </span>
+                      </div>
+                      <div className="absolute bottom-3 left-3 flex items-center bg-black/50 rounded-full px-2 py-1">
+                        <svg className="w-4 h-4 text-yellow-400 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                        <span className="text-white text-xs font-medium">4.6</span>
+                      </div>
+                    </div>
+                    <div className="p-4 flex-1 flex flex-col">
+                      <h5 className="text-lg font-bold text-gray-800 font-poppins mb-2">Tote Bag Perca Songket</h5>
+                      <p className="text-gray-600 font-poppins text-sm leading-relaxed mb-3 flex-1">
+                        Perpaduan antara gaya modern dan tradisi. Dibuat dari perca songket khas Silungkang, tote bag ini menghadirkan sentuhan etnik yang elegan namun tetap praktis untuk penggunaan sehari-hari. Ringan, ramah lingkungan, dan sarat nilai budaya, tote bag ini sangat cocok dijadikan oleh-oleh khas maupun pelengkap gaya Anda.
+                      </p>
+                      <div className="text-orange-500 font-semibold text-sm">
+                        Harga: ...
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Salempang Songket Silungkang */}
+                  <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 h-[500px] flex flex-col">
+                    <div className="relative h-48 bg-gradient-to-br from-red-100 to-red-200 flex items-center justify-center">
+                      <div className="text-center text-gray-600">
+                        <svg className="w-16 h-16 mx-auto mb-2 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                        </svg>
+                        <p className="text-sm font-medium">Salempang Songket</p>
+                      </div>
+                      <div className="absolute top-3 left-3">
+                        <span className="bg-gray-700 text-white px-2 py-1 rounded-full text-xs font-medium">
+                          Tekstil Tradisional
+                        </span>
+                      </div>
+                      <div className="absolute top-3 right-3 space-y-2">
+                        <span className="bg-green-500 text-white px-2 py-1 rounded-full text-xs font-medium block">
+                          Handmade
+                        </span>
+                        <span className="bg-blue-500 text-white px-2 py-1 rounded-full text-xs font-medium block">
+                          Stok Tersedia
+                        </span>
+                      </div>
+                      <div className="absolute bottom-3 left-3 flex items-center bg-black/50 rounded-full px-2 py-1">
+                        <svg className="w-4 h-4 text-yellow-400 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                        <span className="text-white text-xs font-medium">4.9</span>
+                      </div>
+                    </div>
+                    <div className="p-4 flex-1 flex flex-col">
+                      <h5 className="text-lg font-bold text-gray-800 font-poppins mb-2">Salempang Songket Silungkang</h5>
+                      <p className="text-gray-600 font-poppins text-sm leading-relaxed mb-3 flex-1">
+                        Aksesori anggun yang melambangkan kehormatan dan budaya Minangkabau. Terbuat dari tenun songket asli Silungkang dengan motif tradisional penuh filosofi, salempang ini biasanya digunakan pada acara adat, wisuda, pernikahan, maupun seremoni resmi. Elegan, berkelas, dan sarat makna, salempang songket menjadi pilihan tepat sebagai simbol kebanggaan dan identitas budaya.
+                      </p>
+                      <div className="text-orange-500 font-semibold text-sm">
+                        Harga: ...
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Deta Songket Silungkang */}
+                  <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 h-[500px] flex flex-col">
+                    <div className="relative h-48 bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center">
+                      <div className="text-center text-gray-600">
+                        <svg className="w-16 h-16 mx-auto mb-2 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 4V2a1 1 0 011-1h8a1 1 0 011 1v2m0 0V1a1 1 0 011-1h2a1 1 0 011 1v18a1 1 0 01-1 1H4a1 1 0 01-1-1V1a1 1 0 011-1h2a1 1 0 011 1v3m0 0h8m-8 0v16a1 1 0 001 1h8a1 1 0 001-1V4z" />
+                        </svg>
+                        <p className="text-sm font-medium">Deta Songket</p>
+                      </div>
+                      <div className="absolute top-3 left-3">
+                        <span className="bg-gray-700 text-white px-2 py-1 rounded-full text-xs font-medium">
+                          Tekstil Tradisional
+                        </span>
+                      </div>
+                      <div className="absolute top-3 right-3 space-y-2">
+                        <span className="bg-green-500 text-white px-2 py-1 rounded-full text-xs font-medium block">
+                          Handmade
+                        </span>
+                        <span className="bg-blue-500 text-white px-2 py-1 rounded-full text-xs font-medium block">
+                          Stok Tersedia
+                        </span>
+                      </div>
+                      <div className="absolute bottom-3 left-3 flex items-center bg-black/50 rounded-full px-2 py-1">
+                        <svg className="w-4 h-4 text-yellow-400 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                        <span className="text-white text-xs font-medium">4.8</span>
+                      </div>
+                    </div>
+                    <div className="p-4 flex-1 flex flex-col">
+                      <h5 className="text-lg font-bold text-gray-800 font-poppins mb-2">Deta Songket Silungkang</h5>
+                      <p className="text-gray-600 font-poppins text-sm leading-relaxed mb-3 flex-1">
+                        Ikat kepala khas Minangkabau yang dibuat dari tenun songket asli Silungkang. Deta tidak hanya berfungsi sebagai penutup kepala, tetapi juga simbol kewibawaan, kehormatan, dan identitas budaya. Dengan motif songket yang elegan, deta ini sangat cocok digunakan dalam acara adat, pertunjukan budaya, maupun koleksi fashion etnik yang penuh makna.
+                      </p>
+                      <div className="text-orange-500 font-semibold text-sm">
+                        Harga: ...
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Lanyard Songket Silungkang */}
+                  <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 h-[500px] flex flex-col">
+                    <div className="relative h-48 bg-gradient-to-br from-green-100 to-green-200 flex items-center justify-center">
+                      <div className="text-center text-gray-600">
+                        <svg className="w-16 h-16 mx-auto mb-2 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0a2 2 0 104 0m-5 8a2 2 0 100-4 2 2 0 000 4zm0 0c1.306 0 2.417.835 2.83 2M9 14a3.001 3.001 0 00-2.83 2M15 11h3m-3 4h2" />
+                        </svg>
+                        <p className="text-sm font-medium">Lanyard Songket</p>
+                      </div>
+                      <div className="absolute top-3 left-3">
+                        <span className="bg-gray-700 text-white px-2 py-1 rounded-full text-xs font-medium">
+                          Aksesoris
+                        </span>
+                      </div>
+                      <div className="absolute top-3 right-3">
+                        <span className="bg-blue-500 text-white px-2 py-1 rounded-full text-xs font-medium">
+                          Stok Tersedia
+                        </span>
+                      </div>
+                      <div className="absolute bottom-3 left-3 flex items-center bg-black/50 rounded-full px-2 py-1">
+                        <svg className="w-4 h-4 text-yellow-400 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                        <span className="text-white text-xs font-medium">4.7</span>
+                      </div>
+                    </div>
+                    <div className="p-4 flex-1 flex flex-col">
+                      <h5 className="text-lg font-bold text-gray-800 font-poppins mb-2">Lanyard Songket Silungkang</h5>
+                      <p className="text-gray-600 font-poppins text-sm leading-relaxed mb-3 flex-1">
+                        Lanyard elegan dengan sentuhan khas tenun songket Silungkang. Cocok digunakan untuk kartu identitas, kartu kerja, maupun kartu pelajar, ID card ini memadukan fungsi praktis dengan nilai budaya. Motif songket yang khas membuatnya tampil unik, eksklusif, sekaligus menjadi souvenir modern bernuansa tradisional Minangkabau.
+                      </p>
+                      <div className="text-orange-500 font-semibold text-sm">
+                        Harga: ...
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </section>
@@ -959,11 +1564,411 @@ export default function Home() {
           {/* Section 5: Galeri */}
           <section className="px-4 sm:px-6 lg:px-8 mb-16">
             <div className="max-w-7xl mx-auto">
-              <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 text-gray-800 font-poppins">
+              <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-gray-800 font-poppins">
                 {String(lang) === 'id' ? 'Galeri' : 'Gallery'}
               </h2>
-              <div className="text-center text-gray-600">
-                {String(lang) === 'id' ? 'Konten menyusul.' : 'Content coming soon.'}
+              <p className="text-lg text-gray-600 text-center mb-6 font-poppins max-w-3xl mx-auto leading-relaxed">
+                {String(lang) === 'id' 
+                  ? 'Jelajahi keindahan dan keunikan Desa Wisata Silungkang Oso melalui dokumentasi visual yang menampilkan kekayaan alam, budaya, dan kehidupan masyarakat setempat.'
+                  : 'Explore the beauty and uniqueness of Silungkang Oso Tourism Village through visual documentation showcasing the richness of nature, culture, and local community life.'
+                }
+              </p>
+              <div className="w-24 h-1 bg-gradient-to-r from-[#ffd704] to-[#ffed4e] rounded-full mx-auto mb-12"></div>
+              
+              <div className="space-y-12">
+                {/* Video Section */}
+                <div className="space-y-6">
+                  <h3 className="text-2xl font-bold text-gray-800 font-poppins mb-6 text-center">
+                    {String(lang) === 'id' ? 'Video Dokumentasi' : 'Documentation Video'}
+                  </h3>
+                  
+                  <div className="bg-white rounded-xl p-6 shadow-md border border-gray-100 max-w-4xl mx-auto">
+                    <div className="relative aspect-video bg-gray-900 rounded-lg overflow-hidden">
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="text-center text-white">
+                          <svg className="w-16 h-16 mx-auto mb-4 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                          </svg>
+                          <p className="text-sm font-medium">{String(lang) === 'id' ? 'Video Dokumentasi' : 'Documentation Video'}</p>
+                          <p className="text-xs opacity-75 mt-1">16:9 Aspect Ratio</p>
+                        </div>
+                      </div>
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                      <div className="absolute bottom-4 left-4">
+                        <button className="bg-[#ffd704] hover:bg-[#ffed4e] text-[#102467] p-3 rounded-full transition-colors duration-300 shadow-lg">
+                          <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M8 5v14l11-7z"/>
+                          </svg>
+                        </button>
+                      </div>
+                    </div>
+                    <div className="mt-4 text-center">
+                      <h4 className="text-lg font-semibold text-gray-800 font-poppins mb-2">
+                        {String(lang) === 'id' ? 'Desa Wisata Silungkang Oso' : 'Silungkang Oso Tourism Village'}
+                      </h4>
+                      <p className="text-gray-600 font-poppins text-sm">
+                        {String(lang) === 'id' 
+                          ? 'Video dokumentasi lengkap tentang keindahan alam, budaya, dan aktivitas wisata di Desa Silungkang Oso'
+                          : 'Complete documentation video about the natural beauty, culture, and tourism activities in Silungkang Oso Village'
+                        }
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Photo Gallery Section */}
+                <div className="space-y-6">
+                  <h3 className="text-2xl font-bold text-gray-800 font-poppins mb-6 text-center">
+                    {String(lang) === 'id' ? 'Galeri Foto' : 'Photo Gallery'}
+                  </h3>
+                  
+                  <div className="bg-white rounded-xl p-6 shadow-md border border-gray-100">
+                    {/* Masonry Grid */}
+                    <div className="columns-2 md:columns-3 lg:columns-5 gap-3 space-y-3">
+                      {/* Image 1 - Large */}
+                      <div className="break-inside-avoid">
+                        <div className="relative group overflow-hidden rounded-lg">
+                          <img 
+                            src="/image/herobanner/image1.JPG" 
+                            alt={String(lang) === 'id' ? 'Pemandangan Desa Silungkang Oso' : 'Silungkang Oso Village Landscape'}
+                            className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
+                          />
+                          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300"></div>
+                          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <button className="bg-white/90 hover:bg-white text-gray-800 p-2 rounded-full shadow-lg">
+                              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                              </svg>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Image 2 - Medium */}
+                      <div className="break-inside-avoid">
+                        <div className="relative group overflow-hidden rounded-lg">
+                          <img 
+                            src="/image/herobanner/image2.JPG" 
+                            alt={String(lang) === 'id' ? 'Aktivitas Wisata' : 'Tourism Activities'}
+                            className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
+                          />
+                          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300"></div>
+                          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <button className="bg-white/90 hover:bg-white text-gray-800 p-2 rounded-full shadow-lg">
+                              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                              </svg>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Image 3 - Small */}
+                      <div className="break-inside-avoid">
+                        <div className="relative group overflow-hidden rounded-lg">
+                          <img 
+                            src="/image/herobanner/image3.JPG" 
+                            alt={String(lang) === 'id' ? 'Budaya Lokal' : 'Local Culture'}
+                            className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
+                          />
+                          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300"></div>
+                          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <button className="bg-white/90 hover:bg-white text-gray-800 p-2 rounded-full shadow-lg">
+                              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                              </svg>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Image 4 - Medium */}
+                      <div className="break-inside-avoid">
+                        <div className="relative group overflow-hidden rounded-lg">
+                          <img 
+                            src="/image/herobanner/image4.JPG" 
+                            alt={String(lang) === 'id' ? 'Alam Silungkang' : 'Silungkang Nature'}
+                            className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
+                          />
+                          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300"></div>
+                          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <button className="bg-white/90 hover:bg-white text-gray-800 p-2 rounded-full shadow-lg">
+                              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                              </svg>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Image 5 - Small */}
+                      <div className="break-inside-avoid">
+                        <div className="relative group overflow-hidden rounded-lg">
+                          <img 
+                            src="/image/destinasi-wisata/camping-ground.JPG" 
+                            alt={String(lang) === 'id' ? 'Camping Ground' : 'Camping Ground'}
+                            className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
+                          />
+                          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300"></div>
+                          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <button className="bg-white/90 hover:bg-white text-gray-800 p-2 rounded-full shadow-lg">
+                              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                              </svg>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Image 6 - Large */}
+                      <div className="break-inside-avoid">
+                        <div className="relative group overflow-hidden rounded-lg">
+                          <img 
+                            src="/image/destinasi-wisata/goa-kelambu.JPG" 
+                            alt={String(lang) === 'id' ? 'Goa Kelambu' : 'Kelambu Cave'}
+                            className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
+                          />
+                          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300"></div>
+                          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <button className="bg-white/90 hover:bg-white text-gray-800 p-2 rounded-full shadow-lg">
+                              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                              </svg>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Image 7 - Medium */}
+                      <div className="break-inside-avoid">
+                        <div className="relative group overflow-hidden rounded-lg">
+                          <img 
+                            src="/image/destinasi-wisata/kolam-renang-mudiak-lugha.JPG" 
+                            alt={String(lang) === 'id' ? 'Kolam Renang Mudiak Lugha' : 'Mudiak Lugha Swimming Pool'}
+                            className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
+                          />
+                          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300"></div>
+                          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <button className="bg-white/90 hover:bg-white text-gray-800 p-2 rounded-full shadow-lg">
+                              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                              </svg>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Image 8 - Small */}
+                      <div className="break-inside-avoid">
+                        <div className="relative group overflow-hidden rounded-lg">
+                          <img 
+                            src="/image/peta/map-silungkang-oso.jpg" 
+                            alt={String(lang) === 'id' ? 'Peta Silungkang Oso' : 'Silungkang Oso Map'}
+                            className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
+                          />
+                          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300"></div>
+                          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <button className="bg-white/90 hover:bg-white text-gray-800 p-2 rounded-full shadow-lg">
+                              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                              </svg>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Image 9 - Additional for desktop */}
+                      <div className="break-inside-avoid">
+                        <div className="relative group overflow-hidden rounded-lg">
+                          <img 
+                            src="/image/herobanner/image1.JPG" 
+                            alt={String(lang) === 'id' ? 'Pemandangan Alam Silungkang' : 'Silungkang Natural Scenery'}
+                            className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
+                          />
+                          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300"></div>
+                          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <button className="bg-white/90 hover:bg-white text-gray-800 p-2 rounded-full shadow-lg">
+                              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                              </svg>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Image 10 - Additional for desktop */}
+                      <div className="break-inside-avoid">
+                        <div className="relative group overflow-hidden rounded-lg">
+                          <img 
+                            src="/image/herobanner/image2.JPG" 
+                            alt={String(lang) === 'id' ? 'Kehidupan Masyarakat' : 'Community Life'}
+                            className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
+                          />
+                          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300"></div>
+                          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <button className="bg-white/90 hover:bg-white text-gray-800 p-2 rounded-full shadow-lg">
+                              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                              </svg>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Image 11 - Additional for desktop */}
+                      <div className="break-inside-avoid">
+                        <div className="relative group overflow-hidden rounded-lg">
+                          <img 
+                            src="/image/herobanner/image3.JPG" 
+                            alt={String(lang) === 'id' ? 'Tradisi Lokal' : 'Local Traditions'}
+                            className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
+                          />
+                          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300"></div>
+                          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <button className="bg-white/90 hover:bg-white text-gray-800 p-2 rounded-full shadow-lg">
+                              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                              </svg>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Image 12 - Additional for desktop */}
+                      <div className="break-inside-avoid">
+                        <div className="relative group overflow-hidden rounded-lg">
+                          <img 
+                            src="/image/herobanner/image4.JPG" 
+                            alt={String(lang) === 'id' ? 'Keindahan Alam' : 'Natural Beauty'}
+                            className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
+                          />
+                          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300"></div>
+                          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <button className="bg-white/90 hover:bg-white text-gray-800 p-2 rounded-full shadow-lg">
+                              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                              </svg>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Image 13 - Fill empty space */}
+                      <div className="break-inside-avoid">
+                        <div className="relative group overflow-hidden rounded-lg">
+                          <img 
+                            src="/image/destinasi-wisata/camping-ground.JPG" 
+                            alt={String(lang) === 'id' ? 'Area Camping' : 'Camping Area'}
+                            className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
+                          />
+                          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300"></div>
+                          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <button className="bg-white/90 hover:bg-white text-gray-800 p-2 rounded-full shadow-lg">
+                              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                              </svg>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Image 14 - Fill empty space */}
+                      <div className="break-inside-avoid">
+                        <div className="relative group overflow-hidden rounded-lg">
+                          <img 
+                            src="/image/destinasi-wisata/goa-kelambu.JPG" 
+                            alt={String(lang) === 'id' ? 'Keunikan Goa' : 'Cave Uniqueness'}
+                            className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
+                          />
+                          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300"></div>
+                          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <button className="bg-white/90 hover:bg-white text-gray-800 p-2 rounded-full shadow-lg">
+                              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                              </svg>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Image 15 - Fill empty space */}
+                      <div className="break-inside-avoid">
+                        <div className="relative group overflow-hidden rounded-lg">
+                          <img 
+                            src="/image/destinasi-wisata/kolam-renang-mudiak-lugha.JPG" 
+                            alt={String(lang) === 'id' ? 'Fasilitas Wisata' : 'Tourism Facilities'}
+                            className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
+                          />
+                          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300"></div>
+                          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <button className="bg-white/90 hover:bg-white text-gray-800 p-2 rounded-full shadow-lg">
+                              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                              </svg>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Image 16 - Fill empty space */}
+                      <div className="break-inside-avoid">
+                        <div className="relative group overflow-hidden rounded-lg">
+                          <img 
+                            src="/image/peta/map-silungkang-oso.jpg" 
+                            alt={String(lang) === 'id' ? 'Lokasi Strategis' : 'Strategic Location'}
+                            className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
+                          />
+                          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300"></div>
+                          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <button className="bg-white/90 hover:bg-white text-gray-800 p-2 rounded-full shadow-lg">
+                              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                              </svg>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Image 17 - Fill empty space */}
+                      <div className="break-inside-avoid">
+                        <div className="relative group overflow-hidden rounded-lg">
+                          <img 
+                            src="/image/herobanner/image1.JPG" 
+                            alt={String(lang) === 'id' ? 'Wisata Alam' : 'Nature Tourism'}
+                            className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
+                          />
+                          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300"></div>
+                          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <button className="bg-white/90 hover:bg-white text-gray-800 p-2 rounded-full shadow-lg">
+                              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                              </svg>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Image 18 - Fill empty space */}
+                      <div className="break-inside-avoid">
+                        <div className="relative group overflow-hidden rounded-lg">
+                          <img 
+                            src="/image/herobanner/image2.JPG" 
+                            alt={String(lang) === 'id' ? 'Aktivitas Wisata' : 'Tourism Activities'}
+                            className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
+                          />
+                          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300"></div>
+                          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <button className="bg-white/90 hover:bg-white text-gray-800 p-2 rounded-full shadow-lg">
+                              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                              </svg>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </section>
@@ -971,11 +1976,212 @@ export default function Home() {
           {/* Section 6: Kontak Informasi */}
           <section className="px-4 sm:px-6 lg:px-8 mb-16">
             <div className="max-w-7xl mx-auto">
-              <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 text-gray-800 font-poppins">
-                {String(lang) === 'id' ? 'Kontak Informasi' : 'Contact Information'}
+              <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-gray-800 font-poppins">
+                {String(lang) === 'id' ? 'Hubungi Kami' : 'Contact Us'}
               </h2>
-              <div className="text-center text-gray-600">
-                {String(lang) === 'id' ? 'Konten menyusul.' : 'Content coming soon.'}
+              <p className="text-lg text-gray-600 text-center mb-6 font-poppins max-w-4xl mx-auto leading-relaxed">
+                {String(lang) === 'id' 
+                  ? 'Siap untuk pengalaman tak terlupakan di Desa Wisata Silungkang Oso? Hubungi kami untuk informasi lebih lanjut atau reservasi.'
+                  : 'Ready for an unforgettable experience at Silungkang Oso Tourism Village? Contact us for more information or reservations.'
+                }
+              </p>
+              <div className="w-24 h-1 bg-gradient-to-r from-[#ffd704] to-[#ffed4e] rounded-full mx-auto mb-12"></div>
+              
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                {/* Informasi Kontak */}
+                <div className="space-y-6 flex flex-col justify-start">
+                  <h3 className="text-2xl font-bold text-gray-800 font-poppins mb-6">
+                    {String(lang) === 'id' ? 'Informasi Kontak' : 'Contact Information'}
+                  </h3>
+                  
+                  {/* Alamat */}
+                  <div className="bg-white rounded-xl p-6 shadow-md border border-gray-100 flex items-start space-x-4">
+                    <div className="w-12 h-12 bg-[#ffd704]/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <svg className="w-6 h-6 text-[#ffd704]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <h4 className="text-lg font-semibold text-gray-800 font-poppins mb-2">
+                        {String(lang) === 'id' ? 'Alamat' : 'Address'}
+                      </h4>
+                      <p className="text-gray-600 font-poppins leading-relaxed">
+                        Desa Silungkang Oso Kec. Silungkang,<br />
+                        Kota Sawahlunto Sumatera Barat 27416
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Telepon */}
+                  <div className="bg-white rounded-xl p-6 shadow-md border border-gray-100 flex items-start space-x-4">
+                    <div className="w-12 h-12 bg-[#ffd704]/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <svg className="w-6 h-6 text-[#ffd704]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <h4 className="text-lg font-semibold text-gray-800 font-poppins mb-2">
+                        {String(lang) === 'id' ? 'Telepon' : 'Phone'}
+                      </h4>
+                      <p className="text-gray-600 font-poppins">
+                        081277849089
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Email */}
+                  <div className="bg-white rounded-xl p-6 shadow-md border border-gray-100 flex items-start space-x-4">
+                    <div className="w-12 h-12 bg-[#ffd704]/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <svg className="w-6 h-6 text-[#ffd704]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <h4 className="text-lg font-semibold text-gray-800 font-poppins mb-2">
+                        {String(lang) === 'id' ? 'Email' : 'Email'}
+                      </h4>
+                      <p className="text-gray-600 font-poppins">
+                        pokdarwispanorama@gmail.com
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Jam Operasional */}
+                  <div className="bg-white rounded-xl p-6 shadow-md border border-gray-100 flex items-start space-x-4">
+                    <div className="w-12 h-12 bg-[#ffd704]/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <svg className="w-6 h-6 text-[#ffd704]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <h4 className="text-lg font-semibold text-gray-800 font-poppins mb-2">
+                        {String(lang) === 'id' ? 'Jam Operasional' : 'Operating Hours'}
+                      </h4>
+                      <div className="text-gray-600 font-poppins space-y-1">
+                        <p>{String(lang) === 'id' ? 'Senin - Jumat: 08.00 - 17.00 WIB' : 'Monday - Friday: 08:00 - 17:00 WIB'}</p>
+                        <p>{String(lang) === 'id' ? 'Sabtu - Minggu: 07.00 - 18.00 WIB' : 'Saturday - Sunday: 07:00 - 18:00 WIB'}</p>
+                        <p className="text-sm text-gray-500 mt-2">
+                          *{String(lang) === 'id' ? 'Aktivitas wisata tersedia 24 jam' : 'Tourist activities available 24 hours'}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Form Kontak */}
+                <div className="space-y-6 flex flex-col justify-start">
+                  <h3 className="text-2xl font-bold text-gray-800 font-poppins mb-6">
+                    {String(lang) === 'id' ? 'Kirim Pesan' : 'Send Message'}
+                  </h3>
+                  
+                  <div className="bg-white rounded-xl p-8 shadow-md border border-gray-100">
+                    <p className="text-gray-600 font-poppins mb-6">
+                      {String(lang) === 'id' 
+                        ? 'Isi form di bawah ini dan kami akan menghubungi Anda dalam 24 jam.'
+                        : 'Fill out the form below and we will contact you within 24 hours.'
+                      }
+                    </p>
+                    
+                    <form className="space-y-4">
+                    {/* Nama Lengkap dan No. Telepon dalam 1 baris */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-sm font-semibold text-gray-700 font-poppins mb-2">
+                          {String(lang) === 'id' ? 'Nama Lengkap' : 'Full Name'} *
+                        </label>
+                        <input 
+                          type="text" 
+                          placeholder={String(lang) === 'id' ? 'Masukkan nama lengkap' : 'Enter full name'}
+                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#ffd704] focus:border-transparent font-poppins"
+                        />
+                      </div>
+                      
+                      <div>
+                        <label className="block text-sm font-semibold text-gray-700 font-poppins mb-2">
+                          {String(lang) === 'id' ? 'No. Telepon' : 'Phone No.'} *
+                        </label>
+                        <input 
+                          type="tel" 
+                          placeholder="08XXXXXXXXXX"
+                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#ffd704] focus:border-transparent font-poppins"
+                        />
+                      </div>
+                    </div>
+                    
+                    {/* Email full width */}
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-700 font-poppins mb-2">
+                        {String(lang) === 'id' ? 'Email' : 'Email'} *
+                      </label>
+                      <input 
+                        type="email" 
+                        placeholder="nama@email.com"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#ffd704] focus:border-transparent font-poppins"
+                      />
+                    </div>
+                    
+                    {/* Jumlah Pengunjung dan Tanggal Kunjungan dalam 1 baris */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-sm font-semibold text-gray-700 font-poppins mb-2">
+                          {String(lang) === 'id' ? 'Jumlah Pengunjung' : 'Number of Visitors'}
+                        </label>
+                        <input 
+                          type="number" 
+                          placeholder={String(lang) === 'id' ? 'Contoh: 5' : 'Example: 5'}
+                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#ffd704] focus:border-transparent font-poppins"
+                        />
+                      </div>
+                      
+                      <div>
+                        <label className="block text-sm font-semibold text-gray-700 font-poppins mb-2">
+                          {String(lang) === 'id' ? 'Tanggal Kunjungan' : 'Visit Date'}
+                        </label>
+                        <div className="relative">
+                          <input 
+                            type="date" 
+                            placeholder={String(lang) === 'id' ? 'hh/bb/tttt' : 'dd/mm/yyyy'}
+                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#ffd704] focus:border-transparent font-poppins"
+                          />
+                          <svg className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    {/* Subjek full width */}
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-700 font-poppins mb-2">
+                        {String(lang) === 'id' ? 'Subjek' : 'Subject'} *
+                      </label>
+                      <input 
+                        type="text" 
+                        placeholder={String(lang) === 'id' ? 'Reservasi / Informasi / Keluhan' : 'Reservation / Information / Complaint'}
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#ffd704] focus:border-transparent font-poppins"
+                      />
+                    </div>
+                    
+                    <button 
+                      type="submit"
+                      className="w-full bg-[#ffd704] hover:bg-[#ffed4e] text-[#102467] font-semibold py-3 px-6 rounded-lg transition-colors duration-300 flex items-center justify-center space-x-2 font-poppins shadow-md hover:shadow-lg"
+                    >
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                      </svg>
+                      <span>{String(lang) === 'id' ? 'Kirim Pesan' : 'Send Message'}</span>
+                    </button>
+                    
+                    <p className="text-xs text-gray-500 font-poppins text-center leading-relaxed">
+                      {String(lang) === 'id' 
+                        ? 'Dengan mengirim pesan ini, Anda menyetujui bahwa data pribadi Anda akan digunakan untuk keperluan komunikasi terkait layanan wisata kami.'
+                        : 'By sending this message, you agree that your personal data will be used for communication purposes related to our tourism services.'
+                      }
+                    </p>
+                  </form>
+                  </div>
+                </div>
               </div>
             </div>
           </section>
@@ -1138,5 +2344,6 @@ export default function Home() {
             </div>
           </footer>
       </div>
+
   );
 }
