@@ -87,3 +87,58 @@ body {
 [data-nextjs-portal] {
   display: none !important;
 }
+
+/* Animation classes for Potensi Desa page */
+.animate-fade-in-up {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+.animate-fade-in {
+  opacity: 1 !important;
+}
+
+/* Additional animation utilities */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Intersection Observer animation classes */
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease-out;
+}
+
+.fade-in {
+  opacity: 0;
+  transition: all 0.6s ease-out;
+}
+
+.fade-in-up.animate,
+.fade-in.animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+

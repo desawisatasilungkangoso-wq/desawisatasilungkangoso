@@ -14,7 +14,16 @@ export default function Home() {
   const [isAutoSlidePaused, setIsAutoSlidePaused] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [cultureIndex, setCultureIndex] = useState(0);
+  const [songketIndex, setSongketIndex] = useState(0);
   const { lang } = useLanguage();
+
+  // Data foto songket
+  const songketImages = [
+    '/image/product/Tenun Silungkang...png',
+    '/image/product/Songket Silungkang 1.webp',
+    '/image/product/Songket Silungkang.webp'
+  ];
+
 
   const slides = [
     {
@@ -117,7 +126,7 @@ export default function Home() {
   const cultures = [
     {
       id: 1,
-      image: '/image/destinasi-wisata/kolam-renang-mudiak-lugha.JPG',
+      image: '/image/budaya/tenun-songket-silungkang.png',
       title_id: 'Tenun Songket Silungkang',
       title_en: 'Silungkang Songket Weaving',
       description_id: 'Tenun Songket Silungkang adalah seni tenun tradisional dari daerah Silungkang, Kota Sawahlunto, Sumatera Barat, yang merupakan bagian dari warisan budaya Minangkabau dan salah satu songket tertua di Indonesia. Dikenal dengan motifnya yang khas dan sederhana serta penggunaan benang emas atau perak untuk motifnya, songket ini ditenun secara manual menggunakan Alat Tenun Bukan Mesin (ATBM).',
@@ -135,7 +144,7 @@ export default function Home() {
     },
     {
       id: 3,
-      image: '/image/destinasi-wisata/goa-kelambu.JPG',
+      image: '/image/budaya/talempong-botuang.webp',
       title_id: 'Talempong Botuang',
       title_en: 'Talempong Botuang',
       description_id: 'Talempong Batuang, juga dikenal dengan sebutan lokal Calempong Botuang, adalah alat musik perkusi tradisional yang berasal dari Nagari Silungkang, Kota Sawahlunto, Provinsi Sumatera Barat, Indonesia. Berbeda dengan Talempong Basi (alat musik logam khas Minangkabau), Talempong Batuang dibuat dari bambu (batuang dalam bahasa Minangkabau) dan menghasilkan nada melodis melalui teknik petikan atau pukulan pada senar sembilu (kulit bambu).',
@@ -144,7 +153,7 @@ export default function Home() {
     },
     {
       id: 4,
-      image: '/image/destinasi-wisata/batu-runciang.jpg',
+      image: '/image/budaya/pidato-adat.jpg',
       title_id: 'Pidato Adat',
       title_en: 'Traditional Speech',
       description_id: 'Pidato Adat adalah bagian dari upacara adat atau acara budaya formal yang diadakan masyarakat Silungkang Oso. Biasanya pidato ini disampaikan oleh tokoh adat (misalnya penghulu adat, ninik mamak, datuak), pejabat desa, atau orang yang dituakan dalam struktur adat setempat.',
@@ -158,7 +167,7 @@ export default function Home() {
     },
     {
       id: 5,
-      image: '/image/herobanner/image1.JPG',
+      image: '/image/budaya/rabana.jpg',
       title_id: 'Rabana',
       title_en: 'Rabana',
       description_id: 'Rabana atau Rebana, yang dalam masyarakat Silungkang lebih dikenal dengan sebutan Tak Tum Bin, merupakan salah satu kesenian tradisional yang masih hidup dan berkembang hingga kini. Kesenian ini biasanya dimainkan dalam prosesi adat, terutama saat mengiringi pengantin pria (Marapulai) menuju rumah pengantin wanita (Anak Daro).',
@@ -215,6 +224,16 @@ export default function Home() {
     return () => clearInterval(intervalId);
   }, [destinations.length, isAutoSlidePaused, isTransitioning]);
 
+  // Auto-slide songket images setiap 4 detik
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setSongketIndex((prev) => (prev + 1) % songketImages.length);
+    }, 4000);
+    return () => clearInterval(intervalId);
+  }, [songketImages.length]);
+
+  // Video auto slide dihapus - hanya tampilkan 1 video dulu
+
   // Language is handled by global provider
 
   const navItems = String(lang) === 'id'
@@ -238,7 +257,7 @@ export default function Home() {
       ];
 
   return (
-    <div className="min-h-screen bg-[#fffcf9]">
+    <div className="bg-[#fffcf9]">
       {/* Navbar */}
       <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 shadow-lg ${
         isScrolled 
@@ -323,7 +342,7 @@ export default function Home() {
       {/* Main Content */}
       <div>
         {/* Hero Section */}
-        <div className="relative w-screen h-screen overflow-hidden mb-16">
+        <div className="relative w-full h-[100vh] overflow-hidden mb-16">
               {/* Slides */}
               {slides.map((slide, index) => (
                 <div
@@ -694,15 +713,35 @@ export default function Home() {
                   
                   {/* Right Column - Image & Songket Info */}
                   <div>
-                    {/* Image Placeholder */}
-                    <div className="bg-gray-100 rounded-lg h-80 mb-6 flex items-center justify-center border-2 border-dashed border-gray-300">
-                      <div className="text-center text-gray-500">
-                        <svg className="w-16 h-16 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                        </svg>
-                        <p className="text-sm">
-                          {String(lang) === 'id' ? 'Gambar/Video' : 'Image/Video'}
-                        </p>
+                    {/* Songket Image Slider */}
+                    <div className="relative rounded-lg h-80 mb-6 overflow-hidden">
+                      {songketImages.map((image, index) => (
+                        <div
+                          key={index}
+                          className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+                            index === songketIndex ? 'opacity-100' : 'opacity-0'
+                          }`}
+                        >
+                          <Image
+                            src={image}
+                            alt={`Songket Silungkang ${index + 1}`}
+                            fill
+                            className="object-cover"
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                          />
+                        </div>
+                      ))}
+                      
+                      {/* Image Indicators */}
+                      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+                        {songketImages.map((_, index) => (
+                          <div
+                            key={index}
+                            className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                              index === songketIndex ? 'bg-white' : 'bg-white/50'
+                            }`}
+                          ></div>
+                        ))}
                       </div>
                     </div>
                     
@@ -1291,7 +1330,14 @@ export default function Home() {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {/* Songket Silungkang */}
                   <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 h-[500px] flex flex-col">
-                    <div className="relative h-48 bg-gradient-to-br from-gray-800 to-gray-900">
+                    <div className="relative h-48">
+                      <Image
+                        src="/image/product/Tenun Silungkang...png"
+                        alt="Songket Silungkang"
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      />
                       <div className="absolute top-3 left-3">
                         <span className="bg-gray-700 text-white px-2 py-1 rounded-full text-xs font-medium">
                           Tekstil Tradisional
@@ -1584,23 +1630,18 @@ export default function Home() {
                   
                   <div className="bg-white rounded-xl p-6 shadow-md border border-gray-100 max-w-4xl mx-auto">
                     <div className="relative aspect-video bg-gray-900 rounded-lg overflow-hidden">
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="text-center text-white">
-                          <svg className="w-16 h-16 mx-auto mb-4 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                          </svg>
-                          <p className="text-sm font-medium">{String(lang) === 'id' ? 'Video Dokumentasi' : 'Documentation Video'}</p>
-                          <p className="text-xs opacity-75 mt-1">16:9 Aspect Ratio</p>
-                        </div>
-                      </div>
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-                      <div className="absolute bottom-4 left-4">
-                        <button className="bg-[#ffd704] hover:bg-[#ffed4e] text-[#102467] p-3 rounded-full transition-colors duration-300 shadow-lg">
-                          <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M8 5v14l11-7z"/>
-                          </svg>
-                        </button>
-                      </div>
+                      {/* Video - Tampilkan 1 video dulu */}
+                      <video
+                        className="w-full h-full object-cover"
+                        controls
+                        preload="metadata"
+                        muted
+                        playsInline
+                      >
+                        <source src="/image/video/Kolam Renang Mudiak Lugha.mp4" type="video/mp4" />
+                        Browser Anda tidak mendukung video.
+                      </video>
+                      
                     </div>
                     <div className="mt-4 text-center">
                       <h4 className="text-lg font-semibold text-gray-800 font-poppins mb-2">
@@ -1629,8 +1670,8 @@ export default function Home() {
                       <div className="break-inside-avoid">
                         <div className="relative group overflow-hidden rounded-lg">
                           <img 
-                            src="/image/herobanner/image1.JPG" 
-                            alt={String(lang) === 'id' ? 'Pemandangan Desa Silungkang Oso' : 'Silungkang Oso Village Landscape'}
+                            src="/image/destinasi-wisata/batu-runciang.jpg" 
+                            alt={String(lang) === 'id' ? 'Batu Runciang' : 'Runciang Stone'}
                             className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
                           />
                           <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300"></div>
@@ -1648,8 +1689,8 @@ export default function Home() {
                       <div className="break-inside-avoid">
                         <div className="relative group overflow-hidden rounded-lg">
                           <img 
-                            src="/image/herobanner/image2.JPG" 
-                            alt={String(lang) === 'id' ? 'Aktivitas Wisata' : 'Tourism Activities'}
+                            src="/image/budaya/tenun-songket-silungkang.png" 
+                            alt={String(lang) === 'id' ? 'Tenun Songket Silungkang' : 'Silungkang Songket Weaving'}
                             className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
                           />
                           <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300"></div>
@@ -1667,8 +1708,8 @@ export default function Home() {
                       <div className="break-inside-avoid">
                         <div className="relative group overflow-hidden rounded-lg">
                           <img 
-                            src="/image/herobanner/image3.JPG" 
-                            alt={String(lang) === 'id' ? 'Budaya Lokal' : 'Local Culture'}
+                            src="/image/budaya/talempong-botuang.webp" 
+                            alt={String(lang) === 'id' ? 'Talempong Botuang' : 'Botuang Talempong'}
                             className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
                           />
                           <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300"></div>
@@ -1686,8 +1727,8 @@ export default function Home() {
                       <div className="break-inside-avoid">
                         <div className="relative group overflow-hidden rounded-lg">
                           <img 
-                            src="/image/herobanner/image4.JPG" 
-                            alt={String(lang) === 'id' ? 'Alam Silungkang' : 'Silungkang Nature'}
+                            src="/image/budaya/pidato-adat.jpg" 
+                            alt={String(lang) === 'id' ? 'Pidato Adat' : 'Traditional Speech'}
                             className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
                           />
                           <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300"></div>
@@ -1705,8 +1746,8 @@ export default function Home() {
                       <div className="break-inside-avoid">
                         <div className="relative group overflow-hidden rounded-lg">
                           <img 
-                            src="/image/destinasi-wisata/camping-ground.JPG" 
-                            alt={String(lang) === 'id' ? 'Camping Ground' : 'Camping Ground'}
+                            src="/image/budaya/rabana.jpg" 
+                            alt={String(lang) === 'id' ? 'Rabana' : 'Rabana Traditional Music'}
                             className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
                           />
                           <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300"></div>
@@ -1721,6 +1762,82 @@ export default function Home() {
                       </div>
 
                       {/* Image 6 - Large */}
+                      <div className="break-inside-avoid">
+                        <div className="relative group overflow-hidden rounded-lg">
+                          <img 
+                            src="/image/product/Songket Silungkang 1.webp" 
+                            alt={String(lang) === 'id' ? 'Songket Silungkang 1' : 'Silungkang Songket 1'}
+                            className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
+                          />
+                          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300"></div>
+                          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <button className="bg-white/90 hover:bg-white text-gray-800 p-2 rounded-full shadow-lg">
+                              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                              </svg>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Image 7 - Medium */}
+                      <div className="break-inside-avoid">
+                        <div className="relative group overflow-hidden rounded-lg">
+                          <img 
+                            src="/image/product/Songket Silungkang.webp" 
+                            alt={String(lang) === 'id' ? 'Songket Silungkang' : 'Silungkang Songket'}
+                            className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
+                          />
+                          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300"></div>
+                          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <button className="bg-white/90 hover:bg-white text-gray-800 p-2 rounded-full shadow-lg">
+                              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                              </svg>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Image 8 - Small */}
+                      <div className="break-inside-avoid">
+                        <div className="relative group overflow-hidden rounded-lg">
+                          <img 
+                            src="/image/product/Tenun Silungkang...png" 
+                            alt={String(lang) === 'id' ? 'Tenun Silungkang' : 'Silungkang Weaving'}
+                            className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
+                          />
+                          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300"></div>
+                          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <button className="bg-white/90 hover:bg-white text-gray-800 p-2 rounded-full shadow-lg">
+                              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                              </svg>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Image 9 - Additional for desktop */}
+                      <div className="break-inside-avoid">
+                        <div className="relative group overflow-hidden rounded-lg">
+                          <img 
+                            src="/image/destinasi-wisata/camping-ground.JPG" 
+                            alt={String(lang) === 'id' ? 'Camping Ground Guak Kumbuah' : 'Guak Kumbuah Camping Ground'}
+                            className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
+                          />
+                          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300"></div>
+                          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <button className="bg-white/90 hover:bg-white text-gray-800 p-2 rounded-full shadow-lg">
+                              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                              </svg>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Image 10 - Additional for desktop */}
                       <div className="break-inside-avoid">
                         <div className="relative group overflow-hidden rounded-lg">
                           <img 
@@ -1739,7 +1856,7 @@ export default function Home() {
                         </div>
                       </div>
 
-                      {/* Image 7 - Medium */}
+                      {/* Image 11 - Additional for desktop */}
                       <div className="break-inside-avoid">
                         <div className="relative group overflow-hidden rounded-lg">
                           <img 
@@ -1758,88 +1875,12 @@ export default function Home() {
                         </div>
                       </div>
 
-                      {/* Image 8 - Small */}
-                      <div className="break-inside-avoid">
-                        <div className="relative group overflow-hidden rounded-lg">
-                          <img 
-                            src="/image/peta/map-silungkang-oso.jpg" 
-                            alt={String(lang) === 'id' ? 'Peta Silungkang Oso' : 'Silungkang Oso Map'}
-                            className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
-                          />
-                          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300"></div>
-                          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                            <button className="bg-white/90 hover:bg-white text-gray-800 p-2 rounded-full shadow-lg">
-                              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
-                              </svg>
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Image 9 - Additional for desktop */}
-                      <div className="break-inside-avoid">
-                        <div className="relative group overflow-hidden rounded-lg">
-                          <img 
-                            src="/image/herobanner/image1.JPG" 
-                            alt={String(lang) === 'id' ? 'Pemandangan Alam Silungkang' : 'Silungkang Natural Scenery'}
-                            className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
-                          />
-                          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300"></div>
-                          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                            <button className="bg-white/90 hover:bg-white text-gray-800 p-2 rounded-full shadow-lg">
-                              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
-                              </svg>
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Image 10 - Additional for desktop */}
-                      <div className="break-inside-avoid">
-                        <div className="relative group overflow-hidden rounded-lg">
-                          <img 
-                            src="/image/herobanner/image2.JPG" 
-                            alt={String(lang) === 'id' ? 'Kehidupan Masyarakat' : 'Community Life'}
-                            className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
-                          />
-                          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300"></div>
-                          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                            <button className="bg-white/90 hover:bg-white text-gray-800 p-2 rounded-full shadow-lg">
-                              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
-                              </svg>
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Image 11 - Additional for desktop */}
-                      <div className="break-inside-avoid">
-                        <div className="relative group overflow-hidden rounded-lg">
-                          <img 
-                            src="/image/herobanner/image3.JPG" 
-                            alt={String(lang) === 'id' ? 'Tradisi Lokal' : 'Local Traditions'}
-                            className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
-                          />
-                          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300"></div>
-                          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                            <button className="bg-white/90 hover:bg-white text-gray-800 p-2 rounded-full shadow-lg">
-                              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
-                              </svg>
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-
                       {/* Image 12 - Additional for desktop */}
                       <div className="break-inside-avoid">
                         <div className="relative group overflow-hidden rounded-lg">
                           <img 
-                            src="/image/herobanner/image4.JPG" 
-                            alt={String(lang) === 'id' ? 'Keindahan Alam' : 'Natural Beauty'}
+                            src="/image/budaya/tenun-songket-silungkang.png" 
+                            alt={String(lang) === 'id' ? 'Kerajinan Tenun Songket' : 'Songket Weaving Craft'}
                             className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
                           />
                           <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300"></div>
@@ -1857,8 +1898,8 @@ export default function Home() {
                       <div className="break-inside-avoid">
                         <div className="relative group overflow-hidden rounded-lg">
                           <img 
-                            src="/image/destinasi-wisata/camping-ground.JPG" 
-                            alt={String(lang) === 'id' ? 'Area Camping' : 'Camping Area'}
+                            src="/image/budaya/talempong-botuang.webp" 
+                            alt={String(lang) === 'id' ? 'Musik Tradisional Talempong' : 'Traditional Talempong Music'}
                             className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
                           />
                           <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300"></div>
@@ -1876,8 +1917,8 @@ export default function Home() {
                       <div className="break-inside-avoid">
                         <div className="relative group overflow-hidden rounded-lg">
                           <img 
-                            src="/image/destinasi-wisata/goa-kelambu.JPG" 
-                            alt={String(lang) === 'id' ? 'Keunikan Goa' : 'Cave Uniqueness'}
+                            src="/image/budaya/pidato-adat.jpg" 
+                            alt={String(lang) === 'id' ? 'Budaya Pidato Adat' : 'Traditional Speech Culture'}
                             className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
                           />
                           <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300"></div>
@@ -1895,8 +1936,8 @@ export default function Home() {
                       <div className="break-inside-avoid">
                         <div className="relative group overflow-hidden rounded-lg">
                           <img 
-                            src="/image/destinasi-wisata/kolam-renang-mudiak-lugha.JPG" 
-                            alt={String(lang) === 'id' ? 'Fasilitas Wisata' : 'Tourism Facilities'}
+                            src="/image/budaya/rabana.jpg" 
+                            alt={String(lang) === 'id' ? 'Seni Musik Rabana' : 'Rabana Musical Art'}
                             className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
                           />
                           <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300"></div>
@@ -1914,8 +1955,8 @@ export default function Home() {
                       <div className="break-inside-avoid">
                         <div className="relative group overflow-hidden rounded-lg">
                           <img 
-                            src="/image/peta/map-silungkang-oso.jpg" 
-                            alt={String(lang) === 'id' ? 'Lokasi Strategis' : 'Strategic Location'}
+                            src="/image/product/Songket Silungkang 1.webp" 
+                            alt={String(lang) === 'id' ? 'Produk Songket Khas' : 'Unique Songket Product'}
                             className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
                           />
                           <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300"></div>
@@ -1933,8 +1974,8 @@ export default function Home() {
                       <div className="break-inside-avoid">
                         <div className="relative group overflow-hidden rounded-lg">
                           <img 
-                            src="/image/herobanner/image1.JPG" 
-                            alt={String(lang) === 'id' ? 'Wisata Alam' : 'Nature Tourism'}
+                            src="/image/product/Songket Silungkang.webp" 
+                            alt={String(lang) === 'id' ? 'Kerajinan Songket Tradisional' : 'Traditional Songket Craft'}
                             className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
                           />
                           <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300"></div>
@@ -1952,8 +1993,8 @@ export default function Home() {
                       <div className="break-inside-avoid">
                         <div className="relative group overflow-hidden rounded-lg">
                           <img 
-                            src="/image/herobanner/image2.JPG" 
-                            alt={String(lang) === 'id' ? 'Aktivitas Wisata' : 'Tourism Activities'}
+                            src="/image/product/Tenun Silungkang...png" 
+                            alt={String(lang) === 'id' ? 'Warisan Budaya Tenun' : 'Weaving Cultural Heritage'}
                             className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
                           />
                           <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300"></div>
