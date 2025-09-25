@@ -382,55 +382,19 @@ export default function ProfilDesa() {
               </div>
             </div>
             
-            {/* Right Column - Video Profil */}
+            {/* Right Column - Foto Kepala Desa */}
             <div>
-              <h3 className="text-xl font-semibold mb-4 text-gray-800 font-poppins">
-                {String(lang) === 'id' ? 'Video Profil Desa' : 'Village Profile Video'}
-              </h3>
-              <div className="relative bg-gray-100 rounded-lg overflow-hidden shadow-lg">
-                {/* Video Placeholder */}
-                <div className="aspect-video bg-gray-200 flex items-center justify-center">
-                  <div className="text-center text-gray-500">
-                    <svg className="w-16 h-16 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                    <p className="text-sm font-medium">
-                      {String(lang) === 'id' ? 'Video Profil Akan Segera Hadir' : 'Profile Video Coming Soon'}
-                    </p>
-                    <p className="text-xs mt-1 opacity-75">
-                      {String(lang) === 'id' ? 'Tempat untuk video profil desa' : 'Place for village profile video'}
-                    </p>
-                  </div>
-            </div>
-
-                {/* Video Controls Placeholder */}
-                <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 p-3">
-                  <div className="flex items-center space-x-3">
-                    <button className="text-white hover:text-gray-300 transition-colors">
-                      <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M8 5v14l11-7z"/>
-                </svg>
-              </button>
-                    <div className="flex-1 bg-gray-600 rounded-full h-1">
-                      <div className="bg-white h-1 rounded-full w-0"></div>
-                    </div>
-                    <span className="text-white text-xs">0:00</span>
-            </div>
-          </div>
-        </div>
-              
-              {/* Video Description */}
-              <div className="mt-4 text-sm text-gray-600 font-poppins">
-                {String(lang) === 'id' ? (
-                  <p>
-                    Video profil ini akan menampilkan keindahan alam, kekayaan budaya, dan kehidupan masyarakat Desa Silungkang Oso yang penuh dengan tradisi dan kearifan lokal.
-                  </p>
-                ) : (
-                  <p>
-                    This profile video will showcase the natural beauty, cultural richness, and community life of Silungkang Oso Village filled with traditions and local wisdom.
-                  </p>
-                )}
+          
+              <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+                <Image 
+                  src="/image/peta/kepala-desa.png" 
+                  alt={String(lang) === 'id' ? 'Kepala Desa Silungkang Oso' : 'Silungkang Oso Village Head'}
+                  width={400}
+                  height={300}
+                  className="w-full h-auto object-cover"
+                />
               </div>
+              
             </div>
             </div>
           </div>
@@ -551,6 +515,26 @@ export default function ProfilDesa() {
       </section>
 
       <Footer />
+
+      {/* Floating WhatsApp Button */}
+      <div className="fixed bottom-6 right-6 z-50">
+        <a
+          href="https://wa.me/6281277849089"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="transition-all duration-300 hover:scale-110 group"
+          aria-label="Chat via WhatsApp"
+        >
+          <img 
+            src="https://1.bp.blogspot.com/-tN6DCkDTyT4/XyJoQz9yGcI/AAAAAAAAAF4/aBZwjuwwmb4iG3ZWEPKOZOi59_E4sXS5wCLcBGAsYHQ/s2048/logo%2Bwa%2Bpng%2Byogiancreative.png" 
+            alt="WhatsApp" 
+            className="w-12 h-12"
+          />
+          <div className="absolute right-16 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white px-3 py-2 rounded-lg text-sm font-poppins opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+            {String(lang) === 'id' ? 'Chat via WhatsApp' : 'Chat via WhatsApp'}
+          </div>
+        </a>
+      </div>
     </div>
   );
 }

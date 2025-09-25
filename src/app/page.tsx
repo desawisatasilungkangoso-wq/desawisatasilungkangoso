@@ -15,6 +15,7 @@ export default function Home() {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [cultureIndex, setCultureIndex] = useState(0);
   const [songketIndex, setSongketIndex] = useState(0);
+  const [videoIndex, setVideoIndex] = useState(0);
   const { lang } = useLanguage();
 
   // Data foto songket
@@ -22,6 +23,30 @@ export default function Home() {
     '/image/product/Tenun Silungkang...png',
     '/image/product/Songket Silungkang 1.webp',
     '/image/product/Songket Silungkang.webp'
+  ];
+
+  // Data video dokumentasi
+  const videos = [
+    {
+      src: 'https://drive.google.com/file/d/102nBFe7t-YB8npZxNs_FPYoy78LlsmUB/preview',
+      title: String(lang) === 'id' ? 'Video Dokumentasi 1' : 'Documentation Video 1',
+      description: String(lang) === 'id' ? 'Keindahan alam dan budaya Desa Silungkang Oso' : 'Natural beauty and culture of Silungkang Oso Village'
+    },
+    {
+      src: 'https://drive.google.com/file/d/1l1A7Sc9184u5emgUYpySF7jgM8AOuMQf/preview',
+      title: String(lang) === 'id' ? 'Video Dokumentasi 2' : 'Documentation Video 2',
+      description: String(lang) === 'id' ? 'Aktivitas wisata dan kehidupan masyarakat' : 'Tourism activities and community life'
+    },
+    {
+      src: 'https://drive.google.com/file/d/1dfqbbMYYLrmPxqEDRGOREpX3D3XRPwjI/preview',
+      title: String(lang) === 'id' ? 'Video Dokumentasi 3' : 'Documentation Video 3',
+      description: String(lang) === 'id' ? 'Destinasi wisata unggulan dan atraksi' : 'Featured tourist destinations and attractions'
+    },
+    {
+      src: 'https://drive.google.com/file/d/1o5vASqTddFRXgdWk6ZE6WWxm99FNea8K/preview',
+      title: String(lang) === 'id' ? 'Video Dokumentasi 4' : 'Documentation Video 4',
+      description: String(lang) === 'id' ? 'Tradisi dan kearifan lokal masyarakat' : 'Traditions and local wisdom of the community'
+    }
   ];
 
 
@@ -784,11 +809,15 @@ export default function Home() {
 
                 {/* Struktur Pokdarwis */}
                 <div>
-                  <h3 className="text-xl font-semibold mb-4 text-gray-800 font-poppins">
-                    {String(lang) === 'id' ? 'Struktur Pokdarwis' : 'Pokdarwis Structure'}
-                  </h3>
-                  <div className="text-gray-600">
-                    {String(lang) === 'id' ? 'Konten menyusul.' : 'Content coming soon.'}
+                  
+                  <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <Image 
+                      src="/image/peta/struktur-pokdarwis.png" 
+                      alt={String(lang) === 'id' ? 'Struktur Organisasi Pokdarwis Silungkang Oso' : 'Pokdarwis Silungkang Oso Organization Structure'}
+                      width={800}
+                      height={600}
+                      className="w-full h-auto object-cover"
+                    />
                   </div>
                 </div>
 
@@ -1629,30 +1658,66 @@ export default function Home() {
                   </h3>
                   
                   <div className="bg-white rounded-xl p-6 shadow-md border border-gray-100 max-w-4xl mx-auto">
-                    <div className="relative aspect-video bg-gray-900 rounded-lg overflow-hidden">
-                      {/* Video - Tampilkan 1 video dulu */}
-                      <video
-                        className="w-full h-full object-cover"
-                        controls
-                        preload="metadata"
-                        muted
-                        playsInline
-                      >
-                        <source src="/image/video/Kolam Renang Mudiak Lugha.mp4" type="video/mp4" />
-                        Browser Anda tidak mendukung video.
-                      </video>
+                    {/* Video Slider Container */}
+                    <div className="relative">
+                      {/* Video Display */}
+                      <div className="relative aspect-video bg-gray-900 rounded-lg overflow-hidden">
+                        <div className="absolute inset-0">
+                          <iframe
+                            key={videoIndex} // Key untuk memaksa re-render iframe
+                            src={videos[videoIndex].src}
+                            className="w-full h-full"
+                            allow="autoplay"
+                            allowFullScreen
+                            title={videos[videoIndex].title}
+                          ></iframe>
+                        </div>
+                      </div>
                       
+                      {/* Navigation Arrows */}
+                      <button
+                        onClick={() => setVideoIndex((prev) => (prev - 1 + videos.length) % videos.length)}
+                        className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-all duration-300"
+                        aria-label="Previous video"
+                      >
+                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                        </svg>
+                      </button>
+                      
+                      <button
+                        onClick={() => setVideoIndex((prev) => (prev + 1) % videos.length)}
+                        className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-all duration-300"
+                        aria-label="Next video"
+                      >
+                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
+                      </button>
                     </div>
+                    
+                    {/* Video Info */}
                     <div className="mt-4 text-center">
                       <h4 className="text-lg font-semibold text-gray-800 font-poppins mb-2">
-                        {String(lang) === 'id' ? 'Desa Wisata Silungkang Oso' : 'Silungkang Oso Tourism Village'}
+                        {videos[videoIndex].title}
                       </h4>
                       <p className="text-gray-600 font-poppins text-sm">
-                        {String(lang) === 'id' 
-                          ? 'Video dokumentasi lengkap tentang keindahan alam, budaya, dan aktivitas wisata di Desa Silungkang Oso'
-                          : 'Complete documentation video about the natural beauty, culture, and tourism activities in Silungkang Oso Village'
-                        }
+                        {videos[videoIndex].description}
                       </p>
+                    </div>
+                    
+                    {/* Video Indicators */}
+                    <div className="flex justify-center space-x-2 mt-4">
+                      {videos.map((_, index) => (
+                        <button
+                          key={index}
+                          onClick={() => setVideoIndex(index)}
+                          className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                            index === videoIndex ? 'bg-[#ffd704]' : 'bg-gray-300 hover:bg-gray-400'
+                          }`}
+                          aria-label={`Go to video ${index + 1}`}
+                        ></button>
+                      ))}
                     </div>
                   </div>
                 </div>
@@ -2384,6 +2449,26 @@ export default function Home() {
               </div>
             </div>
           </footer>
+
+          {/* Floating WhatsApp Button */}
+          <div className="fixed bottom-6 right-6 z-50">
+            <a
+              href="https://wa.me/6281277849089"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition-all duration-300 hover:scale-110 group"
+              aria-label="Chat via WhatsApp"
+            >
+              <img 
+                src="https://1.bp.blogspot.com/-tN6DCkDTyT4/XyJoQz9yGcI/AAAAAAAAAF4/aBZwjuwwmb4iG3ZWEPKOZOi59_E4sXS5wCLcBGAsYHQ/s2048/logo%2Bwa%2Bpng%2Byogiancreative.png" 
+                alt="WhatsApp" 
+                className="w-12 h-12"
+              />
+              <div className="absolute right-16 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white px-3 py-2 rounded-lg text-sm font-poppins opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+                {String(lang) === 'id' ? 'Chat via WhatsApp' : 'Chat via WhatsApp'}
+              </div>
+            </a>
+          </div>
       </div>
 
   );

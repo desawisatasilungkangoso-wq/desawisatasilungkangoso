@@ -254,6 +254,26 @@ BumDes Silungkang Oso is committed to managing village assets professionally to 
       </div>
 
       <Footer />
+
+      {/* Floating WhatsApp Button */}
+      <div className="fixed bottom-6 right-6 z-50">
+        <a
+          href="https://wa.me/6281277849089"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="transition-all duration-300 hover:scale-110 group"
+          aria-label="Chat via WhatsApp"
+        >
+          <img 
+            src="https://1.bp.blogspot.com/-tN6DCkDTyT4/XyJoQz9yGcI/AAAAAAAAAF4/aBZwjuwwmb4iG3ZWEPKOZOi59_E4sXS5wCLcBGAsYHQ/s2048/logo%2Bwa%2Bpng%2Byogiancreative.png" 
+            alt="WhatsApp" 
+            className="w-12 h-12"
+          />
+          <div className="absolute right-16 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white px-3 py-2 rounded-lg text-sm font-poppins opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+            {String(lang) === 'id' ? 'Chat via WhatsApp' : 'Chat via WhatsApp'}
+          </div>
+        </a>
+      </div>
     </div>
   );
 }
