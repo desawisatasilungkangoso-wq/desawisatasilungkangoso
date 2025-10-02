@@ -133,7 +133,7 @@ export default function ContactFormSimple({ showForm = true, className = "" }: C
                   {String(lang) === 'id' ? 'Email' : 'Email'}
                 </h4>
                 <p className="text-gray-600 font-poppins">
-                  fauzanazhima270102@gmail.com
+                pokdarwispanorama@gmail.com
                 </p>
               </div>
             </div>

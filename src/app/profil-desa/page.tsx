@@ -73,7 +73,7 @@ export default function ProfilDesa() {
                   alt="Desa Wisata Silungkang Oso"
                   width={80}
                   height={40}
-                  className="object-contain"
+                  className="object-contain h-[4.75rem] w-auto md:h-[4.5rem]"
                 />
               </Link>
             </div>
@@ -287,13 +287,19 @@ export default function ProfilDesa() {
                         className="w-full h-auto object-cover"
                       />
                     </div>
-                    <div className="mt-4 text-center">
-                      <p className="text-3xl font-bold text-gray-800 font-poppins mb-2">
-                        Ferdinal
-                      </p>
-                      <p className="text-lg font-semibold text-gray-800 font-poppins">
-                        {String(lang) === 'id' ? 'Kepala Desa Silungkang Oso' : 'Head of Silungkang Oso Village'}
-                      </p>
+                    <div className="mt-4 flex justify-center">
+                      <div className="relative bg-gradient-to-r from-[#ffd704] to-[#ffed4e] p-[2px] rounded-2xl shadow-xl">
+                        <div className="relative bg-white/90 rounded-2xl px-6 py-4 flex items-center gap-4 justify-center">
+                          <div className="text-center">
+                            <div className="text-2xl md:text-3xl font-bold text-gray-800 font-poppins leading-tight">Ferdinal</div>
+                            <div className="text-sm md:text-base font-semibold text-[#102467] font-poppins">
+                              {String(lang) === 'id' ? 'Kepala Desa Silungkang Oso' : 'Head of Silungkang Oso Village'}
+                            </div>
+                          </div>
+                        </div>
+                        <div className="absolute -top-2 -right-2 w-4 h-4 bg-[#ffd704] rounded-full"></div>
+                        <div className="absolute -bottom-2 -left-2 w-4 h-4 bg-[#ffed4e] rounded-full"></div>
+                      </div>
                     </div>
                   </div>
                 </div>

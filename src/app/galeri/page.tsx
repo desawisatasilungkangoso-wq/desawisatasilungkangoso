@@ -6,6 +6,7 @@ import Link from 'next/link';
 import LanguageToggle from '../_components/LanguageToggle';
 import Footer from '../_components/Footer';
 import { useLanguage } from '../_components/LanguageProvider';
+import GallerySection from '../_components/GallerySection'; // Added import for GallerySection
 
 export default function Galeri() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -67,7 +68,7 @@ export default function Galeri() {
                   alt="Desa Wisata Silungkang Oso"
                   width={80}
                   height={40}
-                  className="object-contain"
+                  className="object-contain h-[4.75rem] w-auto md:h-[4.5rem]"
                 />
               </Link>
             </div>
@@ -133,294 +134,29 @@ export default function Galeri() {
         )}
       </nav>
 
-      {/* Main Content */}
-      <div>
-        {/* Hero Section */}
-        <div className="relative h-96 overflow-hidden">
-          <Image
-            src="/image/herobanner/Foto1.jpg"
-            alt={String(lang) === 'id' ? 'Galeri - Desa Wisata Silungkang Oso' : 'Gallery - Silungkang Oso Tourism Village'}
-            fill
-            className="object-cover"
-          />
-          <div className="absolute inset-0 bg-black/40"></div>
-          <div className="relative z-10 flex items-center justify-center h-full">
-            <div className="text-center text-white px-4">
-              <h1 className="text-4xl md:text-6xl font-bold mb-4 font-poppins">
-                {lang === 'id' ? texts.title_id : texts.title_en}
-              </h1>
-              <p className="text-lg font-poppins opacity-90 max-w-3xl mx-auto">
-                {lang === 'id' ? texts.subtitle_id : texts.subtitle_en}
-              </p>
-            </div>
+      {/* Hero Section */}
+      <div className="relative h-96 overflow-hidden">
+        <Image
+          src="/image/herobanner/Foto1.jpg"
+          alt={String(lang) === 'id' ? 'Galeri - Desa Wisata Silungkang Oso' : 'Gallery - Silungkang Oso Tourism Village'}
+          fill
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-black/40"></div>
+        <div className="relative z-10 flex items-center justify-center h-full">
+          <div className="text-center text-white px-4">
+            <h1 className="text-4xl md:text-6xl font-bold mb-4 font-poppins">
+              {lang === 'id' ? texts.title_id : texts.title_en}
+            </h1>
+            <p className="text-lg font-poppins opacity-90 max-w-3xl mx-auto">
+              {lang === 'id' ? texts.subtitle_id : texts.subtitle_en}
+            </p>
           </div>
         </div>
-
-        {/* Gallery Section */}
-        <section className="px-4 sm:px-6 lg:px-8 py-16">
-          <div className="max-w-7xl mx-auto">
-            <div className="w-24 h-1 bg-gradient-to-r from-[#ffd704] to-[#ffed4e] rounded-full mx-auto mb-12"></div>
-            
-            <div className="space-y-12">
-              {/* Video Section */}
-              <div className="space-y-6">
-                <h3 className="text-2xl font-bold text-gray-800 font-poppins mb-6 text-center">
-                  {String(lang) === 'id' ? 'Video Dokumentasi' : 'Documentation Video'}
-                </h3>
-                
-                <div className="bg-white rounded-xl p-6 shadow-md border border-gray-100 max-w-4xl mx-auto">
-                  <div className="relative aspect-video bg-gray-900 rounded-lg overflow-hidden">
-                    {/* Video - Tampilkan 1 video dulu */}
-                    <video
-                      className="w-full h-full object-cover"
-                      controls
-                      preload="metadata"
-                      muted
-                      playsInline
-                    >
-                      <source src="/image/video/Kolam Renang Mudiak Lugha.mp4" type="video/mp4" />
-                      Browser Anda tidak mendukung video.
-                    </video>
-                    
-                  </div>
-                  <div className="mt-4 text-center">
-                    <h4 className="text-lg font-semibold text-gray-800 font-poppins mb-2">
-                      {String(lang) === 'id' ? 'Desa Wisata Silungkang Oso' : 'Silungkang Oso Tourism Village'}
-                    </h4>
-                    <p className="text-gray-600 font-poppins text-sm">
-                      {String(lang) === 'id' 
-                        ? 'Video dokumentasi lengkap tentang keindahan alam, budaya, dan aktivitas wisata di Desa Silungkang Oso'
-                        : 'Complete documentation video about the natural beauty, culture, and tourism activities in Silungkang Oso Village'
-                      }
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Photo Gallery Section */}
-              <div className="space-y-6">
-                <h3 className="text-2xl font-bold text-gray-800 font-poppins mb-6 text-center">
-                  {String(lang) === 'id' ? 'Galeri Foto' : 'Photo Gallery'}
-                </h3>
-                
-                <div className="bg-white rounded-xl p-6 shadow-md border border-gray-100">
-                  {/* Masonry Grid */}
-                  <div className="columns-2 md:columns-3 lg:columns-5 gap-3 space-y-3">
-                    {/* Image 1 - Large */}
-                    <div className="break-inside-avoid">
-                      <div className="relative group overflow-hidden rounded-lg">
-                        <img 
-                          src="/image/destinasi-wisata/batu-runciang.jpg" 
-                          alt={String(lang) === 'id' ? 'Batu Runciang' : 'Runciang Stone'}
-                          className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
-                        />
-                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300"></div>
-                        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                          <button className="bg-white/90 hover:bg-white text-gray-800 p-2 rounded-full shadow-lg">
-                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
-                            </svg>
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Image 2 - Medium */}
-                    <div className="break-inside-avoid">
-                      <div className="relative group overflow-hidden rounded-lg">
-                        <img 
-                          src="/image/budaya/tenun-songket-silungkang.png" 
-                          alt={String(lang) === 'id' ? 'Tenun Songket Silungkang' : 'Silungkang Songket Weaving'}
-                          className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
-                        />
-                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300"></div>
-                        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                          <button className="bg-white/90 hover:bg-white text-gray-800 p-2 rounded-full shadow-lg">
-                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
-                            </svg>
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Image 3 - Small */}
-                    <div className="break-inside-avoid">
-                      <div className="relative group overflow-hidden rounded-lg">
-                        <img 
-                          src="/image/budaya/talempong-botuang.webp" 
-                          alt={String(lang) === 'id' ? 'Talempong Botuang' : 'Botuang Talempong'}
-                          className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
-                        />
-                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300"></div>
-                        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                          <button className="bg-white/90 hover:bg-white text-gray-800 p-2 rounded-full shadow-lg">
-                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
-                            </svg>
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Image 4 - Medium */}
-                    <div className="break-inside-avoid">
-                      <div className="relative group overflow-hidden rounded-lg">
-                        <img 
-                          src="/image/budaya/pidato-adat.jpg" 
-                          alt={String(lang) === 'id' ? 'Pidato Adat' : 'Traditional Speech'}
-                          className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
-                        />
-                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300"></div>
-                        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                          <button className="bg-white/90 hover:bg-white text-gray-800 p-2 rounded-full shadow-lg">
-                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
-                            </svg>
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Image 5 - Small */}
-                    <div className="break-inside-avoid">
-                      <div className="relative group overflow-hidden rounded-lg">
-                        <img 
-                          src="/image/budaya/rabana.jpg" 
-                          alt={String(lang) === 'id' ? 'Rabana' : 'Rabana Traditional Music'}
-                          className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
-                        />
-                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300"></div>
-                        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                          <button className="bg-white/90 hover:bg-white text-gray-800 p-2 rounded-full shadow-lg">
-                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
-                            </svg>
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Image 6 - Large */}
-                    <div className="break-inside-avoid">
-                      <div className="relative group overflow-hidden rounded-lg">
-                        <img 
-                          src="/image/product/Songket Silungkang 1.webp" 
-                          alt={String(lang) === 'id' ? 'Songket Silungkang 1' : 'Silungkang Songket 1'}
-                          className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
-                        />
-                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300"></div>
-                        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                          <button className="bg-white/90 hover:bg-white text-gray-800 p-2 rounded-full shadow-lg">
-                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
-                            </svg>
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Image 7 - Medium */}
-                    <div className="break-inside-avoid">
-                      <div className="relative group overflow-hidden rounded-lg">
-                        <img 
-                          src="/image/product/Songket Silungkang.webp" 
-                          alt={String(lang) === 'id' ? 'Songket Silungkang' : 'Silungkang Songket'}
-                          className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
-                        />
-                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300"></div>
-                        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                          <button className="bg-white/90 hover:bg-white text-gray-800 p-2 rounded-full shadow-lg">
-                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
-                            </svg>
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Image 8 - Small */}
-                    <div className="break-inside-avoid">
-                      <div className="relative group overflow-hidden rounded-lg">
-                        <img 
-                          src="/image/product/Tenun Silungkang...png" 
-                          alt={String(lang) === 'id' ? 'Tenun Silungkang' : 'Silungkang Weaving'}
-                          className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
-                        />
-                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300"></div>
-                        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                          <button className="bg-white/90 hover:bg-white text-gray-800 p-2 rounded-full shadow-lg">
-                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
-                            </svg>
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Image 9 - Additional for desktop */}
-                    <div className="break-inside-avoid">
-                      <div className="relative group overflow-hidden rounded-lg">
-                        <img 
-                          src="/image/destinasi-wisata/camping-ground.JPG" 
-                          alt={String(lang) === 'id' ? 'Camping Ground Guak Kumbuah' : 'Guak Kumbuah Camping Ground'}
-                          className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
-                        />
-                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300"></div>
-                        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                          <button className="bg-white/90 hover:bg-white text-gray-800 p-2 rounded-full shadow-lg">
-                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
-                            </svg>
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Image 10 - Additional for desktop */}
-                    <div className="break-inside-avoid">
-                      <div className="relative group overflow-hidden rounded-lg">
-                        <img 
-                          src="/image/destinasi-wisata/goa-kelambu.JPG" 
-                          alt={String(lang) === 'id' ? 'Goa Kelambu' : 'Kelambu Cave'}
-                          className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
-                        />
-                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300"></div>
-                        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                          <button className="bg-white/90 hover:bg-white text-gray-800 p-2 rounded-full shadow-lg">
-                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
-                            </svg>
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Image 11 - Additional for desktop */}
-                    <div className="break-inside-avoid">
-                      <div className="relative group overflow-hidden rounded-lg">
-                        <img 
-                          src="/image/destinasi-wisata/kolam-renang-mudiak-lugha.JPG" 
-                          alt={String(lang) === 'id' ? 'Kolam Renang Mudiak Lugha' : 'Mudiak Lugha Swimming Pool'}
-                          className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
-                        />
-                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300"></div>
-                        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                          <button className="bg-white/90 hover:bg-white text-gray-800 p-2 rounded-full shadow-lg">
-                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
-                            </svg>
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
       </div>
+
+      {/* Main Content - Reused from homepage with limited images, hide internal header */}
+      <GallerySection imageLimit={6} showHeader={false} />
 
       <Footer />
 

@@ -217,7 +217,7 @@ export default function PotensiDesa() {
                   alt="Desa Wisata Silungkang Oso"
                   width={80}
                   height={40}
-                  className="object-contain"
+                  className="object-contain h-[4.75rem] w-auto md:h-[4.5rem]"
                 />
               </Link>
             </div>
@@ -285,7 +285,7 @@ export default function PotensiDesa() {
       </nav>
 
       {/* Hero Section */}
-      <div className="relative h-screen overflow-hidden">
+      <div className="relative min-h-[85vh] md:h-screen overflow-hidden">
         {/* Background Image */}
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-1000 ease-in-out"
@@ -297,7 +297,7 @@ export default function PotensiDesa() {
         </div>
 
         {/* Content */}
-        <div className="relative z-10 h-full flex items-center">
+        <div className="relative z-10 h-full flex items-center pt-20 md:pt-0">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
             <div className="space-y-8">
               {/* Title Section - Full Width */}
@@ -318,12 +318,12 @@ export default function PotensiDesa() {
               {/* Content Section */}
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-center">
                 {/* Left Content */}
-                <div className="text-white space-y-8 lg:col-span-2">
+                <div className="text-white space-y-8 lg:col-span-2 order-2 lg:order-1">
                 
                 <ScrollRevealText 
                   isTransitioning={isTransitioning}
                 >
-                  <p className="text-lg md:text-xl leading-relaxed font-poppins max-w-4xl text-justify">
+                  <p className="text-lg md:text-xl leading-relaxed font-poppins max-w-4xl text-justify max-h-60 md:max-h-none overflow-y-auto pr-1">
                     {lang === 'id' ? potensiData[currentIndex].description_id : potensiData[currentIndex].description_en}
                   </p>
                 </ScrollRevealText>
@@ -331,14 +331,18 @@ export default function PotensiDesa() {
                 <ScrollRevealText 
                   isTransitioning={isTransitioning}
                 >
-                  <button className="bg-[#ffd704] text-[#102467] px-8 py-4 rounded-full font-bold text-lg font-poppins hover:bg-[#ffed4e] transition-all duration-300 transform hover:scale-105 shadow-lg">
-                    {lang === 'id' ? texts.exploreLocation_id : texts.exploreLocation_en}
-                  </button>
+                  <div className="flex justify-center md:justify-start mt-2 mb-10 md:mb-4">
+                    <Link href="/paket-wisata">
+                      <button className="bg-[#ffd704] text-[#102467] px-6 py-3 md:px-8 md:py-4 rounded-full font-semibold md:font-bold text-base md:text-lg font-poppins hover:bg-[#ffed4e] transition-all duration-300 shadow-md md:shadow-lg md:transform md:hover:scale-105">
+                        {lang === 'id' ? texts.exploreLocation_id : texts.exploreLocation_en}
+                      </button>
+                    </Link>
+                  </div>
                 </ScrollRevealText>
                 </div>
 
                 {/* Right Content - Cards */}
-                <div className="relative flex justify-center lg:justify-center">
+                <div className="relative flex justify-center lg:justify-center order-1 lg:order-2 mt-6 lg:mt-0">
                 <div className="relative w-80 h-96">
                   {/* Background Card */}
                   <div 
@@ -391,27 +395,7 @@ export default function PotensiDesa() {
           </div>
         </div>
 
-        {/* Mobile Navigation */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 lg:hidden">
-          <div className="flex space-x-4">
-            <button
-              onClick={goToPrevious}
-              className="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white"
-            >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
-            </button>
-            <button
-              onClick={goToNext}
-              className="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white"
-            >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
-          </div>
-        </div>
+        
       </div>
 
       <Footer />

@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { useLanguage } from './_components/LanguageProvider';
 import Navbar from './_components/Navbar';
 import SouvenirSection from './_components/SouvenirSection';
+import GallerySection from './_components/GallerySection';
 import ContactSection from './_components/ContactSection';
 import Footer from './_components/Footer';
 
@@ -61,8 +62,8 @@ export default function Home() {
       image: '/image/herobanner/Foto1.jpg',
       title_id: 'Selamat Datang di\nDesa Wisata Silungkang Oso',
       title_en: 'Welcome to\nSilungkang Oso Tourism Village',
-      desc_id: 'Bergerak Bersama, Tumbuh Bersama, Maju Bersama.',
-      desc_en: 'Move Together, Grow Together, Move Forward Together.',
+      desc_id: 'Silungkang Oso – Menyulam Alam, Menenun Budaya',
+      desc_en: 'Silungkang Oso – Embroidering Nature, Weaving Culture.',
     },
     {
       image: '/image/herobanner/Foto2.jpg',
@@ -1029,7 +1030,7 @@ export default function Home() {
           </section>
 
           {/* Section 3: Budaya dan Tradisi */}
-          <section id="budaya-tradisi" className="px-4 sm:px-6 lg:px-8 mb-16 -mt-20">
+          <section id="budaya-tradisi" className="px-4 sm:px-6 lg:px-8 mt-20 mb-16">
             <div className="max-w-7xl mx-auto">
               <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 text-gray-800 font-poppins">
                 {String(lang) === 'id' ? 'Budaya dan Tradisi' : 'Culture and Traditions'}
