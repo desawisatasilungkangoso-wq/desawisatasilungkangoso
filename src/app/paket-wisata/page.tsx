@@ -1,14 +1,26 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
 import LanguageToggle from '../_components/LanguageToggle';
 import Footer from '../_components/Footer';
 import { useLanguage } from '../_components/LanguageProvider';
 
 export default function PaketWisata() {
+  const [isScrolled, setIsScrolled] = useState(false);
   const [activePage, setActivePage] = useState('Paket Wisata');
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const { lang } = useLanguage();
+
+  const handleScroll = () => {
+    setIsScrolled(window.scrollY > 50);
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const navItems = [
     { name_id: 'Beranda', name_en: 'Home', href: '/' },
@@ -23,24 +35,74 @@ export default function PaketWisata() {
   const texts = {
     title_id: 'Paket Wisata',
     title_en: 'Tour Package',
-    subtitle_id: 'Halaman Paket Wisata - Coming Soon',
-    subtitle_en: 'Tour Package Page - Coming Soon'
+    subtitle_id: 'Jelajahi berbagai paket wisata menarik di Desa Wisata Silungkang Oso',
+    subtitle_en: 'Explore various exciting tour packages at Silungkang Oso Tourism Village'
   };
+
+  const tourPackages = [
+    {
+      id: 1,
+      name_id: 'Paket Batu Runciang',
+      name_en: 'Batu Runciang Package',
+      image: '/image/paket-wisata/batu-runciang.png',
+      description_id: 'Nikmati keindahan alam Batu Runciang dengan pemandangan yang menakjubkan',
+      description_en: 'Enjoy the beauty of Batu Runciang with amazing natural scenery',
+      price_id: 'Rp 5.000',
+      price_en: 'IDR 5,000'
+    },
+    {
+      id: 2,
+      name_id: 'Paket Camping Ground',
+      name_en: 'Camping Ground Package',
+      image: '/image/paket-wisata/camping-ground.png',
+      description_id: 'Pengalaman camping yang tak terlupakan di alam terbuka',
+      description_en: 'Unforgettable camping experience in the great outdoors',
+      price_id: 'Rp 35.000',
+      price_en: 'IDR 35,000'
+    },
+    {
+      id: 3,
+      name_id: 'Paket Goa Kelambu',
+      name_en: 'Goa Kelambu Package',
+      image: '/image/paket-wisata/goa-kelambu.png',
+      description_id: 'Petualangan menelusuri gua dengan keindahan stalaktit dan stalagmit',
+      description_en: 'Cave exploration adventure with beautiful stalactites and stalagmites',
+      price_id: 'Rp 10.000',
+      price_en: 'IDR 10,000'
+    },
+    {
+      id: 4,
+      name_id: 'Paket Kolam Renang',
+      name_en: 'Swimming Pool Package',
+      image: '/image/paket-wisata/kolam-renang.png',
+      description_id: 'Berenang dan bersantai di kolam renang alami yang segar',
+      description_en: 'Swim and relax in fresh natural swimming pools',
+      price_id: 'Rp 8.000',
+      price_en: 'IDR 8,000'
+    }
+  ];
 
   return (
     <div className="min-h-screen bg-[#fffcf9]">
       {/* Navbar */}
-      <nav className={"fixed top-0 left-0 right-0 z-50 transition-all duration-300 shadow-lg bg-[#102467]"}>
+      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 shadow-lg ${
+        isScrolled 
+          ? 'bg-[#102467]/95 backdrop-blur-md' 
+          : 'bg-[#fffcf9]/10 backdrop-blur-sm'
+      }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
             {/* Logo */}
-            <div className="flex items-center space-x-3">
-              <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-[#102467] rounded-xl flex items-center justify-center shadow-lg">
-                <span className="text-white font-bold text-2xl font-poppins">G</span>
-              </div>
-              <span className="font-bold text-2xl font-poppins text-white">
-                Desa Wisata
-              </span>
+            <div className="flex items-center">
+              <Link href="/" className="flex items-center">
+                <Image
+                  src="/image/logo/logo-desa-wisata.png"
+                  alt="Desa Wisata Silungkang Oso"
+                  width={80}
+                  height={40}
+                  className="object-contain"
+                />
+              </Link>
             </div>
 
             {/* Navigation Links */}
@@ -100,15 +162,98 @@ export default function PaketWisata() {
       </nav>
 
       {/* Main Content */}
-      <div className="pt-20 pb-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center py-20">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 text-gray-800 font-poppins">
+      {/* Hero Section */}
+      <div className="relative h-96 overflow-hidden">
+        <Image
+          src="/image/herobanner/Foto1.jpg"
+          alt={String(lang) === 'id' ? 'Paket Wisata - Desa Wisata Silungkang Oso' : 'Tour Packages - Silungkang Oso Tourism Village'}
+          fill
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-black/40"></div>
+        <div className="relative z-10 flex items-center justify-center h-full">
+          <div className="text-center text-white px-4">
+            <h1 className="text-4xl md:text-6xl font-bold mb-4 font-poppins">
               {lang === 'id' ? texts.title_id : texts.title_en}
             </h1>
-            <p className="text-lg md:text-xl font-medium leading-relaxed text-gray-600 font-poppins max-w-4xl mx-auto">
+            <p className="text-lg font-poppins opacity-90 max-w-3xl mx-auto">
               {lang === 'id' ? texts.subtitle_id : texts.subtitle_en}
             </p>
+          </div>
+        </div>
+      </div>
+
+      <div className="pt-20 pb-16 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+
+          {/* Tour Packages Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+            {tourPackages.map((pkg) => (
+              <a
+                key={pkg.id}
+                href="/kontak"
+                className="group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 hover:scale-105"
+              >
+                <div className="relative h-64">
+                  <Image
+                    src={pkg.image}
+                    alt={lang === 'id' ? pkg.name_id : pkg.name_en}
+                    fill
+                    className="object-contain group-hover:scale-110 transition-transform duration-300"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 50vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent group-hover:from-black/90 group-hover:via-black/50 transition-colors duration-300"></div>
+                  
+                  {/* Price Badge */}
+                  <div className="absolute top-4 left-4">
+                    <div className="bg-[#ffd704] text-[#102467] px-3 py-1 rounded-full text-sm font-bold font-poppins">
+                      {lang === 'id' ? pkg.price_id : pkg.price_en}
+                    </div>
+                  </div>
+                  
+                  {/* Order Badge */}
+                  <div className="absolute top-4 right-4">
+                    <div className="bg-white/90 text-[#102467] px-3 py-1 rounded-full text-sm font-semibold font-poppins">
+                      {lang === 'id' ? 'Klik untuk Pesan' : 'Click for Order'}
+                    </div>
+                  </div>
+                  
+                  {/* Content */}
+                  <div className="absolute bottom-4 left-4 right-4">
+                    <h3 className="text-xl font-bold text-white font-poppins mb-2 drop-shadow-lg">
+                      {lang === 'id' ? pkg.name_id : pkg.name_en}
+                    </h3>
+                    <p className="text-white font-poppins text-sm drop-shadow-md leading-relaxed">
+                      {lang === 'id' ? pkg.description_id : pkg.description_en}
+                    </p>
+                  </div>
+                </div>
+              </a>
+            ))}
+          </div>
+
+          {/* Call to Action */}
+          <div className="text-center mt-16">
+            <div className="bg-gradient-to-r from-[#102467] to-[#1e3a8a] rounded-2xl p-8 text-white">
+              <h3 className="text-2xl font-bold font-poppins mb-4">
+                {lang === 'id' ? 'Siap untuk Petualangan?' : 'Ready for Adventure?'}
+              </h3>
+              <p className="text-lg font-poppins mb-6 opacity-90">
+                {lang === 'id' 
+                  ? 'Hubungi kami untuk informasi lebih lanjut dan reservasi paket wisata'
+                  : 'Contact us for more information and tour package reservations'
+                }
+              </p>
+              <a
+                href="/kontak"
+                className="inline-flex items-center bg-[#ffd704] text-[#102467] px-8 py-3 rounded-full font-semibold font-poppins hover:bg-[#ffed4e] transition-colors duration-300"
+              >
+                {lang === 'id' ? 'Hubungi Kami' : 'Contact Us'}
+                <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </a>
+            </div>
           </div>
         </div>
       </div>

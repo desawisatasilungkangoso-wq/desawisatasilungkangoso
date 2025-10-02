@@ -10,8 +10,13 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Desa Wisata",
+  title: "Desa Wisata Silungkang Oso",
   description: "Website wisata yang menarik",
+  icons: {
+    icon: '/favicon.ico',
+    shortcut: '/favicon.ico',
+    apple: '/favicon.ico',
+  },
 };
 
 export default function RootLayout({

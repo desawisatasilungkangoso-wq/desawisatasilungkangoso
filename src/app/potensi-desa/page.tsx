@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
+import Image from 'next/image';
 import LanguageToggle from '../_components/LanguageToggle';
 import Footer from '../_components/Footer';
 import { useLanguage } from '../_components/LanguageProvider';
@@ -35,8 +36,8 @@ const potensiData = [
     subtitle_en: "Leading Tourist Destination",
     description_id: "Kolam Renang Mudiak Lugha merupakan salah satu destinasi wisata unggulan di Desa Wisata Silungkang Oso, Kota Sawahlunto. Berjarak sekitar 78 km dari Kota Padang atau dua jam perjalanan, pemandian ini menawarkan suasana sejuk khas perbukitan dengan suhu rata-rata 22°C. Kolam ini menggunakan air alami yang jernih dari sumber bukit sehingga segar dan bebas dari bahan kimia. Tersedia tiga kolam, yaitu satu kolam dewasa dengan kedalaman ±1,5 meter serta dua kolam anak-anak dengan kedalaman 80 cm dan 40 cm. Fasilitas pendukungnya meliputi ruang bilas, kamar mandi umum, musholla, gazebo, aula, serta area camping. Selain itu, di bagian atas kolam terdapat air terjun alami yang menambah keasrian panorama. Pengelolaan dilakukan oleh Kelompok Sadar Wisata (Pokdarwis) Panorama Desa Silungkang Oso dengan dukungan masyarakat setempat. Tiket masuk sangat terjangkau, hanya Rp8.000,- per orang. Kolam Renang Mudiak Lugha menjadi pilihan ideal untuk rekreasi keluarga, menikmati kesegaran air pegunungan, sekaligus merasakan keramahan wisata berbasis desa.",
     description_en: "Mudiak Lugha Swimming Pool is one of the leading tourist destinations in Silungkang Oso Tourism Village, Sawahlunto City. Located about 78 km from Padang City or a two-hour journey, this swimming pool offers a cool mountain atmosphere with an average temperature of 22°C. The pool uses clear natural water from mountain springs, making it fresh and free from chemicals. There are three pools available: one adult pool with a depth of ±1.5 meters and two children's pools with depths of 80 cm and 40 cm. Supporting facilities include changing rooms, public toilets, mosque, gazebo, hall, and camping area. In addition, there is a natural waterfall above the pool that adds to the natural beauty. Management is carried out by the Tourism Awareness Group (Pokdarwis) Panorama Silungkang Oso Village with the support of local communities. The entrance ticket is very affordable, only Rp8,000 per person. Mudiak Lugha Swimming Pool is an ideal choice for family recreation, enjoying the freshness of mountain water, while experiencing village-based tourism hospitality.",
-    backgroundImage: "/image/destinasi-wisata/kolam-renang-mudiak-lugha.JPG",
-    cardImage: "/image/destinasi-wisata/kolam-renang-mudiak-lugha.JPG"
+    backgroundImage: "/image/destinasi-wisata/kolam-renang.jpg",
+    cardImage: "/image/destinasi-wisata/kolam-renang.jpg"
   },
   {
     id: 2,
@@ -46,8 +47,8 @@ const potensiData = [
     subtitle_en: "Camping Experience at Hilltop",
     description_id: "Camping Ground Guak Kumbuah Village terletak di kawasan Dusun Sungai Cacang, Desa Silungkang Oso, Kota Sawahlunto, Sumatera Barat, sekitar 2 km dari Kantor Desa Silungkang Oso dan dari Kolam Pemandian Mudiak Lugha. Lokasi ini berada di puncak bukit dengan tanah yang relatif datar dan luas, menawarkan panorama alam yang menawan: embun pagi yang menyegarkan, udara sejuk, dan pemandangan Nagori Silungkang di bawahnya. Pengunjung juga dapat menyaksikan matahari terbenam dari ketinggian, menjadikan pengalaman malam di alam semakin berkesan.",
     description_en: "Guak Kumbuah Village Camping Ground is located in the Sungai Cacang Hamlet area, Silungkang Oso Village, Sawahlunto City, West Sumatra, about 2 km from the Silungkang Oso Village Office and from the Mudiak Lugha Swimming Pool. This location is on a hilltop with relatively flat and wide land, offering stunning natural panoramas: refreshing morning dew, cool air, and views of Nagori Silungkang below. Visitors can also witness the sunset from the height, making the night experience in nature even more memorable.",
-    backgroundImage: "/image/destinasi-wisata/camping-ground.JPG",
-    cardImage: "/image/destinasi-wisata/camping-ground.JPG"
+    backgroundImage: "/image/destinasi-wisata/camping.jpg",
+    cardImage: "/image/destinasi-wisata/camping.jpg"
   },
   {
     id: 3,
@@ -57,8 +58,8 @@ const potensiData = [
     subtitle_en: "Natural Beauty at 610 masl",
     description_id: "Goa Kelambu berada di kawasan hutan perbukitan Ngalau Kuning pada ketinggian sekitar ±610 mdpl. Perjalanan menuju lokasi akan disambut pemandangan alam yang asri, suara burung hutan, dan semilir angin yang sejuk. Goa Kelambu terbentuk dari batuan kapur (limestone) yang berumur jutaan tahun. Proses pelarutan batuan kapur oleh air hujan dan embun menciptakan rongga alamiah yang dihiasi stalaktit di langit-langit dan stalagmit di lantai goa. Bagi masyarakat setempat, Goa Kelambu telah lama menjadi tempat beristirahat dan mencari ketenangan ketika melintas di hutan Ngalau Kuning. Saat pagi hari, cahaya matahari yang menembus celah dedaunan dan kabut yang menggantung di mulut goa menciptakan pemandangan dramatis seperti gerbang menuju dunia lain.",
     description_en: "Kelambu Cave is located in the Ngalau Kuning mountain forest area at an altitude of about ±610 masl. The journey to the location will be greeted by beautiful natural scenery, forest bird sounds, and cool breezes. Kelambu Cave was formed from limestone rocks that are millions of years old. The process of dissolving limestone by rainwater and dew creates natural cavities decorated with stalactites on the ceiling and stalagmites on the cave floor. For local communities, Kelambu Cave has long been a place to rest and seek peace when passing through the Ngalau Kuning forest. In the morning, sunlight penetrating through the leaves and fog hanging at the cave mouth creates a dramatic view like a gateway to another world.",
-    backgroundImage: "/image/destinasi-wisata/goa-kelambu.JPG",
-    cardImage: "/image/destinasi-wisata/goa-kelambu.JPG"
+    backgroundImage: "/image/destinasi-wisata/goa-kelambu.jpg",
+    cardImage: "/image/destinasi-wisata/goa-kelambu.jpg"
   },
   {
     id: 4,
@@ -209,14 +210,15 @@ export default function PotensiDesa() {
           <div className="flex justify-between items-center h-20">
             {/* Logo */}
             <div className="flex items-center">
-              <div className="flex flex-col text-center">
-                <span className="font-bold text-xl font-poppins text-white leading-tight">
-                Desa Wisata
-              </span>
-                <span className="font-semibold text-lg font-poppins text-white/90 leading-tight">
-                  Silungkang Oso
-              </span>
-              </div>
+              <a href="/" className="flex items-center">
+                <Image
+                  src="/image/logo/logo-desa-wisata.png"
+                  alt="Desa Wisata Silungkang Oso"
+                  width={80}
+                  height={40}
+                  className="object-contain"
+                />
+              </a>
             </div>
 
             {/* Navigation Links */}

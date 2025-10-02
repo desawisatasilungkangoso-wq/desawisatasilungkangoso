@@ -1,8 +1,10 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import LanguageToggle from '../_components/LanguageToggle';
 import Footer from '../_components/Footer';
+import SouvenirSection from '../_components/SouvenirSection';
 import { useLanguage } from '../_components/LanguageProvider';
 
 export default function BUMDes() {
@@ -93,14 +95,15 @@ BumDes Silungkang Oso is committed to managing village assets professionally to 
           <div className="flex justify-between items-center h-20">
             {/* Logo */}
             <div className="flex items-center">
-              <div className="flex flex-col text-center">
-                <span className="font-bold text-xl font-poppins text-white leading-tight">
-                Desa Wisata
-              </span>
-                <span className="font-semibold text-lg font-poppins text-white/90 leading-tight">
-                  Silungkang Oso
-              </span>
-              </div>
+              <a href="/" className="flex items-center">
+                <Image
+                  src="/image/logo/logo-desa-wisata.png"
+                  alt="Desa Wisata Silungkang Oso"
+                  width={80}
+                  height={40}
+                  className="object-contain"
+                />
+              </a>
             </div>
 
             {/* Navigation Links */}
@@ -167,13 +170,20 @@ BumDes Silungkang Oso is committed to managing village assets professionally to 
       {/* Main Content */}
       <div>
         {/* Hero Section */}
-        <div className="relative bg-gradient-to-br from-[#102467] to-[#1e3a8a] pt-32 pb-20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center">
-              <h1 className="text-4xl md:text-6xl font-bold mb-6 text-white font-poppins">
+        <div className="relative h-96 overflow-hidden">
+          <Image
+            src="/image/herobanner/Foto1.jpg"
+            alt={String(lang) === 'id' ? 'BUMDes - Desa Wisata Silungkang Oso' : 'BUMDes - Silungkang Oso Tourism Village'}
+            fill
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-black/40"></div>
+          <div className="relative z-10 flex items-center justify-center h-full">
+            <div className="text-center text-white px-4">
+              <h1 className="text-4xl md:text-6xl font-bold mb-4 font-poppins">
                 {lang === 'id' ? texts.title_id : texts.title_en}
               </h1>
-              <p className="text-lg md:text-xl font-medium leading-relaxed text-gray-200 font-poppins max-w-4xl mx-auto">
+              <p className="text-lg font-poppins opacity-90 max-w-3xl mx-auto">
                 {lang === 'id' ? texts.subtitle_id : texts.subtitle_en}
               </p>
             </div>
@@ -250,6 +260,11 @@ BumDes Silungkang Oso is committed to managing village assets professionally to 
               </div>
             </div>
           </div>
+        </div>
+
+        {/* Souvenir Section */}
+        <div id="umkm-souvenir" className="py-16 bg-white -mt-20">
+          <SouvenirSection />
         </div>
       </div>
 
