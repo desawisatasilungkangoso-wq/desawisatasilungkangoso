@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import LanguageToggle from '../_components/LanguageToggle';
 import Footer from '../_components/Footer';
 import { useLanguage } from '../_components/LanguageProvider';
@@ -210,7 +211,7 @@ export default function PotensiDesa() {
           <div className="flex justify-between items-center h-20">
             {/* Logo */}
             <div className="flex items-center">
-              <a href="/" className="flex items-center">
+              <Link href="/" className="flex items-center">
                 <Image
                   src="/image/logo/logo-desa-wisata.png"
                   alt="Desa Wisata Silungkang Oso"
@@ -218,7 +219,7 @@ export default function PotensiDesa() {
                   height={40}
                   className="object-contain"
                 />
-              </a>
+              </Link>
             </div>
 
             {/* Navigation Links */}

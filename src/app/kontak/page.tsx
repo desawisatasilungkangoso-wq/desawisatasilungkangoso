@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import LanguageToggle from '../_components/LanguageToggle';
 import Footer from '../_components/Footer';
 import ContactFormSimple from '../_components/ContactFormSimple';
@@ -62,7 +63,7 @@ export default function Kontak() {
           <div className="flex justify-between items-center h-20">
             {/* Logo */}
             <div className="flex items-center">
-              <a href="/" className="flex items-center">
+              <Link href="/" className="flex items-center">
                 <Image
                   src="/image/logo/logo-desa-wisata.png"
                   alt="Desa Wisata Silungkang Oso"
@@ -70,7 +71,7 @@ export default function Kontak() {
                   height={40}
                   className="object-contain"
                 />
-              </a>
+              </Link>
             </div>
 
             {/* Navigation Links */}

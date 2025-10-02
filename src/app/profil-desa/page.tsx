@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import LanguageToggle from '../_components/LanguageToggle';
 import Footer from '../_components/Footer';
 import { useLanguage } from '../_components/LanguageProvider';
@@ -66,7 +67,7 @@ export default function ProfilDesa() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
             <div className="flex items-center">
-              <a href="/" className="flex items-center">
+              <Link href="/" className="flex items-center">
                 <Image
                   src="/image/logo/logo-desa-wisata.png"
                   alt="Desa Wisata Silungkang Oso"
@@ -74,7 +75,7 @@ export default function ProfilDesa() {
                   height={40}
                   className="object-contain"
                 />
-              </a>
+              </Link>
             </div>
 
             <div className="hidden md:flex items-center space-x-8">

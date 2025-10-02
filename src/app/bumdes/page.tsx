@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import LanguageToggle from '../_components/LanguageToggle';
 import Footer from '../_components/Footer';
 import SouvenirSection from '../_components/SouvenirSection';
@@ -95,7 +96,7 @@ BumDes Silungkang Oso is committed to managing village assets professionally to 
           <div className="flex justify-between items-center h-20">
             {/* Logo */}
             <div className="flex items-center">
-              <a href="/" className="flex items-center">
+              <Link href="/" className="flex items-center">
                 <Image
                   src="/image/logo/logo-desa-wisata.png"
                   alt="Desa Wisata Silungkang Oso"
@@ -103,13 +104,13 @@ BumDes Silungkang Oso is committed to managing village assets professionally to 
                   height={40}
                   className="object-contain"
                 />
-              </a>
+              </Link>
             </div>
 
             {/* Navigation Links */}
             <div className="hidden md:flex items-center space-x-8">
               {navItems.map((item) => (
-                <a 
+                <Link 
                   key={item.name}
                   href={item.href} 
                   onClick={() => setActivePage(item.name)}
@@ -123,7 +124,7 @@ BumDes Silungkang Oso is committed to managing village assets professionally to 
                   {activePage === item.name && (
                     <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-[#ffd704] rounded-full"></div>
                   )}
-                </a>
+                </Link>
               ))}
 
               {/* Language Toggle (desktop) */}
