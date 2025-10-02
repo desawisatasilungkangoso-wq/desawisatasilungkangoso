@@ -1507,7 +1507,7 @@ export default function Home() {
                       <div className="break-inside-avoid">
                         <div className="relative group overflow-hidden rounded-lg">
                           <img 
-                            src="/image/destinasi-wisata/goa-kelambu.JPG" 
+                            src="/image/destinasi-wisata/goa-kelambu.jpg" 
                             alt={String(lang) === 'id' ? 'Goa Kelambu' : 'Kelambu Cave'}
                             className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
                           />
@@ -1526,7 +1526,7 @@ export default function Home() {
                       <div className="break-inside-avoid">
                         <div className="relative group overflow-hidden rounded-lg">
                           <img 
-                            src="/image/destinasi-wisata/kolam-renang-mudiak-lugha.JPG" 
+                            src="/image/destinasi-wisata/kolam-renang.jpg" 
                             alt={String(lang) === 'id' ? 'Kolam Renang Mudiak Lugha' : 'Mudiak Lugha Swimming Pool'}
                             className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
                           />

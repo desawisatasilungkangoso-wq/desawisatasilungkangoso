@@ -28,13 +28,13 @@ const potensiData: PotensiData[] = [
     id: 3,
     title: "Goa Kelambu",
     description: "Jelajahi keindahan goa dengan stalaktit dan stalagmit yang menawan. Pengalaman petualangan bawah tanah yang mendebarkan dan edukatif.",
-    imageSrc: "/image/destinasi-wisata/goa-kelambu.JPG"
+    imageSrc: "/image/destinasi-wisata/goa-kelambu.jpg"
   },
   {
     id: 4,
     title: "Kolam Renang Mudiak Lugha",
     description: "Segarkan diri di kolam renang alami dengan air yang jernih dan sejuk. Tempat yang ideal untuk relaksasi dan bermain air bersama keluarga.",
-    imageSrc: "/image/destinasi-wisata/kolam-renang-mudiak-lugha.JPG"
+    imageSrc: "/image/destinasi-wisata/kolam-renang.jpg"
   },
   {
     id: 5,

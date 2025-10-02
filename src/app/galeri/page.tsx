@@ -134,26 +134,26 @@ export default function Galeri() {
         )}
       </nav>
 
-      {/* Hero Section */}
-      <div className="relative h-96 overflow-hidden">
-        <Image
-          src="/image/herobanner/Foto1.jpg"
-          alt={String(lang) === 'id' ? 'Galeri - Desa Wisata Silungkang Oso' : 'Gallery - Silungkang Oso Tourism Village'}
-          fill
-          className="object-cover"
-        />
-        <div className="absolute inset-0 bg-black/40"></div>
-        <div className="relative z-10 flex items-center justify-center h-full">
-          <div className="text-center text-white px-4">
-            <h1 className="text-4xl md:text-6xl font-bold mb-4 font-poppins">
-              {lang === 'id' ? texts.title_id : texts.title_en}
-            </h1>
-            <p className="text-lg font-poppins opacity-90 max-w-3xl mx-auto">
-              {lang === 'id' ? texts.subtitle_id : texts.subtitle_en}
-            </p>
+        {/* Hero Section */}
+        <div className="relative h-96 overflow-hidden">
+          <Image
+            src="/image/herobanner/Foto1.jpg"
+            alt={String(lang) === 'id' ? 'Galeri - Desa Wisata Silungkang Oso' : 'Gallery - Silungkang Oso Tourism Village'}
+            fill
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-black/40"></div>
+          <div className="relative z-10 flex items-center justify-center h-full">
+            <div className="text-center text-white px-4">
+              <h1 className="text-4xl md:text-6xl font-bold mb-4 font-poppins">
+                {lang === 'id' ? texts.title_id : texts.title_en}
+              </h1>
+              <p className="text-lg font-poppins opacity-90 max-w-3xl mx-auto">
+                {lang === 'id' ? texts.subtitle_id : texts.subtitle_en}
+              </p>
+            </div>
           </div>
         </div>
-      </div>
 
       {/* Main Content - Reused from homepage with limited images, hide internal header */}
       <GallerySection imageLimit={6} showHeader={false} />

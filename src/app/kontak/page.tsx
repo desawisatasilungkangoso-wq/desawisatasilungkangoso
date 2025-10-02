@@ -139,7 +139,7 @@ export default function Kontak() {
       {/* Hero Section */}
       <div className="relative h-96 overflow-hidden">
         <Image
-          src="/image/herobanner/image1.JPG"
+          src="/image/herobanner/Foto1.jpg"
           alt={String(lang) === 'id' ? 'Hubungi Kami - Desa Wisata Silungkang Oso' : 'Contact Us - Silungkang Oso Tourism Village'}
           fill
           className="object-cover"
