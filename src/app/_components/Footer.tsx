@@ -1,6 +1,7 @@
 'use client';
 
 import { useLanguage } from './LanguageProvider';
+import Link from 'next/link';
 
 export default function Footer() {
   const { lang } = useLanguage();
@@ -71,10 +72,10 @@ export default function Footer() {
               {String(lang) === 'id' ? 'Tentang Desa' : 'About Village'}
             </h4>
             <ul className="space-y-2">
-              <li><a href="/profil-desa" className="text-gray-300 hover:text-[#ffd704] transition-colors text-sm font-poppins">{String(lang) === 'id' ? 'Profil Desa Silungkang Oso' : 'Silungkang Oso Village Profile'}</a></li>
-              <li><a href="/#visi-misi" className="text-gray-300 hover:text-[#ffd704] transition-colors text-sm font-poppins">{String(lang) === 'id' ? 'Visi & Misi' : 'Vision & Mission'}</a></li>
-              <li><a href="/#sejarah" className="text-gray-300 hover:text-[#ffd704] transition-colors text-sm font-poppins">{String(lang) === 'id' ? 'Sejarah & Budaya' : 'History & Culture'}</a></li>
-              <li><a href="/#struktur" className="text-gray-300 hover:text-[#ffd704] transition-colors text-sm font-poppins">{String(lang) === 'id' ? 'Struktur Pokdarwis' : 'Pokdarwis Structure'}</a></li>
+              <li><Link href="/profil-desa" className="text-gray-300 hover:text-[#ffd704] transition-colors text-sm font-poppins">{String(lang) === 'id' ? 'Profil Desa Silungkang Oso' : 'Silungkang Oso Village Profile'}</Link></li>
+              <li><Link href="/#visi-misi" className="text-gray-300 hover:text-[#ffd704] transition-colors text-sm font-poppins">{String(lang) === 'id' ? 'Visi & Misi' : 'Vision & Mission'}</Link></li>
+              <li><Link href="/#sejarah" className="text-gray-300 hover:text-[#ffd704] transition-colors text-sm font-poppins">{String(lang) === 'id' ? 'Sejarah & Budaya' : 'History & Culture'}</Link></li>
+              <li><Link href="/#struktur" className="text-gray-300 hover:text-[#ffd704] transition-colors text-sm font-poppins">{String(lang) === 'id' ? 'Struktur Pokdarwis' : 'Pokdarwis Structure'}</Link></li>
             </ul>
           </div>
 
@@ -84,10 +85,10 @@ export default function Footer() {
               {String(lang) === 'id' ? 'Wisata' : 'Tourism'}
             </h4>
             <ul className="space-y-2">
-              <li><a href="/potensi-desa" className="text-gray-300 hover:text-[#ffd704] transition-colors text-sm font-poppins">{String(lang) === 'id' ? 'Destinasi Wisata' : 'Tourist Destinations'}</a></li>
-              <li><a href="/paket-wisata" className="text-gray-300 hover:text-[#ffd704] transition-colors text-sm font-poppins">{String(lang) === 'id' ? 'Paket Wisata' : 'Tour Packages'}</a></li>
-              <li><a href="/galeri" className="text-gray-300 hover:text-[#ffd704] transition-colors text-sm font-poppins">{String(lang) === 'id' ? 'Galeri Foto & Video' : 'Photo & Video Gallery'}</a></li>
-              <li><a href="/#budaya-tradisi" className="text-gray-300 hover:text-[#ffd704] transition-colors text-sm font-poppins">{String(lang) === 'id' ? 'Budaya & Tradisi' : 'Culture & Tradition'}</a></li>
+              <li><Link href="/potensi-desa" className="text-gray-300 hover:text-[#ffd704] transition-colors text-sm font-poppins">{String(lang) === 'id' ? 'Destinasi Wisata' : 'Tourist Destinations'}</Link></li>
+              <li><Link href="/paket-wisata" className="text-gray-300 hover:text-[#ffd704] transition-colors text-sm font-poppins">{String(lang) === 'id' ? 'Paket Wisata' : 'Tour Packages'}</Link></li>
+              <li><Link href="/galeri" className="text-gray-300 hover:text-[#ffd704] transition-colors text-sm font-poppins">{String(lang) === 'id' ? 'Galeri Foto & Video' : 'Photo & Video Gallery'}</Link></li>
+              <li><Link href="/#budaya-tradisi" className="text-gray-300 hover:text-[#ffd704] transition-colors text-sm font-poppins">{String(lang) === 'id' ? 'Budaya & Tradisi' : 'Culture & Tradition'}</Link></li>
             </ul>
           </div>
 
@@ -97,9 +98,9 @@ export default function Footer() {
               {String(lang) === 'id' ? 'Layanan' : 'Services'}
             </h4>
             <ul className="space-y-2">
-              <li><a href="/kontak" className="text-gray-300 hover:text-[#ffd704] transition-colors text-sm font-poppins">{String(lang) === 'id' ? 'Pemesanan Tiket' : 'Ticket Booking'}</a></li>
-              <li><a href="/bumdes#umkm-souvenir" className="text-gray-300 hover:text-[#ffd704] transition-colors text-sm font-poppins">{String(lang) === 'id' ? 'UMKM & Souvenir' : 'MSMEs & Souvenirs'}</a></li>
-              <li><a href="/galeri" className="text-gray-300 hover:text-[#ffd704] transition-colors text-sm font-poppins">{String(lang) === 'id' ? 'Kuliner Khas' : 'Local Cuisine'}</a></li>
+              <li><Link href="/kontak" className="text-gray-300 hover:text-[#ffd704] transition-colors text-sm font-poppins">{String(lang) === 'id' ? 'Pemesanan Tiket' : 'Ticket Booking'}</Link></li>
+              <li><Link href="/bumdes#umkm-souvenir" className="text-gray-300 hover:text-[#ffd704] transition-colors text-sm font-poppins">{String(lang) === 'id' ? 'UMKM & Souvenir' : 'MSMEs & Souvenirs'}</Link></li>
+              <li><Link href="/galeri" className="text-gray-300 hover:text-[#ffd704] transition-colors text-sm font-poppins">{String(lang) === 'id' ? 'Kuliner Khas' : 'Local Cuisine'}</Link></li>
             </ul>
           </div>
         </div>
