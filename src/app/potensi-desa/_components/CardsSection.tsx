@@ -28,7 +28,7 @@ const potensiData: PotensiData[] = [
     id: 3,
     title: "Goa Kelambu",
     description: "Jelajahi keindahan goa dengan stalaktit dan stalagmit yang menawan. Pengalaman petualangan bawah tanah yang mendebarkan dan edukatif.",
-    imageSrc: "/image/destinasi-wisata/goa-kelambu.jpg"
+    imageSrc: "/image/destinasi-wisata/goa-kelambu.jpg?v=2"
   },
   {
     id: 4,

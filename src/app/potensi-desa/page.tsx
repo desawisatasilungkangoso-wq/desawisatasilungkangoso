@@ -59,8 +59,8 @@ const potensiData = [
     subtitle_en: "Natural Beauty at 610 masl",
     description_id: "Goa Kelambu berada di kawasan hutan perbukitan Ngalau Kuning pada ketinggian sekitar ±610 mdpl. Perjalanan menuju lokasi akan disambut pemandangan alam yang asri, suara burung hutan, dan semilir angin yang sejuk. Goa Kelambu terbentuk dari batuan kapur (limestone) yang berumur jutaan tahun. Proses pelarutan batuan kapur oleh air hujan dan embun menciptakan rongga alamiah yang dihiasi stalaktit di langit-langit dan stalagmit di lantai goa. Bagi masyarakat setempat, Goa Kelambu telah lama menjadi tempat beristirahat dan mencari ketenangan ketika melintas di hutan Ngalau Kuning. Saat pagi hari, cahaya matahari yang menembus celah dedaunan dan kabut yang menggantung di mulut goa menciptakan pemandangan dramatis seperti gerbang menuju dunia lain.",
     description_en: "Kelambu Cave is located in the Ngalau Kuning mountain forest area at an altitude of about ±610 masl. The journey to the location will be greeted by beautiful natural scenery, forest bird sounds, and cool breezes. Kelambu Cave was formed from limestone rocks that are millions of years old. The process of dissolving limestone by rainwater and dew creates natural cavities decorated with stalactites on the ceiling and stalagmites on the cave floor. For local communities, Kelambu Cave has long been a place to rest and seek peace when passing through the Ngalau Kuning forest. In the morning, sunlight penetrating through the leaves and fog hanging at the cave mouth creates a dramatic view like a gateway to another world.",
-    backgroundImage: "/image/destinasi-wisata/goa-kelambu.jpg",
-    cardImage: "/image/destinasi-wisata/goa-kelambu.jpg"
+    backgroundImage: "/image/destinasi-wisata/goa-kelambu.jpg?v=2",
+    cardImage: "/image/destinasi-wisata/goa-kelambu.jpg?v=2"
   },
   {
     id: 4,

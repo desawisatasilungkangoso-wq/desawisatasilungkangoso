@@ -1507,7 +1507,7 @@ export default function Home() {
                       <div className="break-inside-avoid">
                         <div className="relative group overflow-hidden rounded-lg">
                           <img 
-                            src="/image/destinasi-wisata/goa-kelambu.jpg" 
+                            src="/image/destinasi-wisata/goa-kelambu.jpg?v=2" 
                             alt={String(lang) === 'id' ? 'Goa Kelambu' : 'Kelambu Cave'}
                             className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
                           />
