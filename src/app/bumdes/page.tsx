@@ -102,7 +102,7 @@ BumDes Silungkang Oso is committed to managing village assets professionally to 
                   alt="Desa Wisata Silungkang Oso"
                   width={80}
                   height={40}
-                  className="object-contain h-[4.75rem] w-auto md:h-[4.5rem]"
+                  className="object-contain h-[10rem] w-auto md:h-[9.5rem] lg:h-[10rem]"
                 />
               </Link>
             </div>

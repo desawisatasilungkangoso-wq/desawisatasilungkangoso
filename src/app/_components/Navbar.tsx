@@ -56,7 +56,7 @@ const Navbar = ({ activePage = 'Beranda' }: NavbarProps) => {
               <img
                 src="/image/logo/logo-desa-wisata.png"
                 alt="Desa Wisata Silungkang Oso"
-                className="object-contain h-[4.75rem] w-auto md:h-[4.5rem]"
+                className="object-contain h-[10rem] w-auto md:h-[9.5rem] lg:h-[10rem]"
                 onError={(e) => {
                   const target = e.currentTarget as HTMLImageElement;
                   const nextElement = target.nextElementSibling as HTMLElement;
