@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
 import { useLanguage } from './_components/LanguageProvider';
 import Navbar from './_components/Navbar';
 import SouvenirSection from './_components/SouvenirSection';
@@ -12,16 +11,11 @@ import Footer from './_components/Footer';
 
 export default function Home() {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [activePage, setActivePage] = useState('Beranda');
-  const [destinationIndex, setDestinationIndex] = useState(0);
-  const [isAutoSlidePaused, setIsAutoSlidePaused] = useState(false);
-  const [isTransitioning, setIsTransitioning] = useState(false);
   const [cultureIndex, setCultureIndex] = useState(0);
   const [songketIndex, setSongketIndex] = useState(0);
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   const [isInVideoSection, setIsInVideoSection] = useState(true);
   const [heroVideoRef, setHeroVideoRef] = useState<HTMLVideoElement | null>(null);
-  const [videoHasPlayed, setVideoHasPlayed] = useState(false);
   const { lang } = useLanguage();
 
   // Data foto songket
@@ -186,19 +180,6 @@ export default function Home() {
   ];
 
 
-  const nextDestination = () => {
-    if (isTransitioning) return;
-    setIsTransitioning(true);
-    setDestinationIndex((prev) => (prev + 1) % destinations.length);
-    setTimeout(() => setIsTransitioning(false), 600);
-  };
-
-  const prevDestination = () => {
-    if (isTransitioning) return;
-    setIsTransitioning(true);
-    setDestinationIndex((prev) => (prev - 1 + destinations.length) % destinations.length);
-    setTimeout(() => setIsTransitioning(false), 600);
-  };
 
 
   // Auto-rotate slides setiap 7 detik (hanya saat tidak di video section)
@@ -217,7 +198,6 @@ export default function Home() {
       const handleVideoEnd = () => {
         console.log('Video ended, switching to slideshow');
         setIsInVideoSection(false);
-        setVideoHasPlayed(true);
       };
 
       heroVideoRef.addEventListener('ended', handleVideoEnd);
@@ -225,17 +205,6 @@ export default function Home() {
     }
   }, [heroVideoRef, isInVideoSection]);
 
-  // Auto-slide destinations setiap 3 detik untuk continuous effect
-  useEffect(() => {
-    if (isAutoSlidePaused || isTransitioning) return;
-    
-    const intervalId = setInterval(() => {
-      setIsTransitioning(true);
-      setDestinationIndex((prev) => (prev + 1) % destinations.length);
-      setTimeout(() => setIsTransitioning(false), 600);
-    }, 3000);
-    return () => clearInterval(intervalId);
-  }, [destinations.length, isAutoSlidePaused, isTransitioning]);
 
   // Auto-slide songket images setiap 4 detik
   useEffect(() => {
@@ -267,7 +236,7 @@ export default function Home() {
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [heroVideoRef, isVideoPlaying]);
+  }, [heroVideoRef, isVideoPlaying, isInVideoSection]);
 
   // Loop logic: when slideshow reaches end, go back to video
   useEffect(() => {
@@ -276,7 +245,6 @@ export default function Home() {
         console.log('Slideshow ended, switching back to video');
         setIsInVideoSection(true);
         setActiveIndex(0);
-        setVideoHasPlayed(false);
         if (heroVideoRef) {
           heroVideoRef.currentTime = 0;
           heroVideoRef.play().catch(e => {
@@ -291,7 +259,7 @@ export default function Home() {
   }, [activeIndex, slides.length, isInVideoSection, heroVideoRef]);
 
   // Handle video load error
-  const handleVideoError = (e: any) => {
+  const handleVideoError = (e: React.SyntheticEvent<HTMLVideoElement, Event>) => {
     console.error('Video failed to load:', e);
     console.log('Video failed to load, switching to slideshow');
     setIsInVideoSection(false);
@@ -325,7 +293,7 @@ export default function Home() {
   return (
     <div className="bg-[#fffcf9]">
       {/* Navbar */}
-      <Navbar activePage={activePage} />
+      <Navbar activePage="Beranda" />
 
       {/* Main Content */}
       <div>
