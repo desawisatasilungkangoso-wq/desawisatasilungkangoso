@@ -155,8 +155,8 @@ export default function Galeri() {
           </div>
         </div>
 
-      {/* Main Content - Reused from homepage with limited images, hide internal header */}
-      <GallerySection imageLimit={6} showHeader={false} />
+      {/* Main Content - Reused from homepage with all images, hide internal header */}
+      <GallerySection imageLimit={13} showHeader={false} />
 
       <Footer />
 

@@ -36,21 +36,49 @@ const GallerySection = ({ imageLimit, showHeader = true }: GallerySectionProps) 
   ];
 
   const galleryImages = [
+    // Hero Banner Images (excluding Foto3.jpg)
+    {
+      src: '/image/herobanner/Foto1.jpg',
+      alt_id: 'Pemandangan Desa Wisata Silungkang Oso',
+      alt_en: 'Silungkang Oso Tourism Village View'
+    },
+    {
+      src: '/image/herobanner/Foto2.jpg',
+      alt_id: 'Keindahan Alam Desa Wisata',
+      alt_en: 'Natural Beauty of Tourism Village'
+    },
+    {
+      src: '/image/herobanner/Foto4.jpg',
+      alt_id: 'Budaya dan Tradisi Desa',
+      alt_en: 'Village Culture and Traditions'
+    },
+    // Destinasi Wisata Images
     {
       src: '/image/destinasi-wisata/batu-runciang.jpg',
       alt_id: 'Batu Runciang',
       alt_en: 'Runciang Stone'
     },
     {
-      src: '/image/budaya/tenun-songket-silungkang.png',
-      alt_id: 'Tenun Songket Silungkang',
-      alt_en: 'Silungkang Songket Weaving'
+      src: '/image/destinasi-wisata/camping.jpg',
+      alt_id: 'Camping Ground Guak Kumbuah',
+      alt_en: 'Guak Kumbuah Camping Ground'
     },
     {
-      src: '/image/budaya/talempong-botuang.webp',
-      alt_id: 'Talempong Botuang',
-      alt_en: 'Botuang Talempong'
+      src: '/image/destinasi-wisata/Goa-Kelambu (1).jpg',
+      alt_id: 'Goa Kelambu',
+      alt_en: 'Kelambu Cave'
     },
+    {
+      src: '/image/destinasi-wisata/goa-kelambu.JPG',
+      alt_id: 'Goa Kelambu - Eksplorasi',
+      alt_en: 'Kelambu Cave - Exploration'
+    },
+    {
+      src: '/image/destinasi-wisata/kolam-renang.jpg',
+      alt_id: 'Kolam Renang Mudiak Lugha',
+      alt_en: 'Mudiak Lugha Swimming Pool'
+    },
+    // Budaya Images
     {
       src: '/image/budaya/pidato-adat.jpg',
       alt_id: 'Pidato Adat',
@@ -62,19 +90,19 @@ const GallerySection = ({ imageLimit, showHeader = true }: GallerySectionProps) 
       alt_en: 'Rabana Traditional Music'
     },
     {
-      src: '/image/destinasi-wisata/camping.jpg',
-      alt_id: 'Camping Ground Guak Kumbuah',
-      alt_en: 'Guak Kumbuah Camping Ground'
+      src: '/image/budaya/randai.jpg',
+      alt_id: 'Randai',
+      alt_en: 'Randai Traditional Performance'
     },
     {
-      src: '/image/destinasi-wisata/goa-kelambu.jpg',
-      alt_id: 'Goa Kelambu',
-      alt_en: 'Kelambu Cave'
+      src: '/image/budaya/talempong-botuang.webp',
+      alt_id: 'Talempong Botuang',
+      alt_en: 'Botuang Talempong'
     },
     {
-      src: '/image/destinasi-wisata/kolam-renang.jpg',
-      alt_id: 'Kolam Renang Mudiak Lugha',
-      alt_en: 'Mudiak Lugha Swimming Pool'
+      src: '/image/budaya/tenun-songket-silungkang.png',
+      alt_id: 'Tenun Songket Silungkang',
+      alt_en: 'Silungkang Songket Weaving'
     }
   ];
 
