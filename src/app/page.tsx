@@ -344,7 +344,7 @@ export default function Home() {
                 onLoadStart={() => console.log('Video loading started')}
                 preload="metadata"
               >
-                <source src="/image/video/Video Opening.mp4" type="video/mp4" />
+                <source src="/image/video/video-opening.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
               {/* Overlay untuk video */}
