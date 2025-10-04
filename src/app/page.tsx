@@ -291,7 +291,8 @@ export default function Home() {
   }, [activeIndex, slides.length, isInVideoSection, heroVideoRef]);
 
   // Handle video load error
-  const handleVideoError = () => {
+  const handleVideoError = (e: any) => {
+    console.error('Video failed to load:', e);
     console.log('Video failed to load, switching to slideshow');
     setIsInVideoSection(false);
   };
@@ -339,14 +340,26 @@ export default function Home() {
                 autoPlay
                 muted
                 playsInline
+                controls
+                loop
                 onError={handleVideoError}
                 onCanPlay={handleVideoCanPlay}
                 onLoadStart={() => console.log('Video loading started')}
-                preload="metadata"
+                onLoadedData={() => console.log('Video data loaded')}
+                preload="auto"
               >
                 <source src="/image/video/video-opening.mp4" type="video/mp4" />
+                <source src="/image/video/video-opening.mp4" type="video/mp4; codecs=avc1.42E01E,mp4a.40.2" />
                 Your browser does not support the video tag.
               </video>
+              {/* Fallback image jika video gagal load */}
+              <div 
+                className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+                style={{
+                  backgroundImage: `url('/image/herobanner/Foto1.jpg')`,
+                  display: isInVideoSection ? 'none' : 'block'
+                }}
+              ></div>
               {/* Overlay untuk video */}
               <div className="absolute inset-0 bg-black/30"></div>
             </div>
