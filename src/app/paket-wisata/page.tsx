@@ -44,11 +44,11 @@ export default function PaketWisata() {
       id: 1,
       name_id: 'Paket Batu Runciang',
       name_en: 'Batu Runciang Package',
-      image: '/image/paket-wisata/batu-runciang.png',
+      image: '/image/paket-wisata/batu-runciang.jpg',
       description_id: 'Nikmati keindahan alam Batu Runciang dengan pemandangan yang menakjubkan',
       description_en: 'Enjoy the beauty of Batu Runciang with amazing natural scenery',
-      price_id: 'Rp 5.000',
-      price_en: 'IDR 5,000'
+      price_id: 'Rp 8.000',
+      price_en: 'IDR 8,000'
     },
     {
       id: 2,
@@ -64,11 +64,11 @@ export default function PaketWisata() {
       id: 3,
       name_id: 'Paket Goa Kelambu',
       name_en: 'Goa Kelambu Package',
-      image: '/image/paket-wisata/goa-kelambu.png',
+      image: '/image/paket-wisata/goa-kelambu.jpg',
       description_id: 'Petualangan menelusuri gua dengan keindahan stalaktit dan stalagmit',
       description_en: 'Cave exploration adventure with beautiful stalactites and stalagmites',
-      price_id: 'Rp 10.000',
-      price_en: 'IDR 10,000'
+      price_id: 'Rp 30.000',
+      price_en: 'IDR 30,000'
     },
     {
       id: 4,
