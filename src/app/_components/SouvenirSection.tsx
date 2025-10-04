@@ -53,7 +53,7 @@ export default function SouvenirSection({ showMarketplace = true, className = ""
       name: 'Salempang Songket Silungkang',
       image: '/image/product/salempang-songket-silungkang.png',
       description: 'Aksesori anggun yang melambangkan kehormatan dan budaya Minangkabau. Terbuat dari tenun songket asli Silungkang dengan motif tradisional penuh filosofi, salempang ini biasanya digunakan pada acara adat, wisuda, pernikahan, maupun seremoni resmi. Elegan, berkelas, dan sarat makna, salempang songket menjadi pilihan tepat sebagai simbol kebanggaan dan identitas budaya.',
-      price: 'Rp 75.000',
+      price: 'Rp 150.000',
       category: 'Tekstil Tradisional',
       tags: ['Handmade', 'Stok Tersedia']
     },
@@ -62,7 +62,7 @@ export default function SouvenirSection({ showMarketplace = true, className = ""
       name: 'Deta Songket Silungkang',
       image: '/image/product/deta-songket-silungkang.png',
       description: 'Ikat kepala khas Minangkabau yang dibuat dari tenun songket asli Silungkang. Deta tidak hanya berfungsi sebagai penutup kepala, tetapi juga simbol kewibawaan, kehormatan, dan identitas budaya. Dengan motif songket yang elegan, deta ini sangat cocok digunakan dalam acara adat, pertunjukan budaya, maupun koleksi fashion etnik yang penuh makna.',
-      price: 'Rp 85.000',
+      price: 'Rp 150.000',
       category: 'Tekstil Tradisional',
       tags: ['Handmade', 'Stok Tersedia']
     },
@@ -71,9 +71,36 @@ export default function SouvenirSection({ showMarketplace = true, className = ""
       name: 'Lanyard Songket Silungkang',
       image: '/image/product/lanyard-songket-silungkang.png',
       description: 'Lanyard elegan dengan sentuhan khas tenun songket Silungkang. Cocok digunakan untuk kartu identitas, kartu kerja, maupun kartu pelajar, ID card ini memadukan fungsi praktis dengan nilai budaya. Motif songket yang khas membuatnya tampil unik, eksklusif, sekaligus menjadi souvenir modern bernuansa tradisional Minangkabau.',
-      price: 'Rp 65.000',
+      price: 'Rp 45.000',
       category: 'Aksesoris',
       tags: ['Stok Tersedia']
+    },
+    {
+      id: 8,
+      name: 'Bubuk Kulit Manis',
+      image: '/image/product/bubuk-kulit manis.png',
+      description: 'Bubuk kulit manis adalah hasil olahan alami dari kulit batang pohon kayu manis pilihan yang dikeringkan dan digiling halus. Memiliki aroma khas yang manis, hangat, dan sedikit pedas, bubuk kulit manis sering digunakan sebagai bumbu dapur, bahan tambahan minuman, serta campuran dalam kue, roti, dan berbagai olahan kuliner.',
+      price: 'Rp 9.999',
+      category: 'Produk Olahan',
+      tags: ['Alami', 'Stok Tersedia']
+    },
+    {
+      id: 9,
+      name: 'Sirup Kulit Manis',
+      image: '/image/product/sirup-kulit manis.png',
+      description: 'Sirup kulit manis adalah olahan alami dari ekstrak kulit kayu manis pilihan yang dipadukan dengan gula berkualitas, menghasilkan minuman manis dengan aroma hangat khas rempah. Teksturnya kental, rasa manis berpadu sedikit pedas-aromatik, sangat cocok sebagai pemanis alami dan penambah cita rasa pada berbagai minuman maupun makanan.',
+      price: 'Rp 15.000',
+      category: 'Produk Olahan',
+      tags: ['Alami', 'Stok Tersedia']
+    },
+    {
+      id: 10,
+      name: 'Aroma Terapi Kulit Manis',
+      image: '/image/product/aroma-terapi-kulit-manis.png',
+      description: 'Aromaterapi kulit manis terbuat dari ekstrak alami kulit kayu manis yang diproses menjadi minyak esensial dengan aroma hangat, manis, dan menenangkan. Aromanya khas rempah yang dapat memberikan rasa nyaman, meningkatkan fokus, sekaligus menciptakan suasana rileks.',
+      price: 'Rp 25.999',
+      category: 'Produk Olahan',
+      tags: ['Alami', 'Stok Tersedia']
     }
   ];
 
