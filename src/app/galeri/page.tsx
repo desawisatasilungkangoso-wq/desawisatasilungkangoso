@@ -137,7 +137,7 @@ export default function Galeri() {
         {/* Hero Section */}
         <div className="relative h-96 overflow-hidden">
           <Image
-            src="/image/herobanner/Foto1.jpg"
+            src="/image/budaya/rabana.jpg"
             alt={String(lang) === 'id' ? 'Galeri - Desa Wisata Silungkang Oso' : 'Gallery - Silungkang Oso Tourism Village'}
             fill
             className="object-cover"

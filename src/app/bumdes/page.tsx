@@ -173,7 +173,7 @@ BumDes Silungkang Oso is committed to managing village assets professionally to 
         {/* Hero Section */}
         <div className="relative h-96 overflow-hidden">
           <Image
-            src="/image/herobanner/Foto1.jpg"
+            src="/image/herobanner/Foto3.jpg"
             alt={String(lang) === 'id' ? 'BUMDes - Desa Wisata Silungkang Oso' : 'BUMDes - Silungkang Oso Tourism Village'}
             fill
             className="object-cover"

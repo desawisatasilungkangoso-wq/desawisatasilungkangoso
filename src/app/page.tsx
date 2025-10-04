@@ -106,7 +106,7 @@ export default function Home() {
     },
     {
       id: 2,
-      image: '/image/destinasi-wisata/goa-kelambu.jpg',
+      image: '/image/destinasi-wisata/Goa-Kelambu (1).jpg',
       title_id: 'Goa Kelambu',
       title_en: 'Kelambu Cave',
       description_id: 'Gua alami dengan stalaktit dan stalagmit yang menawan, cocok untuk petualangan',
@@ -1507,7 +1507,7 @@ export default function Home() {
                       <div className="break-inside-avoid">
                         <div className="relative group overflow-hidden rounded-lg">
                           <img 
-                            src="/image/destinasi-wisata/goa-kelambu.jpg?v=2" 
+                            src="/image/destinasi-wisata/Goa Kelambu (1).jpg?v=2" 
                             alt={String(lang) === 'id' ? 'Goa Kelambu' : 'Kelambu Cave'}
                             className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
                           />

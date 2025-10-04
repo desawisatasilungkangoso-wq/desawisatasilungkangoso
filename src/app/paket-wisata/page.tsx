@@ -165,7 +165,7 @@ export default function PaketWisata() {
       {/* Hero Section */}
       <div className="relative h-96 overflow-hidden">
         <Image
-          src="/image/herobanner/Foto1.jpg"
+          src="/image/destinasi-wisata/Goa-Kelambu (1).jpg"
           alt={String(lang) === 'id' ? 'Paket Wisata - Desa Wisata Silungkang Oso' : 'Tour Packages - Silungkang Oso Tourism Village'}
           fill
           className="object-cover"

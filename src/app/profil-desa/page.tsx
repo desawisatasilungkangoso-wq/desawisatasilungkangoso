@@ -137,7 +137,7 @@ export default function ProfilDesa() {
         {/* Hero Section (matching Kontak Kami) */}
         <div className="relative h-96 overflow-hidden">
           <Image
-            src="/image/herobanner/Foto1.jpg"
+            src="/image/galeri/herobannertentangdesa.png"
             alt={String(lang) === 'id' ? 'Profil Desa - Desa Wisata Silungkang Oso' : 'Village Profile - Silungkang Oso Tourism Village'}
             fill
             className="object-cover"
