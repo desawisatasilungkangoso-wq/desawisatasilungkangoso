@@ -17,14 +17,14 @@ Copy dan paste kode berikut ke dalam file `.env.local`:
 
 ```env
 # Email Configuration
-EMAIL_USER=fauzanazhima270102@gmail.com
-EMAIL_PASS=your-app-password-here
+EMAIL_USER=desawisatasilungkangoso@gmail.com
+EMAIL_PASS=aoix vglc ggsg gzky
 
 # Instructions:
-# 1. Replace 'your-app-password-here' with your Gmail App Password
+# 1. This uses the Gmail App Password for desawisatasilungkangoso@gmail.com
 # 2. Make sure you have enabled 2-Factor Authentication in Gmail
-# 3. Generate App Password from: https://myaccount.google.com/apppasswords
-# 4. App Password should be 16 characters long (no spaces)
+# 3. App Password was generated from: https://myaccount.google.com/apppasswords
+# 4. App Password is 16 characters long (spaces will be removed automatically)
 ```
 
 ### 3. **Ganti App Password**
@@ -33,13 +33,13 @@ EMAIL_PASS=your-app-password-here
 
 **Contoh:**
 ```env
-EMAIL_USER=fauzanazhima270102@gmail.com
-EMAIL_PASS=abcd efgh ijkl mnop
+EMAIL_USER=desawisatasilungkangoso@gmail.com
+EMAIL_PASS=aoix vglc ggsg gzky
 ```
 
 ### 4. **Cara Mendapatkan App Password:**
 
-1. **Login ke Gmail** `fauzanazhima270102@gmail.com`
+1. **Login ke Gmail** `desawisatasilungkangoso@gmail.com`
 2. **Buka:** https://myaccount.google.com/apppasswords
 3. **Pilih:** "Mail" dan "Other (Custom name)"
 4. **Masukkan nama:** "Website Form"
@@ -56,7 +56,7 @@ npm run test-email
 
 **Harapan:**
 - ✅ "Test email sent successfully!"
-- ✅ Email masuk ke `fauzanazhima270102@gmail.com`
+- ✅ Email masuk ke `desawisatasilungkangoso@gmail.com`
 
 ### 6. **Test Form Website**
 

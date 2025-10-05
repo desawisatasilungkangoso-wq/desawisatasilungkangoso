@@ -26,8 +26,8 @@ export async function POST(request: NextRequest) {
 
     // Fallback values (for local dev) if env is not loaded; App Password must not contain spaces
     // NOTE: Google shows the app password with spaces for readability; remove spaces when using programmatically
-    const fallbackEmailUser = 'fauzanazhima270102@gmail.com';
-    const fallbackEmailPass = 'gywwkewabyxmwuzn';
+    const fallbackEmailUser = 'desawisatasilungkangoso@gmail.com';
+    const fallbackEmailPass = 'aoixvglcggsggzky';
 
     const emailUser = (process.env.EMAIL_USER || fallbackEmailUser).trim();
     const emailPass = (process.env.EMAIL_PASS || fallbackEmailPass).replace(/\s+/g, '').trim();
@@ -84,7 +84,7 @@ export async function POST(request: NextRequest) {
     // Email options
     const mailOptions = {
       from: `"Desa Wisata Silungkang Oso" <${emailUser}>`,
-      to: 'fauzanazhima270102@gmail.com',
+      to: 'desawisatasilungkangoso@gmail.com',
       subject: `Pesan Baru dari Website - ${subject}`,
       html: emailContent,
       replyTo: email,

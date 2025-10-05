@@ -7,8 +7,7 @@
 - **App Password:** Password khusus untuk aplikasi (bukan password Gmail biasa)
 
 ### 2. Email Penerima
-- **pokdarwispanorama@gmail.com** (email utama)
-- **fauzanazhima270102@gmail.com** (email backup)
+- **desawisatasilungkangoso@gmail.com** (email utama)
 
 ## Langkah Setup
 
@@ -38,8 +37,8 @@ EMAIL_PASS=your-16-character-app-password
 
 **Contoh:**
 ```
-EMAIL_USER=pokdarwispanorama@gmail.com
-EMAIL_PASS=abcd efgh ijkl mnop
+EMAIL_USER=desawisatasilungkangoso@gmail.com
+EMAIL_PASS=aoix vglc ggsg gzky
 ```
 
 ### 3. Test Email
@@ -84,8 +83,7 @@ EMAIL_PASS=abcd efgh ijkl mnop
 ## Email yang Akan Dikirim
 
 Email akan dikirim ke:
-- **pokdarwispanorama@gmail.com** (email utama)
-- **fauzanazhima270102@gmail.com** (email backup)
+- **desawisatasilungkangoso@gmail.com** (email utama)
 
 Dengan format:
 - **Subject:** "Pesan Baru dari Website - [subjek form]"

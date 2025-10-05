@@ -5,7 +5,7 @@
 ### ✅ **Yang Sudah Siap:**
 - [x] API email (`/api/send-email`) sudah dibuat
 - [x] Form kontak sudah diupdate untuk menggunakan API
-- [x] Email akan dikirim ke: `fauzanazhima270102@gmail.com`
+- [x] Email akan dikirim ke: `desawisatasilungkangoso@gmail.com`
 - [x] Form redirect ke halaman sukses setelah submit
 - [x] Error handling sudah lengkap
 - [x] Loading state sudah ada
@@ -14,8 +14,8 @@
 
 #### 1. **File .env.local** (SUDAH ADA)
 ```
-EMAIL_USER=fauzanazima270102@gmail.com
-EMAIL_PASS=your-app-password-here
+EMAIL_USER=desawisatasilungkangoso@gmail.com
+EMAIL_PASS=aoix vglc ggsg gzky
 ```
 
 #### 2. **Test Email Configuration**
@@ -27,7 +27,7 @@ npm run test-email
 1. Jalankan: `npm run dev`
 2. Buka: `http://localhost:3000/kontak`
 3. Isi form dan submit
-4. Cek email di `fauzanazhima270102@gmail.com`
+4. Cek email di `desawisatasilungkangoso@gmail.com`
 
 ## 🎯 **Expected Results:**
 
@@ -38,7 +38,7 @@ npm run test-email
 - Tidak ada error
 
 ### ✅ **Email:**
-- Email masuk ke `fauzanazhima270102@gmail.com`
+- Email masuk ke `desawisatasilungkangoso@gmail.com`
 - Subject: "Pesan Baru dari Website - [subjek form]"
 - Format HTML yang rapi dengan data form
 

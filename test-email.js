@@ -57,7 +57,7 @@ async function testEmail() {
     console.log('📤 Sending test email...');
     const mailOptions = {
       from: `"Desa Wisata Silungkang Oso" <${process.env.EMAIL_USER}>`,
-      to: 'fauzanazhima270102@gmail.com',
+      to: 'desawisatasilungkangoso@gmail.com',
       subject: 'Test Email - Form Kontak Website',
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
