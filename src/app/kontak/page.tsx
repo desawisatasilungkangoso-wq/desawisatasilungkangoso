@@ -182,7 +182,7 @@ export default function Kontak() {
             <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
               {/* Email */}
               <a 
-                href="mailto:pokdarwispanorama@gmail.com"
+                href="mailto:desawisatasilungkangoso@gmail.com"
                 className="group flex flex-col items-center p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
               >
                 <div className="w-16 h-16 bg-gradient-to-br from-red-500 to-red-600 rounded-full flex items-center justify-center mb-4 group-hover:from-red-600 group-hover:to-red-700 transition-all duration-300">

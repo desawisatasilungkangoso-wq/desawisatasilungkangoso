@@ -134,7 +134,7 @@ export default function ContactSection({ showForm = true, className = "" }: Cont
                   {String(lang) === 'id' ? 'Email' : 'Email'}
                 </h4>
                 <p className="text-gray-600 font-poppins">
-                  pokdarwispanorama@gmail.com
+                  desawisatasilungkangoso@gmail.com
                 </p>
               </div>
             </div>

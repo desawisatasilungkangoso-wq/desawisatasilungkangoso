@@ -56,8 +56,8 @@ export default function ContactSuccess() {
           </h3>
           <p className="text-sm text-gray-600 font-poppins leading-relaxed">
             {String(lang) === 'id' 
-              ? 'Jika Anda memiliki pertanyaan mendesak, silakan hubungi kami langsung di 081277849089 atau email pokdarwispanorama@gmail.com'
-              : 'If you have urgent questions, please contact us directly at 081277849089 or email pokdarwispanorama@gmail.com'
+              ? 'Jika Anda memiliki pertanyaan mendesak, silakan hubungi kami langsung di 081277849089 atau email desawisatasilungkangoso@gmail.com'
+              : 'If you have urgent questions, please contact us directly at 081277849089 or email desawisatasilungkangoso@gmail.com'
             }
           </p>
         </div>
