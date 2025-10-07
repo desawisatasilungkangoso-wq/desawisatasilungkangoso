@@ -13,9 +13,6 @@ export default function Home() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [cultureIndex, setCultureIndex] = useState(0);
   const [songketIndex, setSongketIndex] = useState(0);
-  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
-  const [isInVideoSection, setIsInVideoSection] = useState(true);
-  const [heroVideoRef, setHeroVideoRef] = useState<HTMLVideoElement | null>(null);
   const { lang } = useLanguage();
 
   // Data foto songket
@@ -182,28 +179,13 @@ export default function Home() {
 
 
 
-  // Auto-rotate slides setiap 7 detik (hanya saat tidak di video section)
+  // Auto-rotate slides setiap 7 detik
   useEffect(() => {
-    if (isInVideoSection) return;
-    
     const intervalId = setInterval(() => {
       setActiveIndex((prev) => (prev + 1) % slides.length);
     }, 7000);
     return () => clearInterval(intervalId);
-  }, [slides.length, isInVideoSection]);
-
-  // Video duration check - switch to slideshow after video ends
-  useEffect(() => {
-    if (heroVideoRef && isInVideoSection) {
-      const handleVideoEnd = () => {
-        console.log('Video ended, switching to slideshow');
-        setIsInVideoSection(false);
-      };
-
-      heroVideoRef.addEventListener('ended', handleVideoEnd);
-      return () => heroVideoRef.removeEventListener('ended', handleVideoEnd);
-    }
-  }, [heroVideoRef, isInVideoSection]);
+  }, [slides.length]);
 
 
   // Auto-slide songket images setiap 4 detik
@@ -214,76 +196,7 @@ export default function Home() {
     return () => clearInterval(intervalId);
   }, [songketImages.length]);
 
-  // Hero video and slideshow logic
-  useEffect(() => {
-    const handleScroll = () => {
-      const heroSection = document.getElementById('hero-section');
-      if (heroSection) {
-        const rect = heroSection.getBoundingClientRect();
-        const isVisible = rect.top >= -100 && rect.bottom <= window.innerHeight + 100;
-        // Hanya pause video jika scroll keluar, tapi jangan ubah isInVideoSection
-        if (!isVisible && heroVideoRef && isVideoPlaying) {
-          heroVideoRef.pause();
-          setIsVideoPlaying(false);
-        } else if (isVisible && heroVideoRef && !isVideoPlaying && isInVideoSection) {
-          heroVideoRef.play().catch(e => {
-            console.error('Video play failed:', e);
-          });
-          setIsVideoPlaying(true);
-        }
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [heroVideoRef, isVideoPlaying, isInVideoSection]);
-
-  // Loop logic: when slideshow reaches end, go back to video
-  useEffect(() => {
-    if (!isInVideoSection && activeIndex === slides.length - 1) {
-      const timer = setTimeout(() => {
-        console.log('Slideshow ended, switching back to video');
-        setIsInVideoSection(true);
-        setActiveIndex(0);
-        if (heroVideoRef) {
-          heroVideoRef.currentTime = 0;
-          heroVideoRef.play().catch(e => {
-            console.error('Video play failed in loop:', e);
-            // Tetap di slideshow jika video gagal
-            setIsInVideoSection(false);
-          });
-        }
-      }, 2000);
-      return () => clearTimeout(timer);
-    }
-  }, [activeIndex, slides.length, isInVideoSection, heroVideoRef]);
-
-  // Handle video load error
-  const handleVideoError = (e: React.SyntheticEvent<HTMLVideoElement, Event>) => {
-    console.error('Video failed to load:', e);
-    console.log('Video failed to load, switching to slideshow');
-    setIsInVideoSection(false);
-  };
-
-  // Handle video load success
-  const handleVideoCanPlay = () => {
-    console.log('Video loaded successfully');
-    setIsVideoPlaying(true);
-  };
-
-  // Timeout untuk video loading
-  useEffect(() => {
-    if (isInVideoSection) {
-      const timeout = setTimeout(() => {
-        if (!isVideoPlaying) {
-          console.log('Video loading timeout, switching to slideshow');
-          setIsInVideoSection(false);
-        }
-      }, 10000); // 10 detik timeout
-
-      return () => clearTimeout(timeout);
-    }
-  }, [isInVideoSection, isVideoPlaying]);
+  // Video logic dihapus
 
   // Video auto slide dihapus - hanya tampilkan 1 video dulu
 
@@ -299,70 +212,28 @@ export default function Home() {
       <div>
         {/* Hero Section */}
         <div id="hero-section" className="relative w-full h-[100vh] overflow-hidden mb-16">
-          {/* Video Background */}
-          {isInVideoSection ? (
-            <div className="absolute inset-0">
-              <video
-                ref={setHeroVideoRef}
-                className="w-full h-full object-cover"
-                autoPlay
-                muted
-                playsInline
-                controls
-                loop
-                onError={handleVideoError}
-                onCanPlay={handleVideoCanPlay}
-                onLoadStart={() => console.log('Video loading started')}
-                onLoadedData={() => console.log('Video data loaded')}
-                preload="auto"
-              >
-                <source src="/image/video/video-opening.mp4" type="video/mp4" />
-                <source src="/image/video/video-opening.mp4" type="video/mp4; codecs=avc1.42E01E,mp4a.40.2" />
-                Your browser does not support the video tag.
-              </video>
-              {/* Fallback image jika video gagal load */}
-              <div 
-                className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-                style={{
-                  backgroundImage: `url('/image/herobanner/Foto1.jpg')`,
-                  display: isInVideoSection ? 'none' : 'block'
-                }}
-              ></div>
-              {/* Overlay untuk video */}
-              <div className="absolute inset-0 bg-black/30"></div>
+          {/* Slides */}
+          {slides.map((slide, index) => (
+            <div
+              key={index}
+              className={`absolute inset-0 bg-cover bg-center bg-no-repeat slide-transition ${
+                index === activeIndex ? 'opacity-100 scale-100' : 'opacity-0 scale-105'
+              }`}
+              style={{ backgroundImage: `url('${slide.image}')` }}
+            >
             </div>
-          ) : (
-            <>
-              {/* Slides */}
-              {slides.map((slide, index) => (
-                <div
-                  key={index}
-                  className={`absolute inset-0 bg-cover bg-center bg-no-repeat slide-transition ${
-                    index === activeIndex ? 'opacity-100 scale-100' : 'opacity-0 scale-105'
-                  }`}
-                  style={{ backgroundImage: `url('${slide.image}')` }}
-                >
-                </div>
-              ))}
-              {/* Overlay shape untuk tulisan */}
-              <div className="absolute inset-0 bg-black/40 slide-transition"></div>
-            </>
-          )}
+          ))}
+          {/* Overlay shape untuk tulisan */}
+          <div className="absolute inset-0 bg-black/40 slide-transition"></div>
 
           {/* Hero Content (title + description berubah sesuai slide) */}
           <div className="relative z-10 h-full flex items-center justify-center px-4">
             <div className="text-center max-w-4xl mx-auto px-5 md:px-10">
               <h1 className="text-4xl md:text-6xl font-bold mb-4 md:mb-6 text-white font-poppins drop-shadow-2xl text-transition">
-                {isInVideoSection 
-                  ? (String(lang) === 'id' ? 'Selamat Datang di Desa Wisata Silungkang Oso' : 'Welcome to Silungkang Oso Tourism Village')
-                  : (String(lang) === 'id' ? slides[activeIndex].title_id : slides[activeIndex].title_en)
-                }
+                {String(lang) === 'id' ? slides[activeIndex].title_id : slides[activeIndex].title_en}
               </h1>
               <p className="text-base md:text-xl font-medium leading-relaxed text-white font-poppins drop-shadow-2xl text-transition">
-                {isInVideoSection 
-                  ? (String(lang) === 'id' ? 'Nikmati keindahan alam, budaya, dan pengalaman tak terlupakan di Desa Silungkang Oso' : 'Enjoy the natural beauty, culture, and unforgettable experiences at Silungkang Oso Village')
-                  : (String(lang) === 'id' ? slides[activeIndex].desc_id : slides[activeIndex].desc_en)
-                }
+                {String(lang) === 'id' ? slides[activeIndex].desc_id : slides[activeIndex].desc_en}
               </p>
               <div className="mt-6">
                 <a
