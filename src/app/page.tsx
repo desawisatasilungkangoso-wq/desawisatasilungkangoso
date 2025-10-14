@@ -22,6 +22,16 @@ export default function Home() {
     '/image/product/Songket Silungkang.webp'
   ];
 
+  // Data video profil
+  const [videoIndex, setVideoIndex] = useState(0);
+  const videos = [
+    {
+      src: 'https://drive.google.com/file/d/1OFH0UySosDFf9MpWUuN2OQty2Z2AY2-o/preview',
+      title: String(lang) === 'id' ? 'Video Profil Desa' : 'Village Profile Video',
+      description: String(lang) === 'id' ? 'Profil lengkap Desa Silungkang Oso' : 'Complete Silungkang Oso Village Profile'
+    }
+  ];
+
 
 
   const slides = [
@@ -469,49 +479,24 @@ export default function Home() {
                     <h3 className="text-xl font-semibold mb-4 text-gray-800 font-poppins">
                       {String(lang) === 'id' ? 'Video Profil Desa' : 'Village Profile Video'}
                     </h3>
-                    <div className="relative bg-gray-100 rounded-lg overflow-hidden shadow-lg">
-                      {/* Video Placeholder */}
-                      <div className="aspect-video bg-gray-200 flex items-center justify-center">
-                        <div className="text-center text-gray-500">
-                          <svg className="w-16 h-16 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                          </svg>
-                          <p className="text-sm font-medium">
-                            {String(lang) === 'id' ? 'Video Profil Akan Segera Hadir' : 'Profile Video Coming Soon'}
-                          </p>
-                          <p className="text-xs mt-1 opacity-75">
-                            {String(lang) === 'id' ? 'Tempat untuk video profil desa' : 'Place for village profile video'}
-                          </p>
-                        </div>
-                      </div>
-                      
-                      {/* Video Controls Placeholder */}
-                      <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 p-3">
-                        <div className="flex items-center space-x-3">
-                          <button className="text-white hover:text-gray-300 transition-colors">
-                            <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                              <path d="M8 5v14l11-7z"/>
-                            </svg>
-                          </button>
-                          <div className="flex-1 bg-gray-600 rounded-full h-1">
-                            <div className="bg-white h-1 rounded-full w-0"></div>
-                          </div>
-                          <span className="text-white text-xs">0:00</span>
-                        </div>
-                      </div>
-                    </div>
                     
-                    {/* Video Description */}
-                    <div className="mt-4 text-sm text-gray-600 font-poppins">
-                      {String(lang) === 'id' ? (
-                        <p>
-                          Video profil ini akan menampilkan keindahan alam, kekayaan budaya, dan kehidupan masyarakat Desa Silungkang Oso yang penuh dengan tradisi dan kearifan lokal.
-                        </p>
-                      ) : (
-                        <p>
-                          This profile video will showcase the natural beauty, cultural richness, and community life of Silungkang Oso Village filled with traditions and local wisdom.
-                        </p>
-                      )}
+                    <div className="bg-white rounded-xl p-6 shadow-md border border-gray-100 max-w-4xl mx-auto">
+                      <div className="relative">
+                        <div className="relative aspect-video bg-gray-900 rounded-lg overflow-hidden">
+                          <div className="absolute inset-0">
+                            <iframe
+                              key={videoIndex}
+                              src={videos[videoIndex].src}
+                              className="w-full h-full"
+                              allow="autoplay"
+                              allowFullScreen
+                              title={videos[videoIndex].title}
+                            ></iframe>
+                          </div>
+                        </div>
+
+                      </div>
+
                     </div>
                   </div>
                 </div>

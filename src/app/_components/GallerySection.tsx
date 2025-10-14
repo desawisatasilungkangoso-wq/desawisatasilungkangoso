@@ -32,6 +32,26 @@ const GallerySection = ({ imageLimit, showHeader = true }: GallerySectionProps) 
       src: 'https://drive.google.com/file/d/1o5vASqTddFRXgdWk6ZE6WWxm99FNea8K/preview',
       title: String(lang) === 'id' ? 'Video Dokumentasi 4' : 'Documentation Video 4',
       description: String(lang) === 'id' ? 'Tradisi dan kearifan lokal masyarakat' : 'Traditions and local wisdom of the community'
+    },
+    {
+      src: 'https://drive.google.com/file/d/1LngkJx-5IncFyBPlp0jTS_jNRNJhTEmp/preview',
+      title: String(lang) === 'id' ? 'Video Dokumentasi 5' : 'Documentation Video 5',
+      description: String(lang) === 'id' ? 'Keindahan alam dan budaya Desa Silungkang Oso' : 'Natural beauty and culture of Silungkang Oso Village'
+    },
+    {
+      src: 'https://drive.google.com/file/d/16qf-7Hd62xtSottLFBP0pOlxxXW7vmbT/preview',
+      title: String(lang) === 'id' ? 'Video Dokumentasi 6' : 'Documentation Video 6',
+      description: String(lang) === 'id' ? 'Aktivitas dan kehidupan sehari-hari masyarakat' : 'Daily activities and community life'
+    },
+    {
+      src: 'https://drive.google.com/file/d/12jtu16xTXGRJYyxzzOzykR063PZbSIlv/preview',
+      title: String(lang) === 'id' ? 'Video Dokumentasi 7' : 'Documentation Video 7',
+      description: String(lang) === 'id' ? 'Wisata dan destinasi menarik di Desa' : 'Tourism and interesting destinations in the Village'
+    },
+    {
+      src: 'https://drive.google.com/file/d/10FqWVyVZCdNRSnshT8zyo9eeQNu_4gQa/preview',
+      title: String(lang) === 'id' ? 'Video Dokumentasi 8' : 'Documentation Video 8',
+      description: String(lang) === 'id' ? 'Warisan budaya dan tradisi lokal' : 'Cultural heritage and local traditions'
     }
   ];
 
